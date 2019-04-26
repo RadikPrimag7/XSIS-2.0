@@ -1,17 +1,27 @@
-<html>
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-<form action="" method ="post">
-	<div class="modal-header">
-		<h3 class="modal-title">Pengalaman Kerja</h3>
-		<button type = "button" class="close" data-dismiss="modal" aria-label="close">
-			<span aria-hidden="true">&times;</span>
-		</button>
-	</div>
-	<div class="modal-body">
-		<div class="form-group row">
-			<label class="col-form-label col-md-3"></label>
-		</div>
-	</div>
-</form>
+	<title>Pengalaman Kerja</title>
+</head>
 
+<body>
+	<table class="table">
+		<thead>
+			<tr>
+				<th>Detail Pekerjaan</th>
+				<th>Catatan</th>
+				<th>#</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="pgkj : ${listData}">
+				<td><span th:text="${pgkj.companyName}">(</span><span th:text="${pgkj.joinYear}">-</span><span th:text="${pgkj.joinMonth}">s/d</span><span th:text="${pgkj.resignYear}">-</span><span th:text="${resignMonth}">)</span></td>
+				<td><span th:text="${pgkj.notes}"></span></td>
+				<td><button></button></td>
+		</tbody>
+	</table>
+</body>
 </html>

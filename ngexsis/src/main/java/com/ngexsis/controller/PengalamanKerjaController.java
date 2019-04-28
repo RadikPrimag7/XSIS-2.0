@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -35,6 +36,18 @@ public class PengalamanKerjaController {
 			hasil=new ResponseEntity<List<PengalamanKerjaModel>>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 		return hasil;
+	}
+	
+	@RequestMapping(value="/pengalaman/index")
+	public String index(Model model) {
+		List<PengalamanKerjaModel> data = repo.findAll();
+		model.addAttribute("listdata",data);
+		return "pengalaman/index";
+	}
+	
+	@RequestMapping(value="/pengalaman/add")
+	public String add() {
+		return "pengalaman/add";
 	}
 	
 	

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+	<title>Pengalaman Kerja</title>
+</head>
+
+<body>
+	<table class="table">
+		<thead>
+			<tr>
+				<th>Detail Pekerjaan</th>
+				<th>Catatan</th>
+				<th>#</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="pgkj : ${listData}">
+				<td><span th:text="${pgkj.companyName}">(</span><span th:text="${pgkj.joinYear}">-</span><span th:text="${pgkj.joinMonth}">s/d</span><span th:text="${pgkj.resignYear}">-</span><span th:text="${resignMonth}">)</span></td>
+				<td><span th:text="${pgkj.notes}"></span></td>
+				<td><select>
+					<option value="ubah">Ubah</option>
+					<option value="hapus">Hapus</option>
+					<option value="addproject">Tambah Project</option>
+				</select></td>
+		</tbody>
+	</table>
+</body>
+</html>

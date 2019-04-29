@@ -1,11 +1,95 @@
-<!DOCTYPE HTML>
+<!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
 	<meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Tambah Pengalaman Kerja</title>
+
+	<link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">
+	<title>Add HTML</title>
 </head>
 <body>
-	
+	<div class="container">
+		<div class="row">
+			<div class="row col-6">
+				
+				<div class="col-12">
+					<label>Nama Perusahaan/Instansi *</label>
+					<input type="text" name="companyName" class="form-control">
+				</div>
+
+				<div class="col-6">
+					<label>Waktu Masuk *</label>
+					<input type="text" name="joinMonth" class="form-control">
+				</div>
+
+				<div class="col-6">
+					<label><br></label>
+					<input type="text" name="joinYear" class="form-control">
+				</div>
+
+				<div class="col-12">
+					<label>Posisi Terakhir *</label>
+					<input type="text" name="lastPosition" class="form-control">
+				</div>
+
+				<div class="col-12">
+					<input type="checkbox" name="isItRelated"> IT Related ?
+				</div>
+				
+			</div>
+
+			<div class="row col-6">
+				
+				<div class="col-6">
+					<label>Kota</label>
+					<input type="text" name="city" class="form-control">
+				</div>
+
+				<div class="col-6">
+					<label>Negara</label>
+					<input type="text" name="country" class="form-control">
+				</div>
+
+				<div class="col-6">
+					<label>Waktu Keluar *</label>
+					<input type="text" name="resignMonth" class="form-control">
+				</div>
+
+				<div class="col-6">
+					<label><br></label>
+					<input type="text" name="resignYear" class="form-control">
+				</div>
+
+				<div class="col-12">
+					<label>Penghasilan Terakhir (IDR)</label>
+					<input type="text" name="income" class="form-control">
+				</div>
+				
+			</div>
+
+		</div>
+<br>
+		<div class="row col-12">
+			<div class="col-12">
+				<label>Keterangan Singkat Mengenai Pekerjaan</label>
+				<textarea class="form-control"></textarea>
+			</div>
+			<div class="col-12">
+				<label>Alasan Keluar</label>
+				<input type="text" name="exitReason" class="form-control">
+			</div>
+			<div class="col-12">
+				<label>Catatan</label>
+				<textarea class="form-control"></textarea>
+			</div>
+
+			<form action="#" method="post" class="row">
+				<button class="btn btn-primary float-right">Simpan</button>
+				<button class="btn btn-warning float-right">Batal</button>
+			</form>
+		</div>
+
+	</div>
+
 </body>
 </html>

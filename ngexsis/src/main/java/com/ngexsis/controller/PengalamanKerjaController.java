@@ -38,10 +38,11 @@ public class PengalamanKerjaController {
 		return hasil;
 	}
 	
+	
 	@RequestMapping(value="/pengalaman/index")
 	public String index(Model model) {
 		List<PengalamanKerjaModel> data = repo.findAll();
-		model.addAttribute("listdata",data);
+		model.addAttribute("listData",data);
 		return "pengalaman/index";
 	}
 	

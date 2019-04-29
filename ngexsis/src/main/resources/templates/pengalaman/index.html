@@ -4,10 +4,14 @@
 	<meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-	<title>Pengalaman Kerja</title>
+	<link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">
+	
+	<title>Index HTML</title>
 </head>
-
 <body>
+	<h3>Pengalaman Kerja
+		<i class="fas fa-plus"></i>
+	</h3>
 	<table class="table">
 		<thead>
 			<tr>
@@ -18,14 +22,36 @@
 		</thead>
 		<tbody>
 			<tr th:each="pgkj : ${listData}">
-				<td><span th:text="${pgkj.companyName}">(</span><span th:text="${pgkj.joinYear}">-</span><span th:text="${pgkj.joinMonth}">s/d</span><span th:text="${pgkj.resignYear}">-</span><span th:text="${resignMonth}">)</span></td>
+				<td><span th:text="${pgkj.companyName}"></span> (<span th:text="${pgkj.joinYear}"></span>-<span th:text="${pgkj.joinMonth}"></span> s/d <span th:text="${pgkj.resignYear}"></span>-<span th:text="${pgkj.resignMonth}"></span>)</td>
 				<td><span th:text="${pgkj.notes}"></span></td>
-				<td><select>
-					<option value="ubah">Ubah</option>
-					<option value="hapus">Hapus</option>
-					<option value="addproject">Tambah Project</option>
-				</select></td>
+				<td class="text-center">
+							<div class="dropdown">
+							<button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">More
+								<span class="caret"></span></button>
+								<ul class="dropdown-menu">
+								    <li>
+								    	<a th:href="@{/pengalaman/edit/{id}(id=${pgkj.id})}" id="btn-edit" class="btn btn-sm col-5">
+										<em>Edit<i class="fas fa-edit"></i></em>
+										</a>
+									</li>
+								    <li>
+								    	<a th:href="@{/pengalaman/delete/{id}(id=${pgkj.id})}" class="btn-delete btn btn-sm col-5">
+										<em>Delete<i class="fas fa-trash-alt"></i></em>
+										</a>
+								    </li>
+								</ul>
+							</div> 
+						</td>
+			</tr>
 		</tbody>
 	</table>
+	
+	<!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script type="text/javascript" src="/js/jquery-3.4.0.min.js"></script>
+    <script type="text/javascript" src="/js/popper.min.js"></script>
+    <script type="text/javascript" src="/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/js/fontawesome.min.js"></script>
+    
 </body>
 </html>

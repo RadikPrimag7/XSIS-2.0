@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+		<link rel="stylesheet" href="/css/bootstrap.min.css">
+		
+		
+	</head>
+	
+	<body>
+	
+		<div class="container">
+			<div>
+				<div>
+					<h3 class="box-title">Pelatihan</h3>
+					<a id="btn-add" href="#"><i class="fas fa-plus-circle"></i></a>
+				</div>
+				<div>
+					<table class="table">
+						<thead class="blue">
+							<tr>
+								<th>Pelatihan</th>
+								<th>Penyelenggara</th>
+								<th>Waktu</th>
+								<th>Durasi</th>
+								<th>#</th>
+							</tr>
+						</thead>
+					<tbody>
+						<tr th:each ="item : ${listdata}">
+							<td><span th:text="${item.trainingName}"></span></td>
+							<td><span th:text="${item.oganizer}"></span></td>
+							<td><span th:text="${item.trainingYear}">-</span> <span th:text="${item.trainingMonth}"></span></td>
+							<td><span th:text="${item.trainingDuration}"></span></td>
+							<td>
+								<div class="dropdown">
+							<button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">More
+								<span class="caret"></span></button>
+								<ul class="dropdown-menu">
+								    <li>
+								    	<a th:href="@{/pelatihan/edit/{id}(id=${item.id})}"  class="btn btn-sm col-5 btn-edit">
+										<em>Edit<i class="fas fa-edit"></i></em>
+										</a>
+									</li>
+								    <li>
+								    	<a th:href="@{/pelatihan/delete/{id}(id=${item.id})}"  class="btn-delete btn btn-sm col-5 btn-delete">
+										<em>Delete<i class="fas fa-trash-alt"></i></em>
+										</a>
+								    </li>
+								</ul>
+							</div>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+				</div>
+				<div >
+				
+				</div>
+			</div>
+				
+				<div id="modal-form" class="modal col-10" role="dialog">
+					<div class ="modal-dialog">
+						<div class = "modal-content"></div>
+					</div>
+				</div>
+		</div>
+		
+		<script src="https://code.jquery.com/jquery-3.4.0.min.js" ></script>
+   		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+		<script src="../../js/jquery.serializejson.js" ></script>
+		
+		<script type="text/javascript">
+			/*function loadData(){
+				$.ajax({
+					url:'/pelatihan/list',
+					type: 'get',
+					dataType:'html',
+					success:function hasil(){
+						$('#list-data').html(hasil);
+					}
+				})
+			}//selesai
+			
+			$(function(){
+				loadData();
+			});*/
+			
+			$("#btn-add").click(function(){
+				$.ajax({
+					url:'/add',
+					type:'get',
+					dataType:'html',
+					success:function(hasil){
+						$("#modal-form").find(".modal-content").html(hasil);
+						$("#modal-form").modal("show");
+					}
+				})
+			})
+			
+			$(".btn-delete").click(function(){
+				var a = $(this).attr("href");
+				$.ajax({
+					url:a,
+					type:'get',
+					dataType:'html',
+					success:function(hasil){
+						$("#modal-form").find(".modal-content").html(hasil);
+						$("#modal-form").modal("show");
+					}
+				})
+				return false;
+			})
+			
+			$(".btn-edit").click(function(){
+				var a = $(this).attr("href");
+				$.ajax({
+					url:a,
+					type:'get',
+					dataType:'html',
+					success:function(hasil){
+						
+						$("#modal-form").find(".modal-content").html(hasil);
+						$("#modal-form").modal("show");
+					}
+				})
+				return false;
+			})
+			
+			
+		</script>
+	</body>
+</html>

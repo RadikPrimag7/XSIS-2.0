@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<title>Edit Pelatihan</title>
+		<link rel="stylesheet" href="/css/bootstrap.min.css">
+		<style>
+			h1{
+				background-color: #032c6d;
+				color: white;
+			}
+		</style>
+	</head>
+	
+	<body>
+	<form action="/pelatihan/tambah" method = "post">
+		<h1>Edit Pelatihan</h1>
+		<div class="container">
+			<div class="row">
+				<div class="col-6">
+					<label class = "col-form- table col-md-6">Nama (Kursus, Penataran, Pelatihan, Workshop)</label>
+					<input class="form-control col-md" type = "text" name = "trainingName" required/>
+				</div>
+				
+				<div class="col-6">
+					<label class = "col-form- table col-md-6">Penyelenggara</label>
+					<input class="form-control col-md" type = "text" name = "oganizer" required/>
+				</div>
+			</div>
+			
+			<div class = "row">
+				<div class = "col-6">
+					<label class = "col-form- table col-md-2">Waktu Pelaksanaan</label>
+					
+					<div class="row">
+						
+							<select class="form-control col-md-6" name="trainingMonth" required>
+								<option>- Pilih Bulan -</option>
+						        <option value="1">January</option>
+						        <option value="2">February</option>
+						        <option value="3">March</option>
+						        <option value="4">April</option>
+						        <option value="5">May</option>
+						        <option value="6">June</option>
+						        <option value="7">July</option>
+						        <option value="8">August</option>
+						        <option value="9">September</option>
+						        <option value="10">October</option>
+						        <option value="11">November</option>
+						        <option value="12">December</option>
+						     </select> 	
+						
+						
+							<select id="getYear" class="form-control col-md-6" name ="trainingYear" required>
+									
+							</select>
+						
+					</div>
+				</div>
+				
+				<div class = "col-6">
+					<label class = "col-form- table col-md-2">Lama Durasi</label>
+						<div class="row">
+							<input class="form-control col-md" type="text" name="trainingDuration" required/>
+						
+							<select  class="form-control col-md"  name="trainingDuration" required>
+								<option>- Pilih -</option>
+								<option value="Tahun">Tahun</option>
+								<option value="Bulan">Bulan</option>
+								<option value="Minggu">Minggu</option>
+								<option value="Hari">Hari</option>
+								
+								
+							</select>
+						</div>
+				</div>
+			</div>
+				
+			<div class="row">
+				<div class="col-6">
+					<label class = "col-form- table col-md-2">Kota</label>
+					<input class="form-control col-md" type="text" name="city" required/>
+				</div>
+				
+				<div class="col-6">
+					<label class = "col-form- table col-md-2">Negara</label>
+					<input class="form-control col-md" type="text" name="county" required/>
+				</div>
+			</div>
+			
+			<div class="row">
+				<div class="col">
+					<label class = "col-form- table col-md-2">Catatan</label>
+					<textarea class="form-control col-md" rows = "5" name = "notes"required>tulis catatan</textarea>
+				</div>
+			</div>
+			
+			<div class="row">
+				
+				<div class="col">
+					<button th:href="@{redirect: /pelatihan}" class="btn btn-warning" data-dismiss="modal" type="button">Batal</button>
+					<button  class="btn btn-primary" type="submit">Simpan</button>
+				</div>
+			</div>
+		</div>
+		</form>
+		
+		<script type="text/javascript">
+			var max=new Date().getFullYear();
+				min=max-50;
+				select = document.getElementById("getYear");
+				
+				var opt = document.createElement('option');
+				opt.value = "";
+				opt.innerHTML = "-Pilih Tahun-";
+				select.appendChild(opt);
+				
+			for(var i=max; i>=min;i--){
+				var opt = document.createElement('option');
+				opt.value = i;
+				opt.innerHTML = i;
+				select.appendChild(opt);
+			}
+			
+			//select.value = new Date().getFullYear();
+		</script>
+	</body>
+</html>

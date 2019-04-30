@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th = "http://thymeleaf.org">
+	<body>
+		<table>
+			<tbody>
+				<tr th:each ="item : ${listdata}">
+					<td><span th:text="${item.trainingName}"></span></td>
+					<td><span th:text="${item.oganizer}"></span></td>
+					<td><span th:text="${item.trainingYear}">-</span> <span th:text="${item.trainingMonth}"></span></td>
+					<td><span th:text="${item.trainingDuration}"></span></td>
+					<td>
+						<button class="btn btn-primary btn-sm" value="${item.id}"><i class="fas fa-align-justify"></i> Edit</button> 
+						<button class="btn btn-warning btn-sm" value="${item.id}"><i class="fas fa-trash-alt"></i> Hapus</button>
+					</td>
+				</tr> 
+			</tbody>
+		</table>
+	</body>
+</html>

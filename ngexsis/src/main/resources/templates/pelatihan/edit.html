@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<title>Edit Pelatihan</title>
+		<link rel="stylesheet" href="/css/bootstrap.min.css">
+		<style>
+			h1{
+				background-color: #032c6d;
+				color: white;
+			}
+		</style>
+	</head>
+	
+	<body>
+	<form action="/pelatihan/tambah" method = "post">
+		<h1>Edit Pelatihan</h1>
+		<div class="container">
+			<div class="row">
+				<div class="col-6">
+					<label class = "col-form- table col-md-6">Nama (Kursus, Penataran, Pelatihan, Workshop)</label>
+					<input class="form-control col-md" type = "text" name = "trainingName" th:value= "${data.trainingName}" required/>
+				</div>
+				
+				<div class="col-6">
+					<label class = "col-form- table col-md-6">Penyelenggara</label>
+					<input class="form-control col-md" type = "text" name = "oganizer" th:value= "${data.oganizer}" required/>
+				</div>
+			</div>
+			
+			<div class = "row">
+				<div class = "col-6">
+					<label class = "col-form- table col-md-2">Waktu Pelaksanaan</label>
+					
+					<div class="row">
+						
+							<select class="form-control col-md-6" name="trainingMonth" th:value= "${data.trainingMonth}"required>
+								<option>- Pilih Bulan -</option>
+						        <option value="January">January</option>
+						        <option value="February">February</option>
+						        <option value="March">March</option>
+						        <option value="April">April</option>
+						        <option value="May">May</option>
+						        <option value="June">June</option>
+						        <option value="July">July</option>
+						        <option value="August">August</option>
+						        <option value="September">September</option>
+						        <option value="October">October</option>
+						        <option value="November">November</option>
+						        <option value="December">December</option>
+						     </select> 	
+						
+						
+							<select id="getYear" class="form-control col-md-6" name ="trainingYear" th:value= "${data.trainingYear}"required>
+								
+									
+							</select>
+						
+					</div>
+				</div>
+				
+				<div class = "col-6">
+					<label class = "col-form- table col-md-2">Lama Durasi</label>
+						<div class="row">
+							<input class="form-control col-md" type="text" name="trainingDuration" th:value= "${data.trainingDuration}"required/>
+						
+							<select  class="form-control col-md"  name="trainingDuration" th:value= "${data.trainingDuration}"required>
+								<option>- Pilih -</option>
+								<option value="Tahun">Tahun</option>
+								<option value="Bulan">Bulan</option>
+								<option value="Minggu">Minggu</option>
+								<option value="Hari">Hari</option>
+								
+								
+							</select>
+						</div>
+				</div>
+			</div>
+				
+			<div class="row">
+				<div class="col-6">
+					<label class = "col-form- table col-md-2">Kota</label>
+					<input class="form-control col-md" type="text" name="city" th:value= "${data.city}"required/>
+				</div>
+				
+				<div class="col-6">
+					<label class = "col-form- table col-md-2">Negara</label>
+					<input class="form-control col-md" type="text" name="country" th:value= "${data.country}"required/>
+				</div>
+			</div>
+			
+			<div class="row">
+				<div class="col">
+					<label class = "col-form- table col-md-2">Catatan</label>
+					<textarea class="form-control col-md" rows = "5" name = "notes" th:value= "${data.notes}"required>tulis catatan</textarea>
+				</div>
+			</div>
+			
+			<div class="row">
+				
+				<div class="col">
+					<button th:href="@{redirect: /pelatihan}" class="btn btn-warning" data-dismiss="modal" type="button">Batal</button>
+					<button  class="btn btn-primary" type="submit">Simpan</button>
+				</div>
+			</div>
+		</div>
+		</form>
+		
+		<script type="text/javascript">
+			var max=new Date().getFullYear();
+				min=max-50;
+				select = document.getElementById("getYear");
+				
+				var opt = document.createElement('option');
+				opt.value = "";
+				opt.innerHTML = "-Pilih Tahun-";
+				select.appendChild(opt);
+			for(var i=max; i>=min;i--){
+				var opt = document.createElement('option');
+				opt.value = i;
+				opt.innerHTML = i;
+				select.appendChild(opt);
+			}
+			
+			//select.value = new Date().getFullYear();
+		</script>
+	</body>
+</html>

@@ -9,6 +9,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -51,5 +53,20 @@ public class PengalamanKerjaController {
 		return "pengalaman/add";
 	}
 	
+	//save ke model PengalamanKerjaModel
+	@RequestMapping(value="/pengalaman/save", method=RequestMethod.POST)
+	public String save(@ModelAttribute PengalamanKerjaModel item) {
+		//mengirim item agar dapat disave ke database
+		repo.save(item);
+		return "pengalaman/save";
+	}
+	
+	@RequestMapping(value="/pengalaman/edit/{id}")
+	public String edit(Model model, @PathVariable(name="id")Long id) {
+		PengalamanKerjaModel item = repo.findById(id).orElse(null);
+		
+		model.addAttribute("data",item);
+		return "pengalaman/edit";
+	}
 	
 }

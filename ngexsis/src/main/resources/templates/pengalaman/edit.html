@@ -1,0 +1,97 @@
+
+<form action="/pengalaman/save" method="post">
+<input type="text" name="id" th:value="${data.id}" style="display:none">
+	<div class="modal-header">
+		<h3 class="modal-title">Tambah Pengalaman Kerja</h3>
+		<button type="button" class="close" data-dismiss="modal"
+			aria-label="close">
+			<span aria-hidden="true">&times;</span>
+		</button>
+	</div>
+	<div class="modal-body">
+		<div class="container">
+			<div class="row">
+				<div class="row col-6">
+
+					<div class="col-12">
+						<label>Nama Perusahaan/Instansi *</label> <input type="text"
+							name="companyName" th:value="${data.companyName}"class="form-control" required>
+					</div>
+
+					<div class="col-6">
+						<label>Waktu Masuk *</label> <input type="text" name="joinMonth"
+							th:value="${data.joinMonth}" class="form-control">
+					</div>
+
+					<div class="col-6">
+						<label><br></label> <input type="text" name="joinYear"
+							th:value="${data.joinYear}" class="form-control">
+					</div>
+
+					<div class="col-12">
+						<label>Posisi Terakhir *</label> <input type="text"
+							name="lastPosition" th:value="${lastPosition}" class="form-control">
+					</div>
+
+					<div class="col-12">
+						<input type="checkbox" name="isItRelated" th:value="${isItRelated}"> IT Related ?
+					</div>
+
+				</div>
+
+				<div class="row col-6">
+
+					<div class="col-6">
+						<label>Kota</label> <input type="text" name="city"
+							th:value="${city}" class="form-control">
+					</div>
+
+					<div class="col-6">
+						<label>Negara</label> <input type="text" name="country"
+							th:value="${country}" class="form-control">
+					</div>
+
+					<div class="col-6">
+						<label>Waktu Keluar *</label> <input type="text"
+							name="resignMonth" th:value="${resignMonth}" class="form-control">
+					</div>
+
+					<div class="col-6">
+						<label><br></label> <input type="text" name="resignYear"
+							th:value="${resignYear}" class="form-control">
+					</div>
+
+					<div class="col-12">
+						<label>Penghasilan Terakhir (IDR)</label> <input type="text"
+							name="income" class="form-control">
+					</div>
+
+				</div>
+
+			</div>
+			<br>
+			<div class="row col-12">
+				<div class="col-12">
+					<label>Keterangan Singkat Mengenai Pekerjaan</label>
+					<textarea class="form-control"></textarea>
+				</div>
+				<div class="col-12">
+					<label>Alasan Keluar</label> <input type="text" name="exitReason"
+						class="form-control">
+				</div>
+				<div class="col-12">
+					<label>Catatan</label>
+					<textarea class="form-control"></textarea>
+				</div>
+
+				<div class="form-group-row">
+					<div class="col-3 offset-9">
+						<a href="pengalaman/index"><button class="btn btn-warning float-right">Batal</button></a>
+						<button type="submit" class="btn btn-primary float-right">Simpan</button>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</div>
+</form>

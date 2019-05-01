@@ -69,4 +69,17 @@ public class PengalamanKerjaController {
 		return "pengalaman/edit";
 	}
 	
+	@RequestMapping(value="/pengalaman/delete/{id}",method= RequestMethod.GET)
+	public String showDelete(Model model,@PathVariable(name="id")Long id) {
+		PengalamanKerjaModel item=repo.findById(id).orElse(null);
+		model.addAttribute("data",item);
+		return "pengalaman/delete";
+	}
+	
+	@RequestMapping(value="/pengalaman/delete", method=RequestMethod.DELETE)
+	public String delete(@ModelAttribute PengalamanKerjaModel item) {
+		repo.delete(item);
+		return "redirect:/pengalaman";
+	}
+	
 }

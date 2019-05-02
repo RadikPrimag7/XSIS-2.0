@@ -71,23 +71,9 @@
     		
     	});
     	
-    	$('.btn-edit').click(function(){
+    	$(".btn-edit").click(function(){
     		var a=$(this).attr("href");
     		$.ajax({
-    			url:a,
-    			type:'get',
-    			dataType:'html',
-    			success:function(hasil){
-    				$("#modal-form").find(".modal-content").html(hasil);
-    				$("#modal-form").mocal("show");
-    			}
-    		});
-    		return false;
-    	});
-    	
-    	$(".btn-delete").click(function(){
-    		var a=$(this).attr('href')
-    		$ajax({
     			url:a,
     			type:'get',
     			dataType:'html',
@@ -96,7 +82,22 @@
     				$("#modal-form").modal("show");
     			}
     		});
-    	})
+    		return false;
+    	});
+    	
+    	$(".btn-delete").click(function(){
+    		var a=$(this).attr("href");
+    		$.ajax({
+    			url:a,
+    			type:'get',
+    			dataType:'html',
+    			success:function(hasil){
+    				$("#modal-form").find(".modal-content").html(hasil);
+    				$("#modal-form").modal("show");
+    			}
+    		});
+    		return false;
+    	});
     </script>
     
 </body>

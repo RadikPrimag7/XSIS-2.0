@@ -58,7 +58,7 @@ public class PengalamanKerjaController {
 	public String save(@ModelAttribute PengalamanKerjaModel item) {
 		//mengirim item agar dapat disave ke database
 		repo.save(item);
-		return "pengalaman/save";
+		return "redirect:/pengalaman/index";
 	}
 	
 	@RequestMapping(value="/pengalaman/edit/{id}")

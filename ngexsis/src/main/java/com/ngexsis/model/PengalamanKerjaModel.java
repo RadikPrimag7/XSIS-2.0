@@ -22,8 +22,6 @@ public class PengalamanKerjaModel {
 	private long id;
 	
 	
-	@Column(name="biodata_id", nullable=false,length=11)
-	private long biodataId;
 	
 	@Column(name="company_name",length=100)
 	private String companyName;
@@ -74,13 +72,7 @@ public class PengalamanKerjaModel {
 	}
 
 
-	public long getBiodataId() {
-		return biodataId;
-	}
-
-	public void setBiodataId(long biodataId) {
-		this.biodataId = biodataId;
-	}
+	
 
 	public String getCompanyName() {
 		return companyName;

@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="bootstrap-4.3.1-dist/css/bootstrap.min.css">
+
+    <!-- Font Awesome CSS -->
+    <link rel="stylesheet" href="fontawesome-free-5.8.1-web/css/all.min.css">
+
+    <title>Biodata</title>
+</head>
+<body>
+    
+    <div class="container">
+                
+        <div class="row">
+            <h3 class="col-2">Biodata &nbsp&nbsp
+                <a th:href="@{/pelamar/biodata/edit/{id}(id=${data.id})}" class="goToEdit"><i class="fas fa-edit"></i></a>
+            </h3>
+        </div>
+        
+        <div class="row">
+            <div class="col-12">
+                <label class="col-7">Nama Lengkap</label>
+                <span class="col-1">:</span>
+                <span class="col-4" th:text="${data.fullname}"></span>
+            </div>
+            
+            <div class="col-12">
+                <label class="col-7">Nama Pangggilan</label>
+                <span class="col-1">:</span>
+                <span class="col-4" th:text="${data.nickName}"></span>
+            </div>
+            
+            <div class="col-12">
+                <label class="col-7">Kontak</label>
+                <span class="col-1">:</span>
+                <span class="col-4" th:text="${data.email}"> / <span th:text="${bio.phoneNumber1}"></span></span>
+            </div>
+
+            <div class="col-12">
+                <label class="col-7">Tempat, Tgl. Lahir</label>
+                <span class="col-1">:</span>
+                <span class="col-4" th:text="${data.pob}">, <span th:text="${bio.dob}"></span></span>
+                
+            </div>
+
+            <div class="col-12">
+                <label class="col-7">Jenis Kelamin, Tinggi (cm), Berat (Kg)</label>
+                <span class="col-1">:</span>
+                <span class="col-4" th:text="${data.gender}">, <span th:text="${data.height}"></span>, <span th:text="${data.weight}"></span></span>
+            </div>
+
+            <div class="col-12">
+                <label class="col-7">Agama</label>
+                <span class="col-1">:</span>
+                <span class="col-4" th:text="${data.religionId}"></span>
+            </div>
+
+            <div class="col-12">
+                <label class="col-7">Kewarganegaraan, Suku Bangsa</label>
+                <span class="col-1">:</span>
+                <span class="col-4" th:text="${data.nationality}">, <span th:text="${data.ethnic}"></span></span>
+            </div>
+
+            <div class="col-12">
+                <label class="col-7">Kegemaran / Hobi</label>
+                <span class="col-1">:</span>
+                <span class="col-4" th:text="${data.hobby}"></span>
+            </div>
+
+            <div class="col-12">
+                <label class="col-7">Jenis & Nomor Identitas</label>
+                <span class="col-1">:</span>
+                <span class="col-4" th:text="${data.identityTypeId}"> - <span th:text="${data.identityNo}"></span></span>
+            </div>
+
+            <div class="col-12">
+                <label class="col-7">Status & Tahun Pernikahan</label>
+                <span class="col-1">:</span>
+                <span class="col-4" th:text="${data.maritalStatusId}"> - <span th:text="${data.maritalStatusId}"></span></span>
+            </div>
+		</div>           
+
+    </div>
+    
+    <!-- Modal Large -->
+	<div id="modal-form" class="modal fade" role="dialog">
+		<div class="modal-dialog modal-lg" role="document">
+			<div class="modal-content">
+				<!-- Isi Modal -->
+			</div>
+		</div>
+	</div>
+	<!-- Modal Large -->
+
+    <!-- JS Files -->
+    <script src="js/jquery-3.4.0.min.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="bootstrap-4.3.1-dist/js/bootstrap.min.js"></script>
+    <script src="fontawesome-free-5.8.1-web/js/all.min.js"></script>
+    
+    <script type="text/javascript">
+    
+	    $(".goToEdit").click(function() {
+	    	var a = $(this).attr("href");
+	   		$.ajax({
+	   			url:a,
+	   			type:'get',
+	   			dataType:'html',
+	   			success:function(hasil){
+	   				$("#modal-form").find(".modal-content").html(hasil);
+	   				$("#modal-form").modal("show");		
+	   			}
+	   		});
+	   		return false;
+	   	});	
+    
+    </script>
+    
+</body>
+</html>

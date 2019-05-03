@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="bootstrap-4.3.1-dist/css/bootstrap.min.css">
+
+    <!-- Font Awesome CSS -->
+    <link rel="stylesheet" href="fontawesome-free-5.8.1-web/css/all.min.css">
+
+    <title>Add Biodata</title>
+</head>
+<body>
+
+    <div class="modal-header">
+    
+    	<h4>Masukkan Biodata</h4>
+    	<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+			<span aria-hidden="true">&times;</span>
+       	</button>
+    </div>
+    
+    <div class="modal-body">	
+    
+        <form action="/pelamar/biodata/save" method="POST" name="formBiodata" id="form-biodata">
+        
+            <div class="col-12">
+            
+	            <div class="row">
+	
+	                <!-- Nama Lengkap -->
+	                <div class="form-group col-6">
+	                    <label>Nama Lengkap *</label>
+	                    <input type="text" name="biodata[fullname]" class="form-control" required>
+	                </div>
+	                <!-- Nama Panggilan -->
+	                <div class="form-group col-6">
+	                    <label>Nama Pangggilan *</label>
+	                    <input type="text" name="biodata[nickName]" class="form-control" required>
+	                </div>   
+	                <!-- Tempat Lahir -->
+	                <div class="form-group col-3">
+	                    <label>Tempat Lahir *</label>
+	                    <input type="text" name="biodata[pob]" class="form-control" required>
+	                </div>
+	                <!-- Tgl. Lahir -->
+	                <div class="form-group col-3">
+	                    <label>Tgl. Lahir (yyyy-mm-dd) *</label>
+	                    <input type="date" name="biodata[dob]" class="form-control" required>
+	                </div>
+	                <!-- Jenis Kelamin -->
+	                <div class="form-group col-3">
+	                    <label>Jenis Kelamin *</label>
+	                    <select name="biodata[gender]" class="form-control" required>
+	                    	<option value="">-- Pilih --</option>
+	                    	<option value="1">Pria</option>
+	                    	<option value="0">Wanita</option>
+	                    </select>
+	                </div>
+	                <!-- Agama -->
+	                <div class="form-group col-3">
+	                    <label>Agama *</label>
+	                    <select name="biodata[religionId]" id="religion" class="form-control" required></select>
+	                </div>
+	                <!-- Tinggi -->
+	                <div class="form-group col-3">
+	                    <label>Tinggi (cm) *</label>
+	                    <input type="text" name="biodata[height]" class="form-control" required>
+	                </div>
+	                <!-- Berat -->
+	                <div class="form-group col-3">
+	                    <label>Berat (kg) *</label>
+	                    <input type="text" name="biodata[weight]" class="form-control" required>
+	                </div>
+	                <!-- Kewarganegaraan -->
+	                <div class="form-group col-3">
+	                    <label>Kewarganegaraan *</label>
+	                    <input type="text" name="biodata[nationality]" class="form-control" required>
+	                </div>
+	                <!-- Suku Bangsa -->
+	                <div class="form-group col-3">
+	                    <label>Suku Bangsa</label>
+	                    <input type="text" name="biodata[ethnic]" class="form-control">
+	                </div>
+	                <!-- Kegemaran / Hobi -->
+	                <div class="form-group col-6">
+	                    <label>Kegemaran / Hobi</label>
+	                    <input type="text" name="biodata[hobby]" class="form-control">
+	                </div>
+	                <!-- Jenis Identitas -->
+	                <div class="form-group col-3">
+	                    <label>Jenis Identitas *</label>
+	                    <select name="biodata[identityTypeId]" id="identityTypeId" class="form-control" required></select>
+	                </div>
+	                <!-- Nomor Identitas -->
+	                <div class="form-group col-3">
+	                    <label>Nomor Identitas</label>
+	                    <input type="text" name="biodata[identityNo]" class="form-control">
+	                </div>
+	                <!-- Email -->
+	                <div class="form-group col-3">
+	                    <label>Email *</label>
+	                    <input type="text" name="biodata[email]" class="form-control" required>
+	                </div>
+	                <!-- No. HP -->
+	                <div class="form-group col-3">
+	                    <label>No. HP</label>
+	                    <input type="text" name="biodata[phoneNumber1]" class="form-control">
+	                </div>
+	                <!-- No. HP Alternatif -->
+	                <div class="form-group col-3">
+	                    <label>No. HP Alternatif</label>
+	                    <input type="text" name="biodata[phoneNumber2]" class="form-control">
+	                </div>
+	                <!-- No. Tlp (Rumah/Orang Tua) -->
+	                <div class="form-group col-3">
+	                    <label>No. Tlp (Rumah/Orang Tua) *</label>
+	                    <input type="text" name="biodata[parentPhoneNumber]" class="form-control" required>
+	                </div>
+	                <!-- Anak Ke -->
+	                <div class="form-group col-3">
+	                    <label>Anak Ke *</label>
+	                    <input type="text" name="biodata[childSequence]" class="form-control" required>
+	                </div>
+	                <!-- Dari Berapa Bersaudara -->
+	                <div class="form-group col-3">
+	                    <label>Dari Berapa Bersaudara *</label>
+	                    <input type="text" name="biodata[howManyBrothers]" class="form-control" required>
+	                </div>
+	                <!-- Status Pernikahan -->
+	                <div class="form-group col-3">
+	                    <label>Status Pernikahan *</label>
+	                    <select name="maritalStatusId" id="maritalStatus" class="form-control" required></select>
+	                </div>
+	                <!-- Tahun Pernikahan --> 
+	                <div class="form-group col-3">
+	                    <label>Tahun Pernikahan</label>
+	                    <input type="text" name="#" class="form-control">
+	                </div>
+                </div>
+            </div>       
+
+        	<br>
+        	
+        	<div class="col-12">
+        	
+				<div class="row">
+				
+		        	<!-- Alamat Sesuai Kartu Identitas -->
+		            <div class="col-6">
+		            
+			            <div class="row">
+			            
+			                <div class="col-12">
+			                    <h4>Alamat Sesuai Kartu Identitas</h4>
+			                    <hr>
+			                </div>
+			                <!-- Alamat 1 -->
+			                <div class="form-group col-12">
+			                    <label>Alamat *</label>
+			                    <input type="text" name="address[address1]" class="form-control" required>
+			                    <span id="error-address1"></span>
+			                </div>
+			                <!-- Kode Pos 1 -->
+			                <div class="form-group col-6">
+			                    <label>Kode Pos</label>
+			                    <input type="text" name="address[postalCode1]" class="form-control">
+			                </div>
+			                <!-- RT 1 -->
+			                <div class="form-group col-3">
+			                    <label>RT *</label>
+			                    <input type="text" name="address[rt1]" class="form-control" required>
+			                    <span id="error-rt1"></span>
+			                </div>
+			                <!-- RW 1 -->
+			                <div class="form-group col-3">
+			                    <label>RW *</label>
+			                    <input type="text" name="address[rw1]" class="form-control" required>
+			                    <span id="error-rw1"></span>
+			                </div>
+			                <!-- Kelurahan 1 -->
+			                <div class="form-group col-4">
+			                    <label>Desa / Kelurahan *</label>
+			                    <input type="text" name="address[kelurahan1]" class="form-control" required>
+			                </div>
+			                <!-- Kecamatan 1 -->
+			                <div class="form-group col-4">
+			                    <label>Kecamatan *</label>
+			                    <input type="text" name="address[kecamatan1]" class="form-control" required>
+			                </div>
+			                <!-- Kota 1 -->
+			                <div class="form-group col-4">
+			                    <label>Kota *</label>
+			                    <input type="text" name="address[region1]" class="form-control" required>
+			                </div>
+			            </div>
+		            </div>
+		
+		        	<!-- Alamat Sesuai Tempat Tinggal -->
+		            <div class="col-6">
+		            
+			            <div class="row">
+			            
+			                <div class="col-12">
+			                    <h4>Alamat Sesuai Tempat Tinggal Saat Ini</h4>
+			                    <hr>
+			                </div>
+			                <!-- Alamat 2 -->
+			                <div class="form-group col-12">
+			                    <label>Alamat *</label>
+			                    <input type="text" name="address[address2]" class="form-control" required>
+			                </div>
+			                <!-- Kode Pos 2 -->
+			                <div class="form-group col-6">
+			                    <label>Kode Pos</label>
+			                    <input type="text" name="address[postalCode2]" class="form-control">
+			                </div>
+			                <!-- RT 2 -->
+			                <div class="form-group col-3">
+			                    <label>RT *</label>
+			                    <input type="text" name="address[rt2]" class="form-control" required>
+			                </div>
+			                <!-- RW 2 -->
+			                <div class="form-group col-3">
+			                    <label>RW *</label>
+			                    <input type="text" name="address[rw2]" class="form-control" required>
+			                </div>
+			                <!-- Kelurahan 2 -->
+			                <div class="form-group col-4">
+			                    <label>Desa / Kelurahan *</label>
+			                    <input type="text" name="address[kelurahan2]" class="form-control" required>
+			                </div>
+			                <!-- Kecamatan 2 -->
+			                <div class="form-group col-4">
+			                    <label>Kecamatan *</label>
+			                    <input type="text" name="address[kecamatan2]" class="form-control" required>
+			                </div>
+			                <!-- Kota 2 -->
+			                <div class="form-group col-4">
+			                    <label>Kota *</label>
+			                    <input type="text" name="address[region2]" class="form-control" required>
+			                </div>
+		                </div>
+		            </div>
+	            </div>
+            </div>
+		
+			<br>
+			
+			<div class="modal-footer btn-group">
+		   		<button type="reset" class="btn btn-warning col-2 offset-8" data-dismiss="modal"><strong>Batal</strong></button>
+		   		<button type="submit" class="btn btn-info col-2"><strong>Simpan</strong></button>
+			</div>
+		</form>
+	</div>
+
+
+
+    <!-- JS Files -->
+    <script src="js/jquery-3.4.0.min.js"></script>
+    <script src="js/jquery.serializejson.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="bootstrap-4.3.1-dist/js/bootstrap.min.js"></script>
+    <script src="fontawesome-free-5.8.1-web/js/all.min.js"></script>
+    
+    <script type="text/javascript">
+    
+    	$("#form-biodata").submit(function(){
+    		alert("Test");
+    		var a = $(this).serializeJSON();
+    		console.log(a);
+    		
+    		$.ajax({
+	   			url:'/pelamar/biodata/save',
+	   			type:'post',
+	   			contentType: "application/json",
+	   			dataType:'JSON',
+	   			data:JSON.stringify(a),
+	   			success:function(hasil){
+	   				$("#modal-form").find(".modal-content").html(hasil);
+	   				$("#modal-form").modal("hide");		
+	   			}
+	   		});
+    		
+    		return false;
+    	});
+    
+    	function validateForms() {
+    		
+    		var address1 = document.forms["formAddress"]["address1"].value;
+    		var postalCode1 = document.forms["formAddress"]["postalCode1"].value;
+    		var rt1 = document.forms["formAddress"]["rt1"].value;
+    		var rw1 = document.forms["formAddress"]["rw1"].value;
+    		var kelurahan1 = document.forms["formAddress"]["kelurahan1"].value;
+    		var kecamatan1 = document.forms["formAddress"]["kecamatan1"].value;
+    		var region1 = document.forms["formAddress"]["region1"].value;
+    		
+    		if (address1 == 0) {
+    			document.getElementById('error-address1').innerHTML = "Error here";
+    			return false;
+    		}
+    		if (rt1 == 0) {
+    			document.getElementById('error-rt1').innerHTML = "Error here";
+    			return false;
+    		}
+    		if (rw1 == 0) {
+    			document.getElementById('error-rw1').innerHTML = "Error here";
+    			return false;
+    		}
+
+    	}
+    	
+    </script>
+    
+</body>
+</html>

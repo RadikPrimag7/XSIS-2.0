@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="bootstrap-4.3.1-dist/css/bootstrap.min.css">
+
+    <!-- Font Awesome CSS -->
+    <link rel="stylesheet" href="fontawesome-free-5.8.1-web/css/all.min.css">
+
+    <title>Biodata</title>
+</head>
+<body>
+    
+    <div class="container">
+    
+    	<div class="row">
+    	
+	    	<div class="col-12">
+	    	
+		    	<div class="row">
+		    	
+			    	<div class="form-group btn-group col-6">
+			    		<input type="text" name="search" class="form-control col-10" placeholder="Cari Nama Pelamar...">
+			    		<button class="btn btn-dark col-2"><i class="fas fa-search"></i></button>
+		    		</div>
+		    		<div class="form-group col-6">
+			    		<button class="btn btn-dark col-1"><strong>&times</strong></button>
+		    		</div>
+		    		<hr>
+		    	</div>
+	    	</div>
+    	</div>
+    	
+    	<div class="row">
+    	
+    		<div class="col-12">
+    		
+    			<div class="row">
+    			
+    				<div class="col-12">
+						<span href="#" class="" style="cursor:pointer"><i class="fas fa-sort-alpha-up"></i></span> &nbsp
+						<span href="#" class="" style="cursor:pointer"><i class="fas fa-bars"></i></span> &nbsp
+						<span href="#" class="goToAdd" style="cursor:pointer"><i class="fas fa-plus"></i></span>
+					</div>
+    			</div>
+    		</div>
+    	</div>
+
+    	
+    	<div class="row">
+    	
+    		<div class="col-12">
+    			
+    			<div class="row">
+    			
+    				<div class="card col-12">
+    				
+						<div class="card-body">
+							<h4><span>Nama Lengkap</span></h4>
+							<table>
+								<tr>
+									<td>
+										<span class="col-4">Nama Panggilan</span><br>
+										<span class="col-4">Email</span><br>
+										<span class="col-4">No. Handphone</span><br>
+										<span class="col-4">Pendidikan</span>
+									</td>
+									<td>
+									<!-- 
+										<span th:text="${bio.nickName}"></span><br>
+										<span th:text="${bio.email}"></span><br>
+										<span th:text="${bio.phoneNumber1}"></span><br>
+										<span th:text="${bio.fullname}"></span><br>
+										 -->
+									</td>
+									<td>
+									<!-- 
+										<button th:href="@{/pelamar/biodata/{id}(id=${bio.id})}" class="goToBiodata"><i class="fas fa-search"></i></button>
+										 -->
+										 <span class="goToBiodata" style="cursor:pointer"><i class="fas fa-search"></i></span>
+										<span href="#" class="goToToken" style="cursor:pointer"><i class="fas fa-envelope"></i></span>
+									</td>
+								</tr>
+							</table>
+						</div>
+					</div>
+    			</div>
+    		</div>
+    	</div>
+    
+		
+    </div>
+    
+    <!-- Modal Extra Large -->
+	<div id="modal-form-xl" class="modal fade" role="dialog">
+		<div class="modal-dialog modal-xl" role="document">
+			<div class="modal-content">
+				<!-- Isi Modal -->
+			</div>
+		</div>
+	</div>
+	<!-- Modal Extra Large -->
+    
+    <!-- Modal Large -->
+	<div id="modal-form-lg" class="modal fade" role="dialog">
+		<div class="modal-dialog modal-lg" role="document">
+			<div class="modal-content">
+				<!-- Isi Modal -->
+			</div>
+		</div>
+	</div>
+	<!-- Modal Large -->
+	
+	<!-- Modal Small -->
+	<div id="modal-form-sm" class="modal fade" role="dialog">
+		<div class="modal-dialog modal-sm" role="document">
+			<div class="modal-content">
+				<!-- Isi Modal -->
+			</div>
+		</div>
+	</div>
+	<!-- Modal Small -->
+
+    <!-- JS Files -->
+    <script src="js/jquery-3.4.0.min.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="bootstrap-4.3.1-dist/js/bootstrap.min.js"></script>
+    <script src="fontawesome-free-5.8.1-web/js/all.min.js"></script>
+    
+    <script type="text/javascript">
+    
+	  	//	loadLevel Religion
+	    function loadLevelReligion(){
+	    	$.ajax({
+	    		url:'/api/religion',
+	    		type:'get',
+	    		dataType:'json',
+	    		success:function(hasil){
+	    			//Method looping dari jquery untuk looping hasil
+	    			//karna hasil berupa array
+	    			$('#modal-form-xl').find('#religion').empty();
+	    			$('#modal-form-xl').find('#religion').append('<option value=""> -- Pilih -- </option>');
+	
+	    			$.each(hasil, function(index, item){
+	    				$('#modal-form-xl').find('#religion').append('<option value="'+ item.id +'"> '+ item.name +' </option>');
+	    			});
+	    		}
+	    	})
+	    }
+	  	
+	  	
+		//	loadLevel IdentityType
+	    function loadLevelIdentityType(){
+	    	$.ajax({
+	    		url:'/api/identityType',
+	    		type:'get',
+	    		dataType:'json',
+	    		success:function(hasil){
+	    			//Method looping dari jquery untuk looping hasil
+	    			//karna hasil berupa array
+	    			$('#modal-form-xl').find('#identityTypeId').empty();
+	    			$('#modal-form-xl').find('#identityTypeId').append('<option value=""> -- Pilih -- </option>');
+	
+	    			$.each(hasil, function(index, item){
+	    				$('#modal-form-xl').find('#identityTypeId').append('<option value="'+ item.id +'"> '+ item.name +' </option>');
+	    			});
+	    		}
+	    	})
+	    }
+		
+		
+		// loadLevel MaritalStatus
+	    function loadLevelMaritalStatus(){
+	    	$.ajax({
+	    		url:'/api/maritalStatus',
+	    		type:'get',
+	    		dataType:'json',
+	    		success:function(hasil){
+	    			//Method looping dari jquery untuk looping hasil
+	    			//karna hasil berupa array
+	    			$('#modal-form-xl').find('#maritalStatus').empty();
+	    			$('#modal-form-xl').find('#maritalStatus').append('<option value=""> -- Pilih -- </option>');
+	
+	    			$.each(hasil, function(index, item){
+	    				$('#modal-form-xl').find('#maritalStatus').append('<option value="'+ item.id +'"> '+ item.name +' </option>');
+	    			});
+	    		}
+	    	})
+	    }
+	  	
+    
+	    $(".goToAdd").click(function() {
+	   		$.ajax({
+	   			url:'/pelamar/add',
+	   			type:'get',
+	   			dataType:'html',
+	   			success:function(hasil){
+	   				$("#modal-form-xl").find(".modal-content").html(hasil);
+	   				$("#modal-form-xl").modal("show");		
+	   			}
+	   		})
+	   		.done(function () {
+				loadLevelReligion();
+				loadLevelIdentityType();
+				loadLevelMaritalStatus();
+			});
+	   	});
+	    
+	    $(".goToBiodata").click(function() {
+	    	var a = $(this).attr("href");
+	   		$.ajax({
+	   			url:a,
+	   			type:'get',
+	   			dataType:'html',
+	   			success:function(hasil){
+	   				$("#modal-form").find(".modal-content").html(hasil);
+	   				$("#modal-form").modal("show");		
+	   			}
+	   		});
+	   		return false;
+	   	});
+    
+    </script>
+    
+</body>
+</html>

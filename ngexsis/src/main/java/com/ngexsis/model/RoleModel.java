@@ -45,13 +45,6 @@ public class RoleModel {
 		this.name = name;
 	}
 
-	public Set<UserModel> getUsers() {
-		return users;
-	}
-
-	public void setUsers(Set<UserModel> users) {
-		this.users = users;
-	}
 	
 	
 }

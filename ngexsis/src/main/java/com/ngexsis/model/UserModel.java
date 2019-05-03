@@ -20,6 +20,7 @@ public class UserModel {
 	@Column(name="id",nullable=false, length=11)
 	private long id;
 	
+	
 	private String email;
 	private String abuid;
 	private String abpwd;

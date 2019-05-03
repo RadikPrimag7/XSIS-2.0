@@ -76,10 +76,10 @@ public class PengalamanKerjaController {
 		return "pengalaman/delete";
 	}
 	
-	@RequestMapping(value="/pengalaman/delete", method=RequestMethod.DELETE)
+	@RequestMapping(value="/pengalaman/delete", method=RequestMethod.POST)
 	public String delete(@ModelAttribute PengalamanKerjaModel item) {
 		repo.delete(item);
-		return "redirect:/pengalaman";
+		return "redirect:/pengalaman/index";
 	}
 	
 }

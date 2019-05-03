@@ -1,11 +1,130 @@
 <!DOCTYPE html>
-<html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 	<head>
-		<title>Index Organisasi</title>
-	</head>
-	
-	<body>
-		<h1>pelamar</h1>
-	</body>
+		<meta charset="UTF-8">
+		
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
+	    <!-- Bootstrap CSS -->
+	    <link rel="stylesheet" href="../../bootstrap-4.3.1-dist/css/bootstrap.min.css">
+	    
+	    <!-- Font Awesome CSS -->
+	    <link rel="stylesheet" href="../../fontawesome-free-5.8.1-web/css/all.min.css" >
+		
+		<title>Organisasi Index</title>
+	</head>
+		
+	<body>
+		<div class="card-header">
+			<h1 class="text-left">XSIS 2.0</h1>
+		</div>
+		
+		<div class="container">
+			<div>
+				<h2>
+					<span> Organisasi </span>
+					<span>
+						<a href="#" class="btn btn-dark btn-tambah"> + </a>
+					</span>
+				</h2>
+			</div>
+			
+			<div class="card-body">
+				<table class="table">
+					<thead>
+						<tr>
+							<th>NAMA</th>
+							<th>JABATAN</th>
+							<th>PERIODE</th>
+							<th>#</th>
+						</tr>
+					</thead>
+					
+					<tbody>
+						<tr th:each="org : ${listData}">
+							<td><span th:text="${org.name}"></span></td>
+							<td><span th:text="${org.position}"></span></td>
+							<td><span th:text="${org.entryYear}"></span> s.d <span th:text="${org.exitYear}"></span></td>
+							
+							<td>
+								<div class="dropdown">
+									<a class="btn btn-info dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+										More
+									</a>
+								
+									<div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+										<a th:href="@{/organisasi/ubah/{id}(id=${org.id})}" class="dropdown-item btn-ubah">Ubah</a>
+										
+										<a th:href="@{/organisasi/hapus/{id}(id=${org.id})}" class="dropdown-item btn-hapus">Hapus</a>
+									</div>
+								</div>
+							</td>
+						</tr>
+					</tbody>
+
+				</table>
+			</div>
+		</div>
+		
+		<!-- Mulai Modal -->
+		<div id="modal-form" class="modal fade" role="dialog">
+			<div class="modal-dialog modal-lg" role="document">
+				<div class="modal-content">
+					
+				</div>
+			</div>
+		</div>
+		<!-- Modal Selesai -->
+		
+		<!-- Optional JavaScript -->
+	    <!-- jQuery first, then Popper.js, then other JS -->
+	    <script type="text/javascript" src="../../js/jquery-3.4.0.min.js"></script>
+	    <script type="text/javascript" src="../../js/popper.min.js"></script>
+	    <script type="text/javascript" src="../../bootstrap-4.3.1-dist/js/bootstrap.min.js"></script>
+	    <script type="text/javascript" src="../../fontawesome-free-5.8.1-web/js/fontawesome.min.js"></script>
+	    <script type="text/javascript">
+	    
+	    $(".btn-tambah").click(function(){
+	    	$.ajax({
+	    		url:'/organisasi/tambah',
+	    		type:'get',
+	    		dataType:'html',
+	    		success:function(hasil){
+	    			$("#modal-form").find(".modal-content").html(hasil);
+	    			$("#modal-form").modal("show");
+	    		}
+	    	});
+	    });
+	    
+	    $(".btn-ubah").click(function(){
+	    	var a = $(this).attr("href");
+	    	$.ajax({
+	    		url:a,
+	    		type:'get',
+	    		dataType:'html',
+	    		success:function(hasil){
+	    			$("#modal-form").find(".modal-content").html(hasil);
+	    			$("#modal-form").modal("show");
+	    		}
+	    	})
+	    	return false;
+	    })
+	    
+	    $(".btn-hapus").click(function() {
+    		var a = $(this).attr('href')
+    		$.ajax({
+       			url:a,
+       			type:'get',
+       			dataType:'html',
+       			success:function(hasil){
+       				$("#modal-form").find(".modal-content").html(hasil);
+       				$("#modal-form").modal("show");		
+       			}
+       		});
+    		return false;
+    	})
+	    
+    	</script>
+		
+	</body>
 </html>

@@ -21,10 +21,10 @@ public class OrganisasiModel {
 	@Column(name = "id", nullable = false, length = 11)
 	private long id;
 	
-	@Column(name = "created_by", nullable = false, length = 11)
+	@Column(name = "created_by", nullable = true, length = 11) 	//supposed to be nullable = false
 	private long createdBy;
 	
-	@Column(name = "created_on", nullable = false)
+	@Column(name = "created_on", nullable = true) 	//supposed to be nullable = false
 	private Date createdOn;
 	
 	@Column(name = "modified_by", nullable = true, length = 11)
@@ -39,10 +39,10 @@ public class OrganisasiModel {
 	@Column(name = "deleted_on", nullable = true)
 	private Date deletedOn;
 	
-	@Column(name = "is_delete", nullable = true)
+	@Column(name = "is_delete", nullable = true) //supposed to be nullable = false
 	private boolean isDelete;
 	
-	@Column(name = "biodata_id", nullable = false, length = 11)
+	@Column(name = "biodata_id", nullable = true, length = 11) 	//supposed to be nullable = false
 	private long biodataid;
 	
 	@Column(name = "name", nullable = true, length = 100)
@@ -126,7 +126,7 @@ public class OrganisasiModel {
 	public void setDelete(boolean isDelete) {
 		this.isDelete = isDelete;
 	}
-
+	
 	public long getBiodataid() {
 		return biodataid;
 	}
@@ -134,7 +134,7 @@ public class OrganisasiModel {
 	public void setBiodataid(long biodataid) {
 		this.biodataid = biodataid;
 	}
-
+	
 	public String getName() {
 		return name;
 	}

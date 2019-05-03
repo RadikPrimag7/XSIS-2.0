@@ -1,0 +1,28 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+	<body>
+	
+		<form th:action="@{organisasi/hapus}" method="post">
+			<div class="card">
+				<div class="card-header">
+					<h5 class="modal-title">Hapus Organisasi?</h5>
+				</div>
+				
+				<div class="card-body">
+					<h5 class="text-muted text-center">
+						<i class="fas fa-trash-alt"></i> Anda yakin ingin menghapus organisasi 
+						<br><strong><span th:text="${data.name}"></span></strong>
+					</h5>
+
+					<input type="hidden" name="id" th:value="${data.id}">
+					
+					<button type="button" class="btn btn-secondary offset-5" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">Tidak</span>
+					</button>
+					
+					<button type="submit" class="btn btn-warning">Ya</button>
+				</div>
+			</div>
+		</form>
+		
+	</body>
+</html>

@@ -1,0 +1,179 @@
+<!DOCTYPE html> 
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="UTF-8">
+		
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+	    <!-- Bootstrap CSS -->
+	    <link rel="stylesheet" href="../../bootstrap-4.3.1-dist/css/bootstrap.min.css">
+	    
+	    <!-- Font Awesome CSS -->
+	    <link rel="stylesheet" href="../../fontawesome-free-5.8.1-web/css/all.min.css" >
+		
+		<title>Project Index</title>
+	</head>
+	
+	<body>
+		<div class="card-header">
+			<h1 class="text-left">XSIS 2.0</h1>
+		</div>
+		
+		<div class="container">
+			
+			<div>
+				<h2>
+					<span>Pengalaman Kerja</span>
+					<span>
+						<a href="#" class="btn btn-dark btn-tambahPekerjaan"> + </a>
+					</span>
+				</h2>
+			</div>
+			
+			<div class="dropdown float-right form-group row">
+				<a class="btn btn-info dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+					More
+				</a>
+			
+				<div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+					<button class="dropdown-item btn-x" role="button">Ubah</button>
+					
+					<button class="dropdown-item btn-y" role="button">Hapus</button>
+					
+					<button class="dropdown-item btn-tambah" role="button">Tambah Project</button>
+				</div>
+			</div>
+
+			<div class="card-body">
+				<table class="table">
+					<thead>
+						<tr>
+							<th>DETAIL PEKERJAAN</th>
+							<th>CATATAN</th>
+							<th>#</th>
+						</tr>
+					</thead>
+					
+					<tbody th:each="pro : ${listData}">
+						<tr>
+							<td>
+								<span th:text="${pro.projectName}"></span>
+								(
+								<span th:text="${pro.startYear}"></span>
+								-
+								<span th:text="${pro.startMonth}"></span>
+								;
+								<span th:text="${pro.projectDuration}"></span> <span th:text="${pro.timePeriodId}"></span>
+								)
+								<span>
+									<a th:href="@{/project/ubah/{id}(id=${pro.id})}" class="btn-ubah">
+										<i class="fas fa-edit"></i>
+									</a>
+								</span>
+								
+								<span>
+									<a th:href="@{/project/hapus/{id}(id=${pro.id})}" class="btn-hapus">
+										<i class="fas fa-trash-alt"></i>
+									</a>
+								</span>
+								
+								<br>
+									<span th:text="${pro.projectPosition}"></span>,
+									<span th:text="${pro.client}"></span>
+								<br>
+									ket:<span th:text="${pro.description}"></span>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			
+		</div>
+		
+		<!-- Mulai Modal -->
+		<div id="modal-form" class="modal fade" role="dialog">
+			<div class="modal-dialog modal-lg" role="document">
+				<div class="modal-content">
+					
+				</div>
+			</div>
+		</div>
+		<!-- Modal Selesai -->
+		
+		<!-- Optional JavaScript -->
+	    <!-- jQuery first, then Popper.js, then other JS -->
+	    <script type="text/javascript" src="../../js/jquery-3.4.0.min.js"></script>
+	    <script type="text/javascript" src="../../js/popper.min.js"></script>
+	    <script type="text/javascript" src="../../bootstrap-4.3.1-dist/js/bootstrap.min.js"></script>
+	    <script type="text/javascript" src="../../fontawesome-free-5.8.1-web/js/fontawesome.min.js"></script>
+	    <script type="text/javascript">
+	    
+	    //loadTimePeriod start
+	    function loadTime(){
+	    	$.ajax({
+	    		url:'/api/timePeriod/',
+	    		type:'get',
+	    		dataType:'json',
+	    		success:function(hasil){
+	    			//method looping dari jquery untuk looping hasil
+	    			//karna hasil berupa array
+	    			$('#modal-form').find('#timeid').empty();
+	    			$('#modal-form').find('#timeid').append('<option value =""> -- Pilih -- </option>');
+	    			
+	    			$.each(hasil, function(index, item){
+	    				$('#modal-form').find('#timeid').append('<option value="'+item.id+'"> '+item.name+' </option>');
+	    			});
+	    		}
+	    	})
+	    }
+	    //loadTimePeriod stop
+	    
+	    $(".btn-tambah").click(function(){
+	    	$.ajax({
+	    		url:'/project/tambah',
+	    		type:'get',
+	    		dataType:'html',
+	    		success:function(hasil){
+	    			$("#modal-form").find(".modal-content").html(hasil);
+	    			$("#modal-form").modal("show");
+	    		}
+	    	})
+	    	.done(function () {
+	    		loadTime();
+	    	});
+	    });
+	    
+	    $(".btn-ubah").click(function(){
+	    	var a = $(this).attr("href");
+	    	$.ajax({
+	    		url:a,
+	    		type:'get',
+	    		dataType:'html',
+	    		success:function(hasil){
+	    			$("#modal-form").find(".modal-content").html(hasil);
+	    			$("#modal-form").modal("show");
+	    		}
+	    	})
+	    	.done(function () {
+	    		loadTime();
+	    	});
+	    	return false;
+	    });
+	    
+	    $(".btn-hapus").click(function(){
+	    	var a = $(this).attr('href')
+	    	$.ajax({
+	    		url:a,
+	    		type:'get',
+	    		dataType:'html',
+	    		success:function(hasil){
+	    			$("#modal-form").find(".modal-content").html(hasil);
+	    			$("#modal-form").modal("show");
+	    		}
+	    	});
+	    	return false;
+	    })
+	    
+	    </script>
+	</body>
+</html>

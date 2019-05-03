@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="ISO-8859-1">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<title>Sertifikasi Index</title>
+	
+	<!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="../../bootstrap-4.3.1-dist/css/bootstrap.min.css">
+    
+    <!-- Font Awesome CSS -->
+    <link rel="stylesheet" href="../../fontawesome-free-5.8.1-web/css/all.min.css" >
+    
+</head>
+<body>
+	<div class="container">
+		<h3>Sertifikasi <a href="#" id="btn-add"><i class="fas fa-plus-circle"></i></a></h3>
+		
+		<div>
+			<table class="table table-striped">
+				<thead>
+					<tr>
+						<th>NAMA SERTIFIKASI</th>
+						<th>PENERBIT</th>
+						<th>MASA BERLAKU SERTIFIKAT</th>
+						<th>#</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="emp: ${listData}">
+						<td><span th:text="${emp.certificateName}"></span></td>
+						<td><span th:text="${emp.publisher}"></span></td>
+						<td><span th:text="${emp.validStartYear}"></span>-<span th:text="${emp.validStartMonth}"></span> s.d 
+							<span th:text="${emp.untilYear}"></span>-<span th:text="${emp.untilMonth}"></span>
+						</td>
+						<td>
+							<div class="dropout">
+								<button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">More
+									<span class="caret"></span>
+								</button>
+								<div class="dropdown-menu">
+									<a class="dropdown-item btn-edit" th:href="@{/sertifikasi/edit/{id}(id=${emp.id})}">Ubah</a>
+									<a class="dropdown-item btn-delete" th:href="@{/sertifikasi/delete/{id}(id=${emp.id})}">Hapus</a>
+								</div>
+							</div>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		
+		<div id="modal-form" class="modal fade" role="dialog">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					
+				</div>
+			</div>
+		</div>
+		
+		<div id="modal-form-lg" class="modal fade" role="dialog">
+			<div class="modal-dialog modal-lg" role="document">
+				<div class="modal-content">
+					
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then other JS -->
+    <script type="text/javascript" src="../../js/jquery-3.4.0.min.js"></script>
+    <script type="text/javascript" src="../../js/popper.min.js"></script>
+    <script type="text/javascript" src="../../bootstrap-4.3.1-dist/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../../fontawesome-free-5.8.1-web/js/fontawesome.min.js"></script>
+    
+    <script type="text/javascript">
+    	$("#btn-add").click(function(){
+    		$.ajax({
+    			url:'/sertifikasi/add',
+    			type:'get',
+    			datType:'html',
+    			success:function(hasil){
+    				$("#modal-form-lg").find(".modal-content").html(hasil);
+    				$("#modal-form-lg").modal("show");
+    			}
+    		});
+    	});
+    	
+    	$(".btn-edit").click(function(){
+    		var a = $(this).attr("href");
+    		$.ajax({
+    			url:a,
+    			type:'get',
+    			datType:'html',
+    			success:function(hasil){
+    				$("#modal-form-lg").find(".modal-content").html(hasil);
+    				$("#modal-form-lg").modal("show");
+    			}
+    		});
+    		return false;
+    	});
+    	
+    	$(".btn-delete").click(function(){
+    		var b = $(this).attr("href");
+    		$.ajax({
+    			url:b,
+    			type:'get',
+    			datType:'html',
+    			success:function(hasil){
+    				$("#modal-form").find(".modal-content").html(hasil);
+    				$("#modal-form").modal("show");
+    			}
+    		});
+    		return false;
+    	});
+    </script>
+</body>
+</html>

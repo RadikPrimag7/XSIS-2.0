@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<title>Edit Pendidikan</title>
+		<link rel="stylesheet" href="/css/bootstrap.min.css">
+		
+	</head>
+	<body>
+	<form th:action="@{/pendidikan/save}" method="post">
+		<div class="modal-header">
+			<h1 class="modal-title">Add Pendidikan</h1>
+			<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+				<span aria-hidden="true">&times;</span>
+	       	</button>
+		</div>
+		<div class="modal-body">
+			<div class="form-group row">
+				<div class="col-6">
+					<label>Nama Sekolah/Instansi</label>
+					<input type="text" name="schoolName" class="form-control">
+				</div>
+				<div class="col-3">
+					<label>Kota</label>
+					<input type="text" name="city" class="form-control">
+				</div>
+				<div class="col-3">
+					<label>Negara</label>
+					<input type="text" name="country" class="form-control">
+				</div>
+			</div>
+			<div class="form-group row">
+				<div class="col-6">
+					<label>Jenjang Pendidikan</label>
+					<select name="jenjang" id="jenjangId" class="form-control"></select>
+				</div>
+				<div class="col-3">
+					<label>Tahun Masuk</label>
+					<select id="validStartYear" name="entryYear" class="form-control"></select>
+				</div>
+				<div class="col-3">
+					<label>Tahun Lulus</label>
+					<select id="validEndYear" name="graduationYear" class="form-control"></select>
+				</div>
+			</div>
+			<div class="form-group row">
+				<div class="col-3">
+					<label>Jurusan</label>
+					<input type="text" name="major" class="form-control">
+				</div>
+				<div class="col-3">
+					<label>IPK</label>
+					<input type="text" name="gpa" class="form-control">
+				</div>
+				<div class="col-6">
+					<label>Judul Tugas Akhir</label>
+					<input type="text" name="judulTa" class="form-control">
+				</div>
+			</div>
+			<div class="form-group row col-12">
+				<label>Deskripsi Tugas Akhir</label>
+				<textarea name="deskripsiTa" class="form-control" rows="5" style="resize:none;"></textarea>
+			</div>
+			<div class="form-group row col-12">
+				<label>Catatan</label>
+				<textarea name="notes" class="form-control" rows="5" style="resize:none;"></textarea>
+			</div>
+			<div class="btn btn-group float-right btn-sm">
+				<br>
+					<button type="button" data-dismiss="modal" class="btn btn-warning">
+						<em>Batal</em>
+					</button>
+					<button type="submit" class="btn btn-primary">
+						<em>Simpan</em>
+					</button>
+			</div>
+		</div>
+	</form>
+	<script type="text/javascript">
+		var year = new Date().getFullYear();
+		min = year-39,
+		max = year,
+		select = document.getElementById('validStartYear');
+		
+		for(var i=min; i<=max; i++){
+			var opt = document.createElement('option');
+			opt.value = i;
+			opt.innerHTML = i;
+			select.appendChild(opt);
+		}
+		
+		var year = new Date().getFullYear();
+		min = year-39,
+		max = year,
+		select = document.getElementById('validEndYear');
+		
+		for(var i=min; i<=max; i++){
+			var opt = document.createElement('option');
+			opt.value = i;
+			opt.innerHTML = i;
+			select.appendChild(opt);
+		}
+		//select.value = new Date().getFullYear();
+	</script>
+	</body>
+</html>

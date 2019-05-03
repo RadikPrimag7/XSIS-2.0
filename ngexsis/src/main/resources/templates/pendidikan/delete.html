@@ -1,0 +1,30 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<body>
+
+<form th:action="@{pendidikan/delete}" method="post">
+
+<div class="modal-header bg-danger text-white">
+	<h3 class="modal-title">Hapus Pendidikan ?</h3>
+</div>
+<div class="modal-body">
+	
+	<input type="hidden" name="id" th:value="${data.id}">
+	<input type="hidden" name="jenjang" id="jenjangId" th:value="${data.educationLevelId}">
+
+	<h5 class="text-center align-middle">
+		<i class="fas fa-trash-alt fa-3x" style="vertical-align: middle;"></i>
+		Anda yakin ingin menghapus pendidikan di<br> <span th:text="${data.schoolName}" style="text"></span> ?
+	</h5>
+	
+	<div class="btn btn-group float-right btn-sm col-2">
+		<button type="button" data-dismiss="modal" class="btn btn-warning">
+			<em>Tidak</em>
+		</button>
+		<button type="submit" class="btn btn-danger ">
+		<em>Ya</em>
+		</button>
+	</div>
+</div>
+</form>
+</body>
+</html>

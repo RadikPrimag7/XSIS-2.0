@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+ <html lang="en" xmlns:th="http://www.thymeleaf.org">
+ <head>
+ 	<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="../../bootstrap-4.3.1-dist/css/bootstrap.min.css">
+    
+    <!-- Font Awesome CSS -->
+    <link rel="stylesheet" href="../../fontawesome-free-5.8.1-web/css/all.min.css" >
+    
+ 	<title>Pendidikan Lists</title>
+ </head>
+ <body>
+	 <div class="container">
+	 	<br><br>
+	 	<br>
+	 	<div class="row">
+		 		<h1><strong>Pendidikan</strong></h1>
+		 		<a href="#" class="btn btn-lg text-primary btn-add">
+		 			<em><i class="fas fa-plus-circle"></i></em>
+		 		</a>
+	 	</div>
+	 	<div class="card">
+	 		<table class="table text-center">
+				<thead>
+					<tr>
+						<th>SEKOLAH/INSTANSI</th>
+						<th>JENJANG</th>
+						<th>PERIODE</th>
+						<th>JURUSAN</th>
+						<th>IPK</th>
+						<th>#</th>
+						<th></th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="pdk : ${listData}">
+						<td><span th:text="${pdk.schoolName}"></span></td>
+						<td><span th:text="${pdk.educationLevelId}"></span></td>
+						<td><span th:text="${pdk.entryYear}"></span> s.d <span th:text="${pdk.graduationYear}"></span></td>
+						<td><span th:text="${pdk.major}"></span></td>
+						<td><span th:text="${pdk.gpa}"></span></td>
+						<td class="text-center">
+							<div class="dropdown">
+							<button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">More
+								<span class="caret"></span></button>
+								<ul class="dropdown-menu">
+								    <li>
+								    	<a th:href="@{/pendidikan/edit/{id}(id=${pdk.id})}" class="dropdown-item btn-edit">
+										<em>Edit</em>
+										</a>
+									</li>
+								    <li>
+								    	<a th:href="@{/pendidikan/delete/{id}(id=${pdk.id})}" class="dropdown-item btn-delete">
+										<em>Delete</em>
+										</a>
+								    </li>
+								</ul>
+							</div> 
+						</td>
+					</tr>
+				</tbody>
+			</table>
+	 	</div>
+	 </div>
+	 
+	<!-- Mulai Modal -->
+	<div id="modal-form" class="modal fade" role="dialog">
+		<div class="modal-dialog modal-lg" role="document">
+			<div class="modal-content">
+				
+			</div>
+		</div>
+	</div>
+	<!-- Modal Selesai -->
+	
+	<!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then other JS -->
+    <script type="text/javascript" src="../../js/jquery-3.4.0.min.js"></script>
+    <script type="text/javascript" src="../../js/popper.min.js"></script>
+    <script type="text/javascript" src="../../bootstrap-4.3.1-dist/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../../fontawesome-free-5.8.1-web/js/fontawesome.min.js"></script>
+    
+    <script type="text/javascript">
+    
+	    function loadJenjang(){
+	    	$.ajax({
+	    		url:'/api/jenjang/',
+	    		type:'get',
+	    		dataType:'json',
+	    		success:function(result){
+	    			$('#modal-form').find('#jenjangId').empty();
+	    			$('#modal-form').find('#jenjangId').append('<option value=""> -- Pilih -- </option>');
+	
+	    			$.each(result, function(index, item){
+	    				$('#modal-form').find('#jenjangId').append('<option value="'+item.id+'"> '+item.name+' </option>');
+	    			});
+	    		}
+	    	})
+	    }
+    
+   		$(".btn-add").click(function() {
+       		$.ajax({
+       			url:'/pendidikan/add',
+       			type:'get',
+       			dataType:'html',
+       			success:function(result){
+       				$("#modal-form").find(".modal-content").html(result);
+       				$("#modal-form").modal("show");		
+       			}
+       		})
+       		
+       		.done(function () {
+    			loadJenjang();
+    		});
+       	});
+   		$(".btn-edit").click(function() {
+    		var a = $(this).attr("href");
+    		$.ajax({
+       			url:a,
+       			type:'get',
+       			dataType:'html',
+       			success:function(result){
+       				$("#modal-form").find(".modal-content").html(result);
+       				$("#modal-form").modal("show");		
+       			}
+       		})
+       		
+       		.done(function () {
+    			loadJenjang();
+    		});
+    		return false;
+    	});
+   		
+   		$(".btn-delete").click(function() {
+    		// alert("Test")
+    		var a = $(this).attr('href')
+    		$.ajax({
+       			url:a,
+       			type:'get',
+       			dataType:'html',
+       			success:function(result){
+       				$("#modal-form").find(".modal-content").html(result);
+       				$("#modal-form").modal("show");		
+       			}
+       		});
+    		return false;    		
+    	});
+    </script>
+</body>
+</html>

@@ -12,26 +12,30 @@
 		<div class="container">
 			<div>
 				<div>
-					<h3 class="box-title">Pelatihan  <a id="btn-add" href="#"><i class="fas fa-plus-circle"></i></a></h3>
+					<h3 class="box-title">Keluarga <a id="btn-add" href="#"><i class="fas fa-plus-circle"></i></a></h3>
 					
 				</div>
 				<div>
 					<table class="table">
 						<thead class="blue">
 							<tr>
-								<th>Pelatihan</th>
-								<th>Penyelenggara</th>
-								<th>Waktu</th>
-								<th>Durasi</th>
+								<th>HUBUNGAN</th>
+								<th>NAMA</th>
+								<th>JK</th>
+								<th>TGL. LAHIR</th>
+								<th>PENDIDIKAN</th>
+								<th>PEKERJAAN</th>
 								<th>#</th>
 							</tr>
 						</thead>
 					<tbody>
 						<tr th:each ="item : ${listdata}">
-							<td><span th:text="${item.trainingName}"></span></td>
-							<td><span th:text="${item.oganizer}"></span></td>
-							<td><span th:text="${item.trainingYear}">-</span> <span th:text="${item.trainingMonth}"></span></td>
-							<td><span th:text="${item.trainingDuration}"></span></td>
+							<td><span th:text="${item.familyTreeTypeId}"></span></td>
+							<td><span th:text="${item.name}"></span></td>
+							<td><span th:text="${item.jk}"></span></td>
+							<td><span th:text="${item.dob}"></span></td>
+							<td><span th:text="${item.educationLevelId}"></span></td>
+							<td><span th:text="${item.job}"></span></td>
 							<td >
 								<div class="dropout">
 									<button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
@@ -40,11 +44,11 @@
 									</button>
 								<div class="dropdown-menu">
 								    
-								    	<a th:href="@{/pelatihan/edit/{id}(id=${item.id})}"  class="dropdown-item btn-edit text-center">
+								    	<a th:href="@{/keluarga/edit/{id}(id=${item.id})}"  class="dropdown-item btn-edit text-center">
 										<b>Edit  <i class="fas fa-edit"></i></b>
 										</a>
 									
-								    	<a th:href="@{/pelatihan/delete/{id}(id=${item.id})}"  class="dropdown-item btn-delete text-center">
+								    	<a th:href="@{/keluarga/delete/{id}(id=${item.id})}"  class="dropdown-item btn-delete text-center">
 										<b>Delete  <i class="fas fa-trash-alt"></i></b>
 										</a>
 								    
@@ -75,43 +79,11 @@
 		<script src="../../js/jquery.serializejson.js" ></script>
 		
 		<script type="text/javascript">
-			/*function loadData(){
-				$.ajax({
-					url:'/pelatihan/list',
-					type: 'get',
-					dataType:'html',
-					success:function hasil(){
-						$('#list-data').html(hasil);
-					}
-				})
-			}//selesai
 			
-			$(function(){
-				loadData();
-			});*/
-			
-			//loadLevel Start
-			function loadLevel(){
-				$.ajax({
-					url:'/api/timeperiod/',
-					type:'get',
-					dataType:'json',
-					success : function(hasil){
-						//Method looping dari jquery untuk looping hasil
-						//karna hasil berupa array
-						$('#modal-form').find('#tambahinid').empty();
-						$('#modal-form').find('#tambahinid').append('<option value=""> -Pilih- </option>');
-
-						$.each(hasil, function(index, value){
-							$('#modal-form').find('#tambahinid').append('<option value="'+value.id+'"> '+value.name+' </option>');
-						});
-					}
-				})
-			}
 			
 			$("#btn-add").click(function(){
 				$.ajax({
-					url:'/tambah',
+					url:'/add',
 					type:'get',
 					dataType:'html',
 					success:function(hasil){
@@ -119,10 +91,7 @@
 						$("#modal-form").modal("show");
 					}
 				})
-				.done(function () {
-					loadLevel();
-				});
-			});
+			})
 			
 			$(".btn-delete").click(function(){
 				var a = $(this).attr("href");
@@ -134,10 +103,9 @@
 						$("#modal-form").find(".modal-content").html(hasil);
 						$("#modal-form").modal("show");
 					}
-				});
-				
+				})
 				return false;
-			});
+			})
 			
 			$(".btn-edit").click(function(){
 				var a = $(this).attr("href");
@@ -151,11 +119,8 @@
 						$("#modal-form").modal("show");
 					}
 				})
-				.done(function () {
-					loadLevel();
-				});
 				return false;
-			});
+			})
 			
 			
 		</script>

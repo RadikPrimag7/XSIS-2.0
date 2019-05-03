@@ -17,20 +17,19 @@ import javax.persistence.TableGenerator;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
-@Table(name ="x_time_period")
-public class TimePeriodModel {
-	
+@Table(name = "x_family_tree_type")
+public class FamilyTreeModel {
 	@Id
-	@Column(name="id")
-	@GeneratedValue(strategy = GenerationType.TABLE, generator = "period_seq")
-	@TableGenerator(name = "period_seq", table = "tbl_sequence", pkColumnName = "seq_id",
+	@Column(name = "id")
+	@GeneratedValue(strategy = GenerationType.TABLE, generator = "familyTree_seq")
+	@TableGenerator(name = "familyTree_seq", table = "tbl_sequence", pkColumnName = "seq_id",
 	valueColumnName = "seq_value", initialValue = 0, allocationSize = 1)
 	private Long id;
-
-	@Column(name = "created_by", nullable = true, length = 11)
+	
+	@Column(name = "created_by", nullable = false, length = 11)
 	private long createdBy;
 	
-	@Column(name = "created_on", nullable = true)
+	@Column(name = "created_on", nullable = false)
 	private Date createdOn;
 	
 	@Column(name = "modified_by", nullable = true, length = 11)
@@ -45,29 +44,34 @@ public class TimePeriodModel {
 	@Column(name = "deleted_on", nullable = true)
 	private Date deletedOn;
 	
-	@Column(name = "is_delete")
+	@Column(name = "is_delete", nullable = false)
 	private boolean isDelete;
 	
-	@Column(name = "name", nullable = true, length = 50)
+	@Column(name = "name", nullable = false, length = 50)
 	private String name;
 	
 	@Column(name = "description", nullable = true, length = 100)
 	private String description;
 	
 	@JsonManagedReference
-	@OneToMany(mappedBy = "periodId", cascade = CascadeType.ALL)
-	private List<PelatihanModel> listPelatihan = new ArrayList<PelatihanModel>();
+	@OneToMany(mappedBy = "familyTree", cascade = CascadeType.ALL)
+	private List<KeluargaModel> listKeluarga = new ArrayList<KeluargaModel>();
 	
+	@JsonManagedReference
+	@OneToMany(mappedBy = "familyTree1", cascade = CascadeType.ALL)
+	private List<FamilyRelationModel> listFamilyRelation = new ArrayList<FamilyRelationModel>();
+	
+	
+	public List<FamilyRelationModel> getListFamilyRelation() {
+		return listFamilyRelation;
+	}
+
+	public void setListFamilyRelation(List<FamilyRelationModel> listFamilyRelation) {
+		this.listFamilyRelation = listFamilyRelation;
+	}
+
 	public Long getId() {
 		return id;
-	}
-
-	public List<PelatihanModel> getListPelatihan() {
-		return listPelatihan;
-	}
-
-	public void setListPelatihan(List<PelatihanModel> listPelatihan) {
-		this.listPelatihan = listPelatihan;
 	}
 
 	public void setId(Long id) {
@@ -145,7 +149,14 @@ public class TimePeriodModel {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	
+
+	public List<KeluargaModel> getListKeluarga() {
+		return listKeluarga;
+	}
+
+	public void setListKeluarga(List<KeluargaModel> listKeluarga) {
+		this.listKeluarga = listKeluarga;
+	}
 	
 	
 }

@@ -26,10 +26,10 @@ public class PelatihanModel {
 	valueColumnName = "seq_value", initialValue = 0, allocationSize = 1)
 	private Long id;
 	
-	@Column(name = "created_by", nullable = false, length = 11)
+	@Column(name = "created_by", nullable = true, length = 11)
 	private long createdBy;
 	
-	@Column(name = "created_on", nullable = false)
+	@Column(name = "created_on", nullable = true)
 	private Date createdOn;
 	
 	@Column(name = "modified_by", nullable = true, length = 11)
@@ -44,13 +44,13 @@ public class PelatihanModel {
 	@Column(name = "deleted_on", nullable = true)
 	private Date deletedOn;
 	
-	@Column(name = "is_delete", nullable = false)
+	@Column(name = "is_delete")
 	private boolean isDelete;
 	
-	@Column(name = "biodata_id", nullable = false, length = 11, updatable = false, insertable = false)
+	/*@Column(name = "biodata_id", nullable = true, length = 11, updatable = false, insertable = false)
 	private long biodataId;
 	
-	/*@JsonBackReference
+	@JsonBackReference
 	@ManyToOne
 	@JoinColumn(name ="biodata_id", foreignKey = @ForeignKey(name ="fk_biodata"))
 	private BiodataModel biodata;*/
@@ -75,7 +75,7 @@ public class PelatihanModel {
 	@JsonBackReference
 	@ManyToOne
 	@JoinColumn(name ="time_period_id", foreignKey = @ForeignKey(name ="fk_time_period"))
-	private TimePeriodModel period;
+	private TimePeriodModel periodId;
 	
 	@Column(name = "city", nullable = true, length = 50)
 	private String city;
@@ -85,18 +85,19 @@ public class PelatihanModel {
 	
 	@Column(name = "notes", nullable = true, length = 1000)
 	private String notes;
-	
-	/*public BiodataModel getBiodata() {
+	/*
+	public BiodataModel getBiodata() {
 		return biodata;
 	}
 	public void setBiodata(BiodataModel biodata) {
 		this.biodata = biodata;
 	}*/
-	public TimePeriodModel getPeriod() {
-		return period;
+	
+	public TimePeriodModel getPeriodId() {
+		return periodId;
 	}
-	public void setPeriod(TimePeriodModel period) {
-		this.period = period;
+	public void setPeriodId(TimePeriodModel periodId) {
+		this.periodId = periodId;
 	}
 	public Long getId() {
 		return id;
@@ -146,12 +147,12 @@ public class PelatihanModel {
 	public void setDelete(boolean isDelete) {
 		this.isDelete = isDelete;
 	}
-	public long getBiodataId() {
+	/*public long getBiodataId() {
 		return biodataId;
 	}
 	public void setBiodataId(long biodataId) {
 		this.biodataId = biodataId;
-	}
+	}*/
 	public String getTrainingName() {
 		return trainingName;
 	}

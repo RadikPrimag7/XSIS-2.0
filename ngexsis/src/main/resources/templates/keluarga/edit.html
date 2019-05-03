@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<title>Edit Pelatihan</title>
+		<link rel="stylesheet" href="/css/bootstrap.min.css">
+		
+	</head>
+	
+	<body>
+	<form th:action="@{/keluarga/save}" method = "post">
+		<div class="modal-header" id="ini"><h3>Edit Pelatihan</h3></div>
+		<div class="container">
+			<div class="row">
+				<div class="col-6">
+					<label class = "col-form- table col-md-6">Jenis Susunan Keluarga*</label>
+					<select class="form-control col-md" name = "familyTree" id="familytreeId" required></select>
+				</div>
+				
+				<div class="col-6">
+					<label class = "col-form- table col-md-6">Hubungan Keluarga</label>
+					<select class="form-control col-md" name = "familyRelation" id="familyrelationId" required></select>
+				</div>
+			</div>
+			
+			<div class = "row">
+				<div class = "col-6">
+					<label class = "col-form- table col-md-6">Nama*</label>
+					<input class="form-control col-md" type = "text" name = "name" required/>
+				</div>
+				
+				<div class = "col-6">
+					<label class = "col-form- table col-md">Jenis Kelamin</label>
+					<label class = "col-form- table col-md">tgl. Lahir(yyyy-mm-dd)</label>
+						<div class="row">
+						
+							<select class="form-control col-md" name = "jk"  required>
+								<option>- Pilih -</option>
+								<option value="pria">PRIA</option>
+								<option value="wanita">WANITA</option>
+								
+							</select>
+						
+							<input type="date" name="dob" required>
+						
+								
+	
+							</select>
+						</div>
+				</div>
+			</div>
+				
+			<div class="row">
+				<div class="col-6">
+					<label class = "col-form- table col-md-2">Pendidikan</label>
+					<select class="form-control col-md" name = "educationLevel" id="educationLvlId" required></select>
+				</div>
+				
+				<div class="col-6">
+					<label class = "col-form- table col-md-2">Pekerjaan</label>
+					<input class="form-control col-md" type="text" name="job" required/>
+				</div>
+			</div>
+			
+			<div class="row">
+				<div class="col">
+					<label class = "col-form- table col-md-2">Catatan</label>
+					<textarea class="form-control col-md" rows = "5" name = "notes"required>tulis catatan</textarea>
+				</div>
+			</div>
+			
+			<div class="row">
+				
+				<div class="col">
+					<button th:href="@{redirect: /keluarga}" class="btn btn-warning" data-dismiss="modal" type="button">Batal</button>
+					<button  class="btn btn-primary" type="submit">Simpan</button>
+				</div>
+			</div>
+		</div>
+		</form>
+		
+		<script type="text/javascript">
+			/*var max=new Date().getFullYear();
+				min=max-50;
+				select = document.getElementById("getYear");
+				
+				var opt = document.createElement('option');
+				opt.value = "";
+				opt.innerHTML = "-Pilih Tahun-";
+				select.appendChild(opt);
+				
+			for(var i=max; i>=min;i--){
+				var opt = document.createElement('option');
+				opt.value = i;
+				opt.innerHTML = i;
+				select.appendChild(opt);
+			}*/
+			
+			//select.value = new Date().getFullYear();
+		</script>
+	</body>
+</html>

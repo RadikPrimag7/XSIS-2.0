@@ -28,16 +28,16 @@ public class PelatihanController {
 	}
 	
 	//ke tambah
-	@RequestMapping(value = "/add")
+	@RequestMapping(value = "/tambah")
 	public String tambah() {
 		return "pelatihan/tambah";
 	}
 	
 	//melakukan tambah data
-	@RequestMapping(value ="/pelatihan/tambah", method = RequestMethod.POST)
+	@RequestMapping(value ="/pelatihan/save", method = RequestMethod.POST)
 	public String save(@ModelAttribute PelatihanModel item) {
 		repo.save(item);
-		return "redirect: /pelatihan";
+		return "redirect:/pelatihan";
 	}
 	
 	//melakukan edit data

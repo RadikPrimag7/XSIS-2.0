@@ -4,11 +4,16 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.ForeignKey;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.TableGenerator;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 @Entity
 @Table(name = "x_keahlian")
@@ -21,10 +26,10 @@ public class KeahlianModel {
 	valueColumnName = "seq_value", initialValue = 0, allocationSize = 1)
 	private long id;
 	
-	@Column(name = "created_by", nullable = false, length = 11)
+	@Column(name = "created_by", nullable = true, length = 11)
 	private long createdBy;
 	
-	@Column(name = "created_on", nullable = false)
+	@Column(name = "created_on", nullable = true)
 	private Date createdOn;
 	
 	@Column(name = "modified_by", nullable = true, length = 11)
@@ -39,11 +44,26 @@ public class KeahlianModel {
 	@Column(name = "deleted_on", nullable = true)
 	private Date deletedOn;
 	
-	
+	@Column(name = "is_delete")
 	private boolean isDelete;
 	
-	@Column(name = "biodata_id", nullable = false, length = 11)
+	
+	@Column(name = "biodata_id", nullable = true, length = 11)
 	private long biodataId;
+	
+	@Column(name = "skill_name", nullable = true, length = 100)
+	private String skillName;
+	
+	@Column(name = "skill_level_id", nullable = true,  updatable = false, insertable = false, length = 11)
+	private long skillLevelId;
+
+	@JsonBackReference
+	@ManyToOne
+	@JoinColumn(name = "skill_level_id", foreignKey = @ForeignKey(name = "fk_skillLevel"))
+	private SkillLevelModel skillLevel;
+	
+	@Column(name = "notes", nullable = true, length = 1000)
+	private String notes;
 	
 	public long getId() {
 		return id;
@@ -140,15 +160,14 @@ public class KeahlianModel {
 	public void setNotes(String notes) {
 		this.notes = notes;
 	}
+	
 
-	@Column(name = "skill_name", nullable = true, length = 100)
-	private String skillName;
-	
-	@Column(name = "skill_level_id", nullable = true, length = 11)
-	private long skillLevelId;
-	
-	@Column(name = "notes", nullable = true, length = 1000)
-	private String notes;
-	
-	
+	public SkillLevelModel getSkillLevel() {
+		return skillLevel;
+	}
+
+	public void setSkillLevel(SkillLevelModel skillLevel) {
+		this.skillLevel = skillLevel;
+	}
+
 }

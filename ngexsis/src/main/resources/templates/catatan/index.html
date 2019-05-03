@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>Catatan Index</title>
+<!-- Tell the browser to be responsive to screen width -->
+<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+<link rel="stylesheet" href="/admin/bower_components/bootstrap/dist/css/bootstrap.min.css">
+<link rel="stylesheet" href="/admin/bower_components/font-awesome/css/font-awesome.min.css">
+<link rel="stylesheet" href="/admin/bower_components/Ionicons/css/ionicons.min.css">
+<link rel="stylesheet" href="/admin/dist/css/AdminLTE.min.css">
+<link rel="stylesheet" href="/admin/dist/css/skins/_all-skins.min.css">
+<link rel="stylesheet" href="/admin/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+</head>
+
+<body>
+<div class="">
+<section class="content">
+	<div class="row">
+	  <div class="col-xs-12">
+	    <div class="box">
+	      <div class="box-header">
+	        <h1 class="box-title">Catatan
+	        <a href="#" id="btn-add"><i class="fa fa-fw fa-plus-square"></i> </a>
+	        </h1>
+	      </div>
+	      
+	      <!-- /.box-header -->
+	    <div class="box-body">
+	      <table class="table table-bordered table-hover">
+	        <tr>
+	          <th>JUDUL CATATAN</th>
+	          <th>JENIS CATATAN</th>
+	          <th>DIBUAT OLEH</th>
+	          <th>#</th>
+	          </tr>
+	          <tr th:each = "catat : ${data}">
+	            <td><span th:text="${catat.title}"></span></td>
+	            <td><span th:text="${catat.noteTypeId}"></span></td>
+	            <td><span th:text="${catat.createdBy}"></span></td>
+	            
+	            <td>
+		            <div class="btn-group dropright">
+					  <a class="btn btn-info dropdown-toggle" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+					    More <span class="caret"></span>
+					  </a>
+					
+					  <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+					    <a class="dropdown-item btn btn-warning btn-edit" th:href="@{/catatan/edit/{id}(id=${catat.id})}">Edit</a>
+					    <a class="dropdown-item btn btn-danger btn-delete" th:href="@{/catatan/delete/{id}(id=${catat.id})}">Delete</a>
+					  </div>
+					</div>
+				</td>
+	          </tr>
+	        </table>
+	      </div>
+	      
+	      <!-- /.box-body -->
+	    <div class="box-footer clearfix">
+	      <ul class="pagination pagination-sm no-margin pull-right">
+	        <li><a href="#">&laquo;</a></li>
+	        <li><a href="#">1</a></li>
+	        <li><a href="#">2</a></li>
+	        <li><a href="#">3</a></li>
+	        <li><a href="#">&raquo;</a></li>
+	      </ul>
+	    </div>
+	  </div>
+	 </div>
+	</div>
+</section>
+</div>
+      
+<!-- Mulai Modal -->
+<div id="modal-form" class="modal fade" role="dialog">
+		<div class="modal-dialog modal-lg" role="document">
+			<div class="modal-content">
+			
+			</div>
+		</div>
+</div>
+	
+<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> -->
+<script src="/admin/bower_components/jquery/dist/jquery.min.js"></script>
+<!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script> -->
+<script src="/admin/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="/admin/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
+<script src="/admin/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+<script src="/admin/bower_components/jquery-slimscroll/jquery.slimscroll.min.js"></script>
+<script src="/admin/bower_components/fastclick/lib/fastclick.js"></script>
+<script src="/admin/dist/js/adminlte.min.js"></script>
+<script src="/admin/dist/js/demo.js"></script>
+
+<script type="text/javascript">
+//loadTipe Start
+function loadTipe(){
+	$.ajax({
+		url:'/api/noteType/',
+		type:'get',
+		dataType:'json',
+		success:function(hasil){
+			//Method looping dari jquery untuk looping hasil
+			//karna hasil berupa array
+			$('#modal-form').find('#typeid').empty();
+			$('#modal-form').find('#typeid').append('<option value=""> Jenis Catatan </option>');
+
+			$.each(hasil, function(index, item){
+				$('#modal-form').find('#typeid').append('<option value="'+item.id+'"> '+item.name+' </option>');
+			});
+		}
+	})
+}
+//loadTipe Stop
+	$("#btn-add").click(function(){
+		$.ajax({
+			url:'/catatan/add',
+			type:'get',
+			dataType:'html',
+			success:function(hasil){
+				$("#modal-form").find(".modal-content").html(hasil);
+				$("#modal-form").modal("show");
+			}
+		})
+		.done(function () {
+			loadTipe();
+		});
+	});
+	
+	$(".btn-edit").click(function() {
+		var a = $(this).attr('href');
+		$.ajax({
+   			url:a,
+   			type:'get',
+   			dataType:'html',
+   			success:function(hasil){
+   				$("#modal-form").find(".modal-content").html(hasil);
+   				$("#modal-form").modal("show");		
+   			}
+		})
+		.done(function () {
+			loadTipe();
+   		});
+		return false;
+	});
+	
+	$(".btn-delete").click(function() {
+		// alert("Test")
+		var a = $(this).attr('href')
+		$.ajax({
+   			url:a,
+   			type:'get',
+   			dataType:'html',
+   			success:function(hasil){
+   				$("#modal-form").find(".modal-content").html(hasil);
+   				$("#modal-form").modal("show");		
+   			}
+   		});
+		return false;
+	})
+	
+</script>
+</body>
+</html>

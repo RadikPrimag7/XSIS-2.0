@@ -1,33 +1,38 @@
-<!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-	<head>
-		<meta charset="UTF-8">
-		<link rel="stylesheet" href="C:/Users/User-XA/Desktop/css/bootstrap.min.css">
-		<title>Tambah Keahlian</title>
-	</head>
-	<body>
-	<div class="container">
-		<form action="">
-				<div class = "form-group row">
-					<label class="col-form-label col-md-2">Nama Keahlian</label>
-					<input class="form-control col-md" type = "text">
+<form action="/keahlian/save" method="post">
+	<div class="modal-header">
+		<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+			<span aria-hidden="true">&times;</span>
+		</button>
+		<h3 class="modal-title">Tambah Keahlian</h3>
+	</div>
 	
-					<label class="col-form-label col-md-2">Level Keahlian</label>
-					<select>
-						<option>Pilih 1</option>
-						<option>Pilih 2</option>
-						<option>Pilih 3</option>
-					</select>
-				</div>
-				
-				<div>
-					<label>Catatan</label>
-					<textarea class="form-control col-md"></textarea>
-				</div>
-				
-				<button type="reset">Batal</button>
-				<button type="submit">Simpan</button>
-		</form>
+	<div class="modal-body">
+		<div class = "form-group row">
+			<label class="col-form-label col-md-2">Nama Keahlian</label>
+			<div class="col col-md-3">
+				<input class="form-control" name="skillName" type = "text" required>
+			</div>
+			
+			<label class="col-form-label col-md-2">Level Keahlian</label>
+			<div class="col col-md-3">
+				<select name="skillLevel" id="levelid" required></select>
+			</div>
 		</div>
-	</body>
+			
+		<div class = "form-group row">
+			<label class="col-form-label col-md-2">Catatan</label>
+			<div class="col col-md-9">
+				<textarea style="resize:unset" class="form-control" name="notes" required></textarea>
+			</div>
+		</div>
+	</div>
+	
+	<div class="modal-footer">
+		<div class="btn-group">
+            <button type="button" class="btn btn-danger btn-flat" data-dismiss="modal">Batal</button>
+            <button type="Submit" class="btn btn-info btn-flat">Simpan</button>
+        </div>
+	</div>
+</form>
 </html>

@@ -23,33 +23,20 @@ public class LoginController {
 	private UserRepo repo;
 	
 	private String user;
-	private String abuid;
+	private String uid;
 	private String pass;
 	
 	private Log log=LogFactory.getLog(getClass());
 	
-	@RequestMapping(value="/login/index", method=RequestMethod.GET)
-	public String index(Model model,@RequestParam String email, @RequestParam String abupwd) {
-		/*UserModel item=repo.findById(id).orElse(null);
-		model.addAttribute("data",item);
-		if(item==null) {
-			System.out.println("invalid email/password");
-			return "login/index";
-		}
-		else if(item.getEmail() == null) {
-			System.out.println("invalid email/password");
-			return "login/index";
-		}
-		else if(item.getEmail() != email && item.getAbpwd()!= abpwd) {
-			System.out.println("invalid email/password");
-			return "login/index";
-		}
-		else {
-			return "login/access";
-		}
-		*/
-		List<UserModel> data = repo.findAll();
+	@RequestMapping(value="/login/index", method=RequestMethod.POST)
+	public String index(Model model,@RequestParam String email, @RequestParam String abupwd){
+		
+		List<UserModel>data = repo.find(email, abupwd);
 		model.addAttribute("listdata",data);
+		
+		if(data.isEmpty()==true) {
+			return "login/index";
+		}
 		
 		return "login/access";
 	}

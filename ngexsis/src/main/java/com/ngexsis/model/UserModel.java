@@ -20,13 +20,13 @@ public class UserModel {
 	@Column(name="id",nullable=false, length=11)
 	private long id;
 	
-	
+	@Column(name="email")
 	private String email;
+	@Column(name="abuid")
 	private String abuid;
 	private String abpwd;
 	
-	@ManyToMany
-	private Set<RoleModel> roles;
+	
 
 	public long getId() {
 		return id;
@@ -59,5 +59,7 @@ public class UserModel {
 	public void setAbpwd(String abpwd) {
 		this.abpwd = abpwd;
 	}
+
+	
 	
 }

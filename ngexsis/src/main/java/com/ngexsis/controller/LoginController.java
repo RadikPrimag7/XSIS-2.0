@@ -1,7 +1,7 @@
 package com.ngexsis.controller;
 
 import java.util.List;
-
+import java.util.regex.*;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,14 +28,17 @@ public class LoginController {
 	
 	private Log log=LogFactory.getLog(getClass());
 	
+	
+	
 	@RequestMapping(value="/login/index", method=RequestMethod.POST)
 	public String index(Model model,@RequestParam String email, @RequestParam String abupwd){
 		
 		List<UserModel>data = repo.find(email, abupwd);
 		model.addAttribute("listdata",data);
 		
+		
 		if(data.isEmpty()==true) {
-			return "login/index";
+			return "redirect:/login?error=1";
 		}
 		
 		return "login/access";

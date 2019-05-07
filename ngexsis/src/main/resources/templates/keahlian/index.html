@@ -17,30 +17,31 @@
 
 <body>
 <div class="">
-<section class="content">
+<section class="content" style="width: 80%">
 	<div class="row">
 	  <div class="col-xs-12">
 	    <div class="box">
 	      <div class="box-header">
-	        <h1 class="box-title">Keahlian
-	        <a href="#" id="btn-add"><i class="fa fa-fw fa-plus-square"></i> </a>
+	        <h1 class="box-title">Keahlian  
+	        <a href="#" id="btn-add"><i class="fa fa-fw fa-plus-circle"></i> </a>
+	        
 	        </h1>
 	      </div>
 	      
 	      <!-- /.box-header -->
 	    <div class="box-body">
-	      <table class="table table-bordered table-hover">
+	      <table class="table table-hover">
 	        <tr>
 	          <th>NAMA KEAHLIAN</th>
 	          <th>LEVEL KEAHLIAN</th>
-	          <th>#</th>
+	          <th style="width: 10%">#</th>
 	          </tr>
 	          <tr th:each = "cth : ${listData}">
 	            <td><span th:text="${cth.skillName}"></span></td>
 	            <td><span th:text="${cth.skillLevelId}"></span></td>
 	            <td>
 		            <div class="btn-group dropright">
-					  <a class="btn btn-info dropdown-toggle" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+					  <a class="btn btn-block btn-primary btn-md dropdown-toggle" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 					    More <span class="caret"></span>
 					  </a>
 					

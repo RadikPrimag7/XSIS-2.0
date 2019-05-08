@@ -41,7 +41,7 @@ public class PengalamanKerjaController {
 	}
 	
 	
-	@RequestMapping(value="/pengalaman/index")
+	@RequestMapping(value="/pengalaman")
 	public String index(Model model) {
 		List<PengalamanKerjaModel> data = repo.findAll();
 		model.addAttribute("listData",data);
@@ -58,7 +58,7 @@ public class PengalamanKerjaController {
 	public String save(@ModelAttribute PengalamanKerjaModel item) {
 		//mengirim item agar dapat disave ke database
 		repo.save(item);
-		return "redirect:/pengalaman/index";
+		return "redirect:/pengalaman";
 	}
 	
 	@RequestMapping(value="/pengalaman/edit/{id}")
@@ -70,16 +70,16 @@ public class PengalamanKerjaController {
 	}
 	
 	@RequestMapping(value="/pengalaman/delete/{id}",method= RequestMethod.GET)
-	public String showDelete(Model model,@PathVariable(name="id")Long id) {
+	public String delete(Model model,@PathVariable(name="id")Long id) {
 		PengalamanKerjaModel item=repo.findById(id).orElse(null);
 		model.addAttribute("data",item);
 		return "pengalaman/delete";
 	}
 	
 	@RequestMapping(value="/pengalaman/delete", method=RequestMethod.POST)
-	public String delete(@ModelAttribute PengalamanKerjaModel item) {
+	public String hapus(@ModelAttribute PengalamanKerjaModel item) {
 		repo.delete(item);
-		return "redirect:/pengalaman/index";
+		return "redirect:/pengalaman";
 	}
 	
 }

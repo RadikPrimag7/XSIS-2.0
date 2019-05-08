@@ -1,3 +1,5 @@
+<html>
+<body>
 
 <form action="/pengalaman/save" method="post">
 <input type="text" name="id" th:value="${data.id}" style="display:none">
@@ -19,13 +21,17 @@
 					</div>
 
 					<div class="col-6">
-						<label>Waktu Masuk *</label> <input type="text" name="joinMonth"
-							th:value="${data.joinMonth}" class="form-control">
+						<label>Waktu Masuk *</label> 
+							<select type="text" name="joinMonth" class="form-control">
+						 	<option th:value="${#numbers.sequence(1,12)}"></option>
+							<option th:each="i:${#numbers.sequence(1,12)}" th:value="${i}" th:text="${i}"/>
+						 </select>
 					</div>
 
 					<div class="col-6">
-						<label><br></label> <input type="text" name="joinYear"
-							th:value="${data.joinYear}" class="form-control">
+						<label><br></label>
+						<select id="joinYear" name="joinYear"class="form-control">
+						</select>
 					</div>
 
 					<div class="col-12">
@@ -34,7 +40,7 @@
 					</div>
 
 					<div class="col-12">
-						<input type="checkbox" name="isItRelated"> IT Related ?
+						<input type="checkbox" name="isItRelated" > IT Related ?
 					</div>
 
 				</div>
@@ -52,13 +58,16 @@
 					</div>
 
 					<div class="col-6">
-						<label>Waktu Keluar *</label> <input type="text"
-							name="resignMonth" th:value="${data.resignMonth}" class="form-control">
+						<label>Waktu Keluar *</label> 
+						<select name="resignMonth" class="form-control">
+							<option value="">-pilih Bulan -</option>
+							<option th:each="i:${#numbers.sequence(1,12)}" th:value="${i}" th:text="${i}"/>
+						</select>
 					</div>
 
 					<div class="col-6">
-						<label><br></label> <input type="text" name="resignYear"
-							th:value="${data.resignYear}" class="form-control">
+						<label><br></label> 
+						<select id="resignYear" name="resignYear" class="form-control"></select>
 					</div>
 
 					<div class="col-12">
@@ -88,7 +97,7 @@
 			</div>
 			<div class="form-group-row">
 					<div class="col-3 offset-9">
-						<a href="pengalaman/index"><button class="btn btn-warning float-right">Batal</button></a>
+						<a href="pengalaman"><button type="button" class="btn btn-warning float-right">Batal</button></a>
 						<button type="submit" class="btn btn-primary float-right">Simpan</button>
 					</div>
 			</div>
@@ -96,3 +105,43 @@
 
 	</div>
 </form>
+<script type="text/javascript">
+	//Select tahun down
+	var max1 = new Date().getFullYear();
+	min1 = max1-20,
+	select1 = document.getElementById('joinYear');
+	
+	var opt1 = document.createElement('option');
+	opt1.value = "";
+	opt1.innerHTML = "- Pilih Tahun -";
+	select1.appendChild(opt1);
+	for (var i = max1; i>=min1; i--){
+		var opt1 = document.createElement('option');
+		opt1.value = i;
+		opt1.innerHTML = i;
+		select1.appendChild(opt1);
+	}
+	//select1.value = new Date().getFullYear();
+	
+	
+	//Select tahun up
+	var min2 = new Date().getFullYear();
+	max2 = min2+20,
+	select2 = document.getElementById('resignYear');
+	
+	var opt2 = document.createElement('option');
+	opt2.value = "";
+	opt2.innerHTML = "- Pilih Tahun -";
+	select2.appendChild(opt2);
+	for (var j = min2; j<=max2; j++){
+		var opt2 = document.createElement('option');
+		opt2.value = j;
+		opt2.innerHTML = j;
+		select2.appendChild(opt2);
+	}
+	//select2.value = new Date().getFullYear();
+	
+</script>
+
+</body>
+</html>

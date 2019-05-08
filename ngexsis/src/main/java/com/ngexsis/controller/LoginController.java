@@ -22,27 +22,22 @@ public class LoginController {
 	@Autowired
 	private UserRepo repo;
 	
-	private String user;
-	private String uid;
-	private String pass;
-	
-	private Log log=LogFactory.getLog(getClass());
-	
-	
-	
 	@RequestMapping(value="/login/index", method=RequestMethod.POST)
 	public String index(Model model,@RequestParam String email, @RequestParam String abupwd){
 		
 		List<UserModel>data = repo.find(email, abupwd);
 		model.addAttribute("listdata",data);
 		
-		
+		//data.get(0).getEmail();
+
 		if(data.isEmpty()==true) {
 			return "redirect:/login?error=1";
 		}
 		
 		return "login/access";
 	}
+	
+	
 	
 	@RequestMapping(value="/login")
 	public String login () {

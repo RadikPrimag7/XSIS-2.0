@@ -13,10 +13,13 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.TableGenerator;
 
+import org.hibernate.annotations.Where;
+
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
 @Entity
 @Table(name = "x_keahlian")
+@Where(clause="is_delete=false")
 public class KeahlianModel {
 	
 	@Id

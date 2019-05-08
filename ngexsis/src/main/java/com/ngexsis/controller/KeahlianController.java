@@ -62,7 +62,7 @@ public class KeahlianController {
 	}
 	
 	//Request delete data
-	@RequestMapping(value = "/keahlian/delete")
+	@RequestMapping(value = "/keahlian/delete", method = RequestMethod.POST)
 	public String hapus(@ModelAttribute KeahlianModel item) {
 		//Mengirim item agar dapat di delete dari database
 		repo.delete(item);

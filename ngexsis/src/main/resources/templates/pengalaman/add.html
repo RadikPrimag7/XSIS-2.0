@@ -121,15 +121,13 @@
 	
 	
 	//Select tahun up
-	var min2 = new Date().getFullYear();
-	max2 = min2+20,
 	select2 = document.getElementById('resignYear');
 	
 	var opt2 = document.createElement('option');
 	opt2.value = "";
 	opt2.innerHTML = "- Pilih Tahun -";
 	select2.appendChild(opt2);
-	for (var j = min2; j<=max2; j++){
+	for (var j = max1; j>=min1; j--){
 		var opt2 = document.createElement('option');
 		opt2.value = j;
 		opt2.innerHTML = j;

@@ -22,24 +22,7 @@ public class PengalamanKerjaController {
 
 	//membuat auto instance dari repository
 	@Autowired
-	private PengalamanKerjaRepo repo;
-	
-	private Log log=LogFactory.getLog(getClass());
-	
-	@RequestMapping(value="/api/pengalaman/", method=RequestMethod.GET)
-	public ResponseEntity<List<PengalamanKerjaModel>> list(){
-		ResponseEntity<List<PengalamanKerjaModel>> hasil=null;
-		try {
-			List<PengalamanKerjaModel> list=repo.findAll();
-			hasil =new ResponseEntity<List<PengalamanKerjaModel>>(list, HttpStatus.OK);
-		} catch (Exception e) {
-			// TODO: handle exception
-			log.debug(e.getMessage(),e);
-			hasil=new ResponseEntity<List<PengalamanKerjaModel>>(HttpStatus.INTERNAL_SERVER_ERROR);
-		}
-		return hasil;
-	}
-	
+	private PengalamanKerjaRepo repo;	
 	
 	@RequestMapping(value="/pengalaman")
 	public String index(Model model) {

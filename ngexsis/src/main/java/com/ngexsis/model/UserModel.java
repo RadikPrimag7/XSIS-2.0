@@ -24,6 +24,7 @@ public class UserModel {
 	private String email;
 	@Column(name="abuid")
 	private String abuid;
+	@Column(name="abpwd")
 	private String abpwd;
 	
 	

@@ -51,7 +51,7 @@ public class PengalamanKerjaModel {
 	private String income;
 	
 	@Column(name="is_it_related")
-	private boolean isItRelated;
+	public boolean isItRelated;
 	
 	@Column(name="about_job",length=1000)
 	private String aboutJob;

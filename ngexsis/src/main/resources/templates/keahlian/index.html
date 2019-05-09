@@ -38,17 +38,17 @@
 	          </tr>
 	          <tr th:each = "cth : ${listData}">
 	            <td><span th:text="${cth.skillName}"></span></td>
-	            <td><span th:text="${cth.skillLevelId}"></span></td>
+	            <td><span th:text="${cth.skillLevel.name}"></span></td>
 	            <td>
 		            <div class="btn-group dropright">
 					  <a class="btn btn-block btn-primary btn-md dropdown-toggle" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 					    More <span class="caret"></span>
 					  </a>
 					
-					  <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-					    <a class="dropdown-item btn btn-warning btn-edit" th:href="@{/keahlian/edit/{id}(id=${cth.id})}">Edit</a>
-					    <a class="dropdown-item btn btn-danger btn-delete" th:href="@{/keahlian/delete/{id}(id=${cth.id})}">Delete</a>
-					  </div>
+					  <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+					    <li><a class="dropdown-item btn-edit" th:href="@{/keahlian/edit/{id}(id=${cth.id})}">Edit</a></li>
+					    <li><a class="dropdown-item btn-delete" th:href="@{/keahlian/delete/{id}(id=${cth.id})}">Delete</a></li>
+					  </ul>
 					</div>
 				</td>
 	          </tr>
@@ -93,23 +93,45 @@
 
 <script type="text/javascript">
 //loadLevel Start
-function loadLevel(){
-	$.ajax({
-		url:'/api/skillLevel/',
-		type:'get',
-		dataType:'json',
-		success:function(hasil){
-			//Method looping dari jquery untuk looping hasil
-			//karna hasil berupa array
-			$('#modal-form').find('#levelid').empty();
-			$('#modal-form').find('#levelid').append('<option value=""> -- Pilih -- </option>');
+// function loadLevel(selectedId){
+// 	$.ajax({
+// 		url:'/api/skillLevel/',
+// 		type:'get',
+// 		dataType:'json',
+// 		success:function(hasil){
+// 			//Method looping dari jquery untuk looping hasil
+// 			//karna hasil berupa array
+// 			$('#modal-form').find('#levelid').empty();
+// 			$('#modal-form').find('#levelid').append('<option value=""> -- Pilih -- </option>');
 
-			$.each(hasil, function(index, item){
-				$('#modal-form').find('#levelid').append('<option value="'+item.id+'"> '+item.name+' </option>');
-			});
-		}
-	})
-}
+// 			$.each(hasil, function(index, item){
+// 				if(selectedId == item.id){
+// 					$('#modal-form').find('#levelid').append('<option value="'+item.id+'" selected="selected"> '+item.name+' </option>');
+// 				}else{
+// 					$('#modal-form').find('#levelid').append('<option value="'+item.id+'"> '+item.name+' </option>');	
+// 				}
+				
+// 			});
+// 		}
+// 	})
+// }
+
+// function loadLevel1(){
+// 	$.ajax({
+// 		url:'/api/skillLevel/',
+// 		type:'get',
+// 		dataType:'json',
+// 		success:function(hasil){
+// 			//Method looping dari jquery untuk looping hasil
+// 			//karna hasil berupa array
+// 			$('#modal-form').find('#levelid').append('<option value=""> -- Pilih -- </option>');
+
+// 			$.each(hasil, function(index, item){
+// 				$('#modal-form').find('#levelid').append('<option value="'+item.id+'"> '+item.name+' </option>');
+// 			});
+// 		}
+// 	})
+// }
 //loadLevel Stop
 	$("#btn-add").click(function(){
 		$.ajax({
@@ -120,9 +142,6 @@ function loadLevel(){
 				$("#modal-form").find(".modal-content").html(hasil);
 				$("#modal-form").modal("show");
 			}
-		})
-		.done(function () {
-			loadLevel();
 		});
 	});
 	
@@ -136,10 +155,7 @@ function loadLevel(){
    				$("#modal-form").find(".modal-content").html(hasil);
    				$("#modal-form").modal("show");		
    			}
-		})
-		.done(function () {
-			loadLevel();
-   		});
+		});
 		return false;
 	});
 	

@@ -11,13 +11,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.ngexsis.model.KeahlianModel;
+import com.ngexsis.model.SkillLevelModel;
 import com.ngexsis.repository.KeahlianRepo;
+import com.ngexsis.repository.SkillLevelRepo;
 
 @Controller
 public class KeahlianController {
 	//Membuat auto instance dari repository
 	@Autowired
 	private KeahlianRepo repo;
+	@Autowired
+	private SkillLevelRepo repo1;
 	
 	@RequestMapping(value = "/keahlian/index", method = RequestMethod.GET)
 	public String index(Model model) {
@@ -26,8 +30,10 @@ public class KeahlianController {
 		return "keahlian/index";
 	}
 	
-	@RequestMapping("keahlian/add")
-	public String add() {
+	@RequestMapping("/keahlian/add")
+	public String add(Model model) {
+		List<SkillLevelModel> data1 = repo1.findAll();
+		model.addAttribute("listSkill", data1);
 		return "keahlian/add";
 	}
 	
@@ -48,6 +54,13 @@ public class KeahlianController {
 		KeahlianModel item = repo.findById(id).orElse(null);
 		//Mengirim variable data, value diisi dari object item
 		model.addAttribute("data", item);
+		
+		List<SkillLevelModel> data1 = repo1.findAll();
+		model.addAttribute("skillLvl", data1);
+//		
+//		SkillLevelModel item1 = repo1.findById(id).orElse(null);
+//		model.addAttribute("data1", item1);
+		 
 		return "keahlian/edit";
 	}
 	

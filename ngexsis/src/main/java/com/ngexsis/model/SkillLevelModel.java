@@ -14,13 +14,10 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.TableGenerator;
 
-import org.hibernate.annotations.Where;
-
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 @Table(name = "x_skill_level")
-@Where(clause="is_delete=false")
 public class SkillLevelModel {
 	@Id
 	@Column(name = "id")

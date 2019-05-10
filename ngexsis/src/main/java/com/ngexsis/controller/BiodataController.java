@@ -1,6 +1,7 @@
 package com.ngexsis.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -15,7 +16,7 @@ import com.ngexsis.repository.BiodataRepo;
 import com.ngexsis.viewModel.BiodataForm;
 
 @Controller
-public class PelamarBiodataController {
+public class BiodataController {
 
 	@Autowired
 	private BiodataRepo repoBio;
@@ -34,8 +35,19 @@ public class PelamarBiodataController {
 		return "/pelamar/biodata/index";
 	}
 	
+	
+	@RequestMapping(value="/pelamar/biodata/edit/{id}", method=RequestMethod.GET)
+	public String edit(Model model, @PathVariable(name="id") Long id) {
 		
-	@RequestMapping(value="/pelamar/biodata/save", method=RequestMethod.POST)
+		BiodataModel item = repoBio.findById(id).orElse(null);
+		
+		model.addAttribute("data", item);
+		
+		return "/pelamar/biodata/edit";
+	}
+	
+		
+	@RequestMapping(value="/pelamar/biodata/save", method=RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
 	public String saveToBiodata(@RequestBody BiodataForm model) {
 		
 		BiodataModel item = model.getBiodata();
@@ -49,20 +61,7 @@ public class PelamarBiodataController {
 		repoAddr.save(addr);
 		
 		
-		return "redirect:/pelamar/biodata";
-	}
-	
-	
-	
-	
-	@RequestMapping(value="/pelamar/biodata/edit/{id}", method=RequestMethod.GET)
-	public String edit(Model model, @PathVariable(name="id") Long id) {
-		
-		BiodataModel item = repoBio.findById(id).orElse(null);
-		
-		model.addAttribute("data", item);
-		
-		return "/pelamar/biodata/edit";
+		return "redirect:/pelamar/biodata/{id}";
 	}
 	
 }

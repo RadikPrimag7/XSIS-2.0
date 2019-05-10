@@ -32,9 +32,9 @@ public class MaritalStatusModel {
 	@Column(name="description", length=100)
 	private String description;
 	
-	@JsonManagedReference
-	@OneToMany(mappedBy="maritalStatus", cascade = CascadeType.ALL)
-	private List<BiodataModel> listBiodata = new ArrayList<BiodataModel>();
+//	@JsonManagedReference
+//	@OneToMany(mappedBy="maritalStatus", cascade = CascadeType.ALL)
+//	private List<BiodataModel> listBiodata = new ArrayList<BiodataModel>();
 
 	
 	
@@ -62,12 +62,12 @@ public class MaritalStatusModel {
 		this.description = description;
 	}
 
-	public List<BiodataModel> getListBiodata() {
-		return listBiodata;
-	}
-
-	public void setListBiodata(List<BiodataModel> listBiodata) {
-		this.listBiodata = listBiodata;
-	}
+//	public List<BiodataModel> getListBiodata() {
+//		return listBiodata;
+//	}
+//
+//	public void setListBiodata(List<BiodataModel> listBiodata) {
+//		this.listBiodata = listBiodata;
+//	}
 
 }

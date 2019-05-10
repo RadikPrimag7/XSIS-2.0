@@ -32,9 +32,9 @@ public class IdentityTypeModel {
 	@Column(name="description", length=100)
 	private String description;
 	
-	@JsonManagedReference
-	@OneToMany(mappedBy="identityType", cascade = CascadeType.ALL)
-	private List<BiodataModel> listBiodata = new ArrayList<BiodataModel>();
+//	@JsonManagedReference
+//	@OneToMany(mappedBy="identityType", cascade = CascadeType.ALL)
+//	private List<BiodataModel> listBiodata = new ArrayList<BiodataModel>();
 
 	
 	
@@ -62,11 +62,11 @@ public class IdentityTypeModel {
 		this.description = description;
 	}
 
-	public List<BiodataModel> getListBiodata() {
-		return listBiodata;
-	}
-
-	public void setListBiodata(List<BiodataModel> listBiodata) {
-		this.listBiodata = listBiodata;
-	}
+//	public List<BiodataModel> getListBiodata() {
+//		return listBiodata;
+//	}
+//
+//	public void setListBiodata(List<BiodataModel> listBiodata) {
+//		this.listBiodata = listBiodata;
+//	}
 }

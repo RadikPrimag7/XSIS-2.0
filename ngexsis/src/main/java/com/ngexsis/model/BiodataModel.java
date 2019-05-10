@@ -47,13 +47,13 @@ public class BiodataModel {
 	@Column(name="gender", nullable=false)
 	private boolean gender;
 	
-	@Column(name="religion_id", length=11, nullable=false, insertable=false, updatable=false)
+	@Column(name="religion_id", length=11, nullable=false)
 	private Long religionId;
 	
-	@JsonBackReference
-	@ManyToOne
-	@JoinColumn(name="religion_id", foreignKey = @ForeignKey(name="fk_religion"))
-	private ReligionModel religion;
+//	@JsonBackReference
+//	@ManyToOne
+//	@JoinColumn(name="religion_id", foreignKey = @ForeignKey(name="fk_religion"))
+//	private ReligionModel religion;
 	
 	@Column(name="height")
 	private int height;
@@ -70,13 +70,13 @@ public class BiodataModel {
 	@Column(name="hobby", length=255)
 	private String hobby;
 	
-	@Column(name="identity_type_id", length=11, nullable=false, insertable=false, updatable=false)
+	@Column(name="identity_type_id", length=11, nullable=false)
 	private Long identityTypeId;
 	
-	@JsonBackReference
-	@ManyToOne
-	@JoinColumn(name="identity_type_id", foreignKey = @ForeignKey(name="fk_identity_type"))
-	private IdentityTypeModel identityType;
+//	@JsonBackReference
+//	@ManyToOne
+//	@JoinColumn(name="identity_type_id", foreignKey = @ForeignKey(name="fk_identity_type"))
+//	private IdentityTypeModel identityType;
 	
 	@Column(name="identity_no", length=50, nullable=false)
 	private String identityNo;
@@ -99,13 +99,13 @@ public class BiodataModel {
 	@Column(name="how_many_brothers", length=5)
 	private String howManyBrothers;
 	
-	@Column(name="marital_status_id", length=11, nullable=false, insertable=false, updatable=false)
+	@Column(name="marital_status_id", length=11, nullable=false)
 	private Long maritalStatusId;
 	
-	@JsonBackReference
-	@ManyToOne
-	@JoinColumn(name="marital_status_id", foreignKey = @ForeignKey(name="fk_marital_status"))
-	private MaritalStatusModel maritalStatus;
+//	@JsonBackReference
+//	@ManyToOne
+//	@JoinColumn(name="marital_status_id", foreignKey = @ForeignKey(name="fk_marital_status"))
+//	private MaritalStatusModel maritalStatus;
 	
 	@Column(name="addrbook_id", length=11)
 	private Long addrbookId;
@@ -120,6 +120,8 @@ public class BiodataModel {
 
 	
 	
+	
+
 	public Long getId() {
 		return id;
 	}
@@ -311,13 +313,28 @@ public class BiodataModel {
 	public void setExpiredDate(Date expiredDate) {
 		this.expiredDate = expiredDate;
 	}
-
-	public ReligionModel getReligion() {
-		return religion;
-	}
-
-	public void setReligion(ReligionModel religion) {
-		this.religion = religion;
-	}
-	
+//
+//	public ReligionModel getReligion() {
+//		return religion;
+//	}
+//
+//	public void setReligion(ReligionModel religion) {
+//		this.religion = religion;
+//	}
+//	
+//	public IdentityTypeModel getIdentityType() {
+//		return identityType;
+//	}
+//
+//	public void setIdentityType(IdentityTypeModel identityType) {
+//		this.identityType = identityType;
+//	}
+//
+//	public MaritalStatusModel getMaritalStatus() {
+//		return maritalStatus;
+//	}
+//
+//	public void setMaritalStatus(MaritalStatusModel maritalStatus) {
+//		this.maritalStatus = maritalStatus;
+//	}
 }

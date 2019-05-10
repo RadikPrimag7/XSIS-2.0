@@ -10,88 +10,184 @@
 
     <!-- Font Awesome CSS -->
     <link rel="stylesheet" href="fontawesome-free-5.8.1-web/css/all.min.css">
+    
+    <style type="text/css">
+    .navbar {
+    	padding:2px 10px;
+    }
+    #nav-top a {
+    	color:white;
+    	padding:10px 15px;
+    }
+    #nav-top .dropdown-menu {
+    	border-radius:0px;
+    }
+    #nav-top .dropdown-menu a {
+    	color:black;
+    }
+    .nav-pills .nav-link.active,
+    .nav-pills .show>.nav-link {
+    	background:darkblue;
+    }
+    a.nav-link {
+    	color:darkblue;
+    }
+    a:hover.nav-link {
+    	background:rgba(0,0,0,0.1);
+    }
+    </style>
 
-    <title>Biodata</title>
+    <title>XSIS 2.0</title>
 </head>
-<body>
+<body style="background:rgba(0,0,0,0.05)">
+
+	<div style="background:darkblue">
+		<div class="container">
+			<nav class="navbar navbar-expand-lg navbar-dark" id="nav-top">
+			  	<div class="collapse navbar-collapse" id="navbarSupportedContent">
+			    	<ul class="navbar-nav mr-auto">
+			      		<li class="nav-item dropdown">
+			        		<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+			          			Menu 1
+			        		</a>
+				        	<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+				          		<a class="dropdown-item" href="#">Action</a>
+				          		<a class="dropdown-item" href="#">Another action</a>
+				          		<a class="dropdown-item" href="#">Something else here</a>
+				        	</div>
+			      		</li>
+			      		<li class="nav-item dropdown">
+			        		<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+			          			Menu 2
+			        		</a>
+				        	<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+				          		<a class="dropdown-item" href="#">Action</a>
+				          		<a class="dropdown-item" href="#">Another action</a>
+				          		<a class="dropdown-item" href="#">Something else here</a>
+				        	</div>
+			      		</li>
+			      		<li class="nav-item dropdown">
+			        		<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+			          			Menu 3
+			        		</a>
+				        	<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+				          		<a class="dropdown-item" href="#">Action</a>
+				          		<a class="dropdown-item" href="#">Another action</a>
+				          		<a class="dropdown-item" href="#">Something else here</a>
+				        	</div>
+			      		</li>
+			    	</ul>
+			    	<ul class="navbar-nav my-2 my-lg-0">
+			      		<li class="nav-item dropdown">
+					  		<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"><i class="fas fa-bell"></i>&nbsp; Hi, Username </a>
+						  	<div class="dropdown-menu">
+							    <a class="dropdown-item" href="#">
+							    	<span class="text-muted" style="font-size:14px">Seirra J, Loyard</span><br>
+							    	Ubah Kata Sandi
+							    </a>
+							    <div class="dropdown-divider"></div>
+							    <a class="dropdown-item" href="#">Keluar</a>
+						  	</div>
+						</li>
+			    	</ul>
+			  	</div>
+			</nav>
+		</div>
+	</div>
+	<div style="background:white;padding:10px">
+		<div class="container">
+			<h3 style="color:darkblue;margin:0px"><strong>XSIS 2.0</strong></h3>			
+		</div>
+	</div>
     
     <div class="container">
-    
+   		<br>
     	<div class="row">
-    	
-	    	<div class="col-12">
-	    	
-		    	<div class="row">
-		    	
+    		<div class="col-3">
+			    <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+					<a class="nav-link" href="/home">
+						<i class="fas fa-circle"></i> &nbsp;
+						Beranda
+					</a>
+					<a class="nav-link active" href="/pelamar">
+						<i class="fas fa-circle"></i> &nbsp;
+						Pelamar
+					</a>
+					<a class="nav-link" href="#">
+						<i class="fas fa-circle"></i> &nbsp;
+						Proses Pelamar
+					</a>
+					<a class="nav-link" href="#">
+						<i class="fas fa-circle"></i> &nbsp;
+						Penjadwalan
+					</a>
+					<a class="nav-link" href="#">
+						<i class="fas fa-circle"></i> &nbsp;
+						Tes
+					</a>
+					<a class="nav-link" href="#">
+						<i class="fas fa-circle"></i> &nbsp;
+						Bootcamp
+					</a>
+					<a class="nav-link" href="#">
+						<i class="fas fa-circle"></i> &nbsp;
+						Laporan
+					</a>
+			    </div>
+	    	</div>
+	    	<div class="col-9" style="background:rgba(0,0,0,0.1);padding:20px">
+	    		<form action="#" method="post" class="row">
 			    	<div class="form-group btn-group col-6">
-			    		<input type="text" name="search" class="form-control col-10" placeholder="Cari Nama Pelamar...">
-			    		<button class="btn btn-dark col-2"><i class="fas fa-search"></i></button>
+			    		<input type="text" name="search" class="form-control col-10" placeholder="Nama Pelamar...">
+			    		<button type="submit" class="btn btn-dark col-2"><strong>Cari</strong></button>
 		    		</div>
 		    		<div class="form-group col-6">
-			    		<button class="btn btn-dark col-1"><strong>&times</strong></button>
+			    		<button type="reset" class="btn btn-dark col-2"><strong>Reset</strong></button>
 		    		</div>
-		    		<hr>
-		    	</div>
+		    	</form>
+		    	<div class="row">
+    				<div class="col">
+    					<br>
+	    				<span class="float-right">
+	    					<span href="#" class="" style="cursor:pointer"><i class="fas fa-sort-alpha-up"></i></span> &nbsp
+							<span href="#" class="" style="cursor:pointer"><i class="fas fa-bars"></i></span> &nbsp
+							<span href="#" class="goToAdd" style="cursor:pointer"><i class="fas fa-plus"></i></span>
+	    				</span>
+	    				<br><br>
+					</div>
+    			</div>
+    			<div class="row" th:each="pel : ${listData}">
+	    			<div class="col">
+	    				<div class="card">
+							<div class="card-body row">
+								<div class="col-12">
+									<h5><strong><span th:text="${[pel].fullname}"></span></strong></h5>
+								</div>
+								<div class="col-3">
+									<span>Nama Panggilan</span><br>
+									<span>Email</span><br>
+									<span>No. Handphone</span><br>
+									<span>Pendidikan</span>
+								</div>
+								<div class="col-7">
+									<strong><span th:text="${pel.nickName}"></span></strong><br>
+									<strong><span th:text="${pel.email}"></span></strong><br>
+									<strong><span th:text="${pel.phoneNumber1}"></span></strong><br>
+									<strong><span></span></strong>
+								</div>
+								<div class="col-2 text-center">
+									<span style="line-height:70px">
+										<span th:href="@{/pelamar/biodata/{id}(id=${pel.id})}" class="goToDetail" style="cursor:pointer"><i class="fas fa-search"></i></span> &nbsp;
+										<span href="#" class="goToToken" style="cursor:pointer"><i class="fas fa-envelope"></i></span>
+									</span>
+								</div>
+							</div>
+						</div>
+						<br>
+	    			</div>
+    			</div>
 	    	</div>
     	</div>
-    	
-    	<div class="row">
-    	
-    		<div class="col-12">
-    		
-    			<div class="row">
-    			
-    				<div class="col-12">
-						<span href="#" class="" style="cursor:pointer"><i class="fas fa-sort-alpha-up"></i></span> &nbsp
-						<span href="#" class="" style="cursor:pointer"><i class="fas fa-bars"></i></span> &nbsp
-						<span href="#" class="goToAdd" style="cursor:pointer"><i class="fas fa-plus"></i></span>
-					</div>
-    			</div>
-    		</div>
-    	</div>
-
-    	
-    	<div class="row">
-    	
-    		<div class="col-12">
-    			
-    			<div class="row">
-    			
-    				<div class="card col-12">
-    				
-						<div class="card-body">
-							<h4><span>Nama Lengkap</span></h4>
-							<table>
-								<tr>
-									<td>
-										<span class="col-4">Nama Panggilan</span><br>
-										<span class="col-4">Email</span><br>
-										<span class="col-4">No. Handphone</span><br>
-										<span class="col-4">Pendidikan</span>
-									</td>
-									<td>
-									<!-- 
-										<span th:text="${bio.nickName}"></span><br>
-										<span th:text="${bio.email}"></span><br>
-										<span th:text="${bio.phoneNumber1}"></span><br>
-										<span th:text="${bio.fullname}"></span><br>
-										 -->
-									</td>
-									<td>
-									<!-- 
-										<button th:href="@{/pelamar/biodata/{id}(id=${bio.id})}" class="goToBiodata"><i class="fas fa-search"></i></button>
-										 -->
-										 <span class="goToBiodata" style="cursor:pointer"><i class="fas fa-search"></i></span>
-										<span href="#" class="goToToken" style="cursor:pointer"><i class="fas fa-envelope"></i></span>
-									</td>
-								</tr>
-							</table>
-						</div>
-					</div>
-    			</div>
-    		</div>
-    	</div>
-    
 		
     </div>
     
@@ -210,15 +306,15 @@
 			});
 	   	});
 	    
-	    $(".goToBiodata").click(function() {
+	    $(".goToDetail").click(function() {
 	    	var a = $(this).attr("href");
 	   		$.ajax({
 	   			url:a,
 	   			type:'get',
 	   			dataType:'html',
 	   			success:function(hasil){
-	   				$("#modal-form").find(".modal-content").html(hasil);
-	   				$("#modal-form").modal("show");		
+	   				$("#modal-form-xl").find(".modal-content").html(hasil);
+	   				$("#modal-form-xl").modal("show");		
 	   			}
 	   		});
 	   		return false;

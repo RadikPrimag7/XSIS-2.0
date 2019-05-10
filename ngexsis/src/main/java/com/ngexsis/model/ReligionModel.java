@@ -32,9 +32,9 @@ public class ReligionModel {
 	@Column(name="description", length=100)
 	private String description;
 	
-	@JsonManagedReference
-	@OneToMany(mappedBy="religion", cascade = CascadeType.ALL)
-	private List<BiodataModel> listBiodata = new ArrayList<BiodataModel>();
+//	@JsonManagedReference
+//	@OneToMany(mappedBy="religion", cascade = CascadeType.ALL)
+//	private List<BiodataModel> listBiodata = new ArrayList<BiodataModel>();
 
 	
 	
@@ -61,13 +61,13 @@ public class ReligionModel {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-
-	public List<BiodataModel> getListBiodata() {
-		return listBiodata;
-	}
-
-	public void setListBiodata(List<BiodataModel> listBiodata) {
-		this.listBiodata = listBiodata;
-	}
+//
+//	public List<BiodataModel> getListBiodata() {
+//		return listBiodata;
+//	}
+//
+//	public void setListBiodata(List<BiodataModel> listBiodata) {
+//		this.listBiodata = listBiodata;
+//	}
 
 }

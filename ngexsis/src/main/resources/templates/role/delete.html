@@ -4,7 +4,7 @@
 		
 	</head>
 	<body>
-			<form th:action="@{pendidikan/delete}" method="post">
+			<form th:action="@{role/delete}" method="post">
 		
 			<div class="modal-header bg-danger text-white">
 				<h3 class="modal-title">Hapus Pendidikan ?</h3>
@@ -14,7 +14,6 @@
 			
 				<!-- ID yang terpilih akan di hapus -->	
 				<input type="hidden" name="id" th:value="${data.id}">
-				<input type="hidden" name="jenjang" id="jenjangId" th:value="${data.educationLevelId}">
 				
 				<table class="mx-auto">
 					<tr>
@@ -23,7 +22,7 @@
 						</td>
 						<td>
 							<h5 class="text-center align-middle">
-							&nbsp;Anda yakin ingin menghapus pendidikan di<br> <span th:text="${data.schoolName}" style="text"></span> ?
+							&nbsp;Anda yakin ingin menghapus role<br> <span th:text="${data.name}" style="text"></span> ?
 							</h5>
 						</td>
 					</tr>

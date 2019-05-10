@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<title>Edit Role</title>
+		<link rel="stylesheet" href="/css/bootstrap.min.css">
+		<style type="text/css">
+			.bg_style{
+				background-color : #01006d
+			}
+			
+			label{
+				color : #01006d
+			}
+		</style>
+	</head>
+	<body>
+	<form th:action="@{/role/save}" method="post">
+	<input type="text" name="id" th:value="${data.id}" style="display:none">
+	<input type="hidden" name="createdOn" th:value="${data.createdOn}" style="display:none">
+		<div class="modal-header bg_style text-white">
+			<p class="modal-title"><strong>Tambah Role</strong></p>
+			<!-- <button type="button" class="close text-white" data-dismiss="modal">
+				<i class="fas fa-times"></i>
+	       	</button> -->
+		</div>
+		<div class="modal-body">
+			<div class="form-group row">
+				<div class="col-6">
+					<label>Kode *</label>
+					<input type="text" name="code" th:value="${data.code}" class="form-control" required>
+				</div>
+				<div class="col-6">
+					<label>Nama *</label>
+					<input type="text" name="name" th:value="${data.name}" class="form-control" required>
+				</div>
+			</div>
+			<div class="btn btn-group float-right btn-sm">
+				<br>
+					<button type="button" data-dismiss="modal" class="btn btn-warning">
+						<em>Batal</em>
+					</button>
+					<button type="submit" class="btn btn-primary">
+						<em>Simpan</em>
+					</button>
+			</div>
+		</div>
+	</form>
+</body>
+</html>

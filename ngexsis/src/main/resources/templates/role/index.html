@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=yes">
+	
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="../../bootstrap-4.3.1-dist/css/bootstrap.min.css">
+	
+	<!-- Font Awesome CSS -->
+	<link rel="stylesheet" href="../../fontawesome-free-5.8.1-web/css/all.min.css" >
+
+	<!-- Data Tables -->
+	<link rel="stylesheet" href="../../DataTables-1.10.18/datatables.min.css">
+	
+	<style type="text/css">
+		.text_color{
+			color : #01006d
+		}
+	</style>
+</head>
+<body>      
+	<div class="container">
+		<br>
+		<div class="row">
+		
+			<div>
+				<input type="text" id="myInput" onkeyup="searchFunction()" placeholder="Search for names..">
+				<!-- <span>
+					<button type="submit" name="search" id="search-btn" class="btn btn-primary"><i class="fa fa-search"></i></button>
+				</span> -->
+			</div>
+			
+			<div class="dropdown mini float-right">
+					<button class="btn text_color dropdown-toggle" data-toggle="dropdown">
+						<i class="fas fa-sort-alpha-down"></i>
+					</button>
+							<ul class="dropdown-menu">
+								<li class="text_color">
+									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Order
+								</li>
+								<li>
+									<button class="dropdown-item text_color" onclick="sortTableAsc()">Ascending</button>
+								</li>
+								<li>
+									<button class="dropdown-item text_color" onclick="sortTableDesc()">Descending</button>
+								</li>
+							</ul>
+			</div>
+			<div class="mini">
+				<a href="#" class="btn text_color btn-add">
+					<em><i class="fas fa-plus-circle"></i></em>
+				</a>
+			</div>
+		</div>
+		
+		<div>
+			<table id="myTable" class="table text-center border-primary myTable">
+				<thead>
+					<tr>
+						<th class="border-primary text_color">KODE ROLE</th>
+						<th class="border-primary text_color">NAMA ROLE</th>
+						<th class="border-primary text_color">#</th>
+					</tr>
+				</thead>
+				
+				<tbody class="table table-hover">
+					<tr th:each="role : ${listData}">
+						<td id="code_role" class="border-primary text_color"><span th:text="${role.code}"></span></td>
+						<td id="name_role" class="border-primary text_color"><span th:text="${role.name}"></span></td>
+						<td class="border-primary text-center">
+							<div class="dropdown">
+							<button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">More
+								<span class="caret"></span></button>
+								<ul class="dropdown-menu">
+								    <li>
+								    	<a th:href="@{/role/edit/{id}(id=${role.id})}" class="dropdown-item btn-edit">
+										<em>Edit</em>
+										</a>
+									</li>
+									<li>
+										<a th:href="@{/role/delete/{id}(id=${role.id})}" class="dropdown-item btn-delete">
+										<em>Delete</em>
+										</a>
+									</li>
+								</ul>
+							</div> 
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+	 
+	<!-- Modal standard -->
+	<div id="modal-form" class="modal fade" role="dialog">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				
+			</div>
+		</div>
+	</div>
+	
+	<!-- Modal Large untuk Add/Edit -->
+	<div id="modal-form-lg" class="modal fade" role="dialog">
+		<div class="modal-dialog modal-lg" role="document">
+			<div class="modal-content">
+				
+			</div>
+		</div>
+	</div>
+	
+	<!-- Optional JavaScript -->
+	<!-- jQuery first, then Popper.js, then other JS -->
+	<script type="text/javascript" src="../../js/jquery-3.4.0.min.js"></script>
+	<script type="text/javascript" src="../../js/popper.min.js"></script>
+	<script type="text/javascript" src="../../bootstrap-4.3.1-dist/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="../../fontawesome-free-5.8.1-web/js/fontawesome.min.js"></script>
+	<script type="text/javascript" src="../../DataTables-1.10.18/datatables.min.js"></script>
+	<script type="text/javascript" src="../../Buttons-1.5.6/js/dataTables.buttons.min.js"></script>
+	
+	<!-- Javascript code -->
+	<script type="text/javascript">
+		$(".btn-add").click(function() {
+			$.ajax({
+				url:'/role/add',
+				type:'get',
+				dataType:'html',
+				success:function(result){
+					$("#modal-form-lg").find(".modal-content").html(result);
+					$("#modal-form-lg").modal("show");
+				}
+			});
+		});
+		
+		$(".btn-edit").click(function() {
+			var a = $(this).attr("href");
+			$.ajax({
+				url:a,
+				type:'get',
+				dataType:'html',
+				success:function(result){
+					$("#modal-form-lg").find(".modal-content").html(result);
+					$("#modal-form-lg").modal("show");
+				}
+			});
+			
+			return false;
+		});
+		
+		$(".btn-delete").click(function() {
+			var a = $(this).attr('href')
+			$.ajax({
+				url:a,
+				type:'get',
+				dataType:'html',
+				success:function(result){
+					$("#modal-form").find(".modal-content").html(result);
+					$("#modal-form").modal("show");
+				}
+			});
+			
+			return false;
+		});
+		
+		
+		//search function
+		function searchFunction() {
+			  // Declare variables
+			  var input, filter, table, tr, td, i, txtValue;
+			  input = document.getElementById("myInput");
+			  filter = input.value.toUpperCase();
+			  table = document.getElementById("myTable");
+			  tr = table.getElementsByTagName("tr");
+
+			  // Loop through all table rows, and hide those who don't match the search query
+			  for (i = 0; i < tr.length; i++) {
+			    td = tr[i].getElementsByTagName("td")[1];
+			    if (td) {
+			      txtValue = td.textContent || td.innerText;
+			      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+			        tr[i].style.display = "";
+			      } else {
+			        tr[i].style.display = "none";
+			      }
+			    }
+			  }
+			}
+		
+		
+		//sort function
+		function sortTableAsc() {
+			var table, rows, switching, i, x, y, shouldSwitch;
+			table = document.getElementById("myTable");
+			switching = true;
+			/*Make a loop that will continue until no switching has been done:*/
+			while (switching) {
+				//start by saying: no switching is done:
+				switching = false;
+				rows = table.rows;
+				/*Loop through all table rows (except the first, which contains table headers):*/
+				for (i = 1; i < (rows.length - 1); i++) {
+					//start by saying there should be no switching:
+					shouldSwitch = false;
+					/*Get the two elements you want to compare, one from current row and one from the next:*/
+					x = rows[i].getElementsByTagName("TD")[1];
+					y = rows[i + 1].getElementsByTagName("TD")[1];
+					//check if the two rows should switch place:
+					if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+						//if so, mark as a switch and break the loop:
+						shouldSwitch = true;
+						break;
+					}
+				}
+				if (shouldSwitch) {
+					/*If a switch has been marked, make the switch and mark that a switch has been done:*/
+					rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+					switching = true;
+				}
+			}
+		}
+		
+		function sortTableDesc() {
+			var table, rows, switching, i, x, y, shouldSwitch;
+			table = document.getElementById("myTable");
+			switching = true;
+			/*Make a loop that will continue until no switching has been done:*/
+			while (switching) {
+				//start by saying: no switching is done:
+				switching = false;
+				rows = table.rows;
+				/*Loop through all table rows (except the first, which contains table headers):*/
+				for (i = 1; i < (rows.length - 1); i++) {
+					//start by saying there should be no switching:
+					shouldSwitch = false;
+					/*Get the two elements you want to compare, one from current row and one from the next:*/
+					x = rows[i].getElementsByTagName("TD")[1];
+					y = rows[i + 1].getElementsByTagName("TD")[1];
+					//check if the two rows should switch place:
+					if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
+						//if so, mark as a switch and break the loop:
+						shouldSwitch = true;
+						break;
+					}
+				}
+				if (shouldSwitch) {
+					/*If a switch has been marked, make the switch and mark that a switch has been done:*/
+					rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+					switching = true;
+				}
+			}
+		}
+		
+		$(document).ready( function () {
+			$('#myTable').DataTable({
+				"dom": '<"top float-right"l>t<"bottom"p>',
+				"aLengthMenu": [10, 20, 30, 40, 50],
+				"pageLength": 10,
+				"ordering": false
+			});
+	    } );
+	</script>
+</body>
+</html>

@@ -1,96 +1,117 @@
-<form action="/pendidikan/save" method="post">
-	<input type="text" name="id" th:value="${data.id}" style="display:none">
-	<div class="modal-header">
-		<h1 class="modal-title">Edit Pendidikan</h1>
-		<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-			<span aria-hidden="true">&times;</span>
-       	</button>
-	</div>
-	<div class="modal-body">
-		<div class="form-group row">
-			<div class="col-6">
-				<label>Nama Sekolah/Instansi</label>
-				<input type="text" name="schoolName" th:value="${data.schoolName}" class="form-control">
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<title>Edit Pendidikan</title>
+		<link rel="stylesheet" href="/css/bootstrap.min.css">
+		<style type="text/css">
+			.bg_style{
+				background-color : #01006d
+			}
+			
+			label{
+				color : #01006d
+			}
+		</style>
+	</head>
+	<body>
+		<form action="/pendidikan/save" method="post">
+		<input type="text" name="id" th:value="${data.id}" style="display:none">
+		<div class="modal-header bg_style text-white">
+			<p class="modal-title"><strong>Edit Pendidikan</strong></p>
+			<!-- <button type="button" class="close text-white" data-dismiss="modal">
+				<i class="fas fa-times"></i>
+	       	</button> -->
+		</div>
+		<div class="modal-body">
+			<div class="form-group row">
+				<div class="col-6">
+					<label>Nama Sekolah/Instansi</label>
+					<input type="text" name="schoolName" th:value="${data.schoolName}" class="form-control">
+				</div>
+				<div class="col-3">
+					<label>Kota</label>
+					<input type="text" name="city" th:value="${data.city}" class="form-control">
+				</div>
+				<div class="col-3">
+					<label>Negara</label>
+					<input type="text" name="country" th:value="${data.country}" class="form-control">
+				</div>
 			</div>
-			<div class="col-3">
-				<label>Kota</label>
-				<input type="text" name="city" th:value="${data.city}" class="form-control">
+			<div class="form-group row">
+				<div class="col-6">
+					<label>Jenjang Pendidikan</label>
+					<select name="jenjang" id="jenjangId" class="form-control">
+						<option>-Pilih-</option>
+						<option th:each="jg : ${jenjang}" th:value="${jg.id}" th:text="${jg.name}"></option>
+					</select>
+				</div>
+				<div class="col-3">
+					<label>Tahun Masuk</label>
+					<select id="validStartYear" name="entryYear" th:value="${data.entryYear}" th:selected="${data.entryYear}" class="form-control"></select>
+				</div>
+				<div class="col-3">
+					<label>Tahun Lulus</label>
+					<select id="validEndYear" name="graduationYear" th:value="${data.graduationYear}" th:selected="${data.graduationYear}" class="form-control"></select>
+				</div>
 			</div>
-			<div class="col-3">
-				<label>Negara</label>
-				<input type="text" name="country" th:value="${data.country}" class="form-control">
+			<div class="form-group row">
+				<div class="col-3">
+					<label>Jurusan</label>
+					<input type="text" name="major" th:value="${data.major}" class="form-control">
+				</div>
+				<div class="col-3">
+					<label>IPK</label>
+					<input type="text" name="gpa" th:value="${data.gpa}" class="form-control">
+				</div>
+				<div class="col-6">
+					<label>Judul Tugas Akhir</label>
+					<input type="text" name="judulTa" th:value="${data.judulTa}" class="form-control">
+				</div>
+			</div>
+			<div class="form-group row col-12">
+				<label>Deskripsi Tugas Akhir</label>
+				<textarea name="deskripsiTa" th:field="${data.deskripsiTa}" class="form-control" rows="5" style="resize:none;"></textarea>
+			</div>
+			<div class="form-group row col-12">
+				<label>Catatan</label>
+				<textarea name="notes" th:field="${data.notes}" class="form-control" rows="5" style="resize:none;"></textarea>
+			</div>
+			<div class="btn btn-group float-right btn-sm">
+				<br>
+					<button type="button" data-dismiss="modal" class="btn btn-warning">
+						<em>Batal</em>
+					</button>
+					<button type="submit" class="btn btn-primary">
+						<em>Simpan</em>
+					</button>
 			</div>
 		</div>
-		<div class="form-group row">
-			<div class="col-6">
-				<label>Jenjang Pendidikan</label>
-				<select name="jenjang" id="jenjangId" class="form-control"></select>
-			</div>
-			<div class="col-3">
-				<label>Tahun Masuk</label>
-				<select id="validStartYear" name="entryYear" th:value="${data.entryYear}" class="form-control"></select>
-			</div>
-			<div class="col-3">
-				<label>Tahun Lulus</label>
-				<select id="validEndYear" name="graduationYear" th:value="${data.graduationYear}" class="form-control"></select>
-			</div>
-		</div>
-		<div class="form-group row">
-			<div class="col-3">
-				<label>Jurusan</label>
-				<input type="text" name="major" th:value="${data.major}" class="form-control">
-			</div>
-			<div class="col-3">
-				<label>IPK</label>
-				<input type="text" name="gpa" th:value="${data.gpa}" class="form-control">
-			</div>
-			<div class="col-6">
-				<label>Judul Tugas Akhir</label>
-				<input type="text" name="judulTa" th:value="${data.judulTa}" class="form-control">
-			</div>
-		</div>
-		<div class="form-group row col-12">
-			<label>Deskripsi Tugas Akhir</label>
-			<textarea name="deskripsiTa" th:field="${data.deskripsiTa}" class="form-control" rows="5" style="resize:none;"></textarea>
-		</div>
-		<div class="form-group row col-12">
-			<label>Catatan</label>
-			<textarea name="notes" th:field="${data.notes}" class="form-control" rows="5" style="resize:none;"></textarea>
-		</div>
-		<div class="btn btn-group float-right btn-sm">
-			<br>
-				<button type="button" data-dismiss="modal" class="btn btn-warning">
-					<em>Batal</em>
-				</button>
-				<button type="submit" class="btn btn-primary">
-					<em>Simpan</em>
-				</button>
-		</div>
-	</div>
-</form>
-<script type="text/javascript">
-	var year = new Date().getFullYear();
-	min = year-39,
-	max = year,
-	select = document.getElementById('validStartYear');
-	
-	for(var i=min; i<=max; i++){
-		var opt = document.createElement('option');
-		opt.value = i;
-		opt.innerHTML = i;
-		select.appendChild(opt);
-	}
-	
-	var year = new Date().getFullYear();
-	min = year-39,
-	max = year,
-	select = document.getElementById('validEndYear');
-	
-	for(var i=min; i<=max; i++){
-		var opt = document.createElement('option');
-		opt.value = i;
-		opt.innerHTML = i;
-		select.appendChild(opt);
-	}
-	//select.value = new Date().getFullYear();
-</script>
+	</form>
+	<!-- Script data tahun auto update -->
+	<script type="text/javascript">
+		var year = new Date().getFullYear();
+		min = year-39,
+		max = year,
+		select = document.getElementById('validStartYear');
+		
+		for(var i=min; i<=max; i++){
+			var opt = document.createElement('option');
+			opt.value = i;
+			opt.innerHTML = i;
+			select.appendChild(opt);
+		}
+		
+		var year = new Date().getFullYear();
+		min = year-39,
+		max = year,
+		select = document.getElementById('validEndYear');
+		
+		for(var i=min; i<=max; i++){
+			var opt = document.createElement('option');
+			opt.value = i;
+			opt.innerHTML = i;
+			select.appendChild(opt);
+		}
+	</script>
+	</body>
+	</html>

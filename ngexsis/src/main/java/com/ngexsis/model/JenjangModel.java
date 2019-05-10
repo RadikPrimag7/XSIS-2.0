@@ -14,6 +14,10 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.TableGenerator;
 
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+import org.springframework.format.annotation.DateTimeFormat;
+
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
@@ -30,12 +34,16 @@ public class JenjangModel {
 	private Long createdBy;
 	
 	@Column(name="created_on", nullable=true)
+	@CreationTimestamp
+	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
 	private Date createdOn;
 	
 	@Column(name="modified_by", nullable=true, length=11)
 	private Long modifiedBy;
 	
 	@Column(name="modified_on", nullable=true)
+	@UpdateTimestamp
+	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
 	private Date modifiedOn;
 	
 	@Column(name="deleted_by", nullable=true, length=11)
@@ -44,7 +52,7 @@ public class JenjangModel {
 	@Column(name="deleted_on", nullable=true)
 	private Date deletedOn;
 	
-	@Column(name="is_delete", nullable=true)
+	@Column(name="is_delete", nullable=true, columnDefinition="BOOLEAN DEFAULT false")
 	private Boolean isDelete;
 	
 	@Column(name="name", nullable=true, length=50)

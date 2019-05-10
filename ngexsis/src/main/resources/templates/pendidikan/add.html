@@ -1,17 +1,25 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 	<head>
-		<title>Edit Pendidikan</title>
+		<title>Tambah Pendidikan</title>
 		<link rel="stylesheet" href="/css/bootstrap.min.css">
-		
+		<style type="text/css">
+			.bg_style{
+				background-color : #01006d
+			}
+			
+			label{
+				color : #01006d
+			}
+		</style>
 	</head>
 	<body>
 	<form th:action="@{/pendidikan/save}" method="post">
-		<div class="modal-header">
-			<h1 class="modal-title">Add Pendidikan</h1>
-			<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-				<span aria-hidden="true">&times;</span>
-	       	</button>
+		<div class="modal-header bg_style text-white">
+			<p class="modal-title"><strong>Tambah Pendidikan</strong></p>
+			<!-- <button type="button" class="close text-white" data-dismiss="modal">
+				<i class="fas fa-times"></i>
+	       	</button> -->
 		</div>
 		<div class="modal-body">
 			<div class="form-group row">
@@ -31,7 +39,10 @@
 			<div class="form-group row">
 				<div class="col-6">
 					<label>Jenjang Pendidikan</label>
-					<select name="jenjang" id="jenjangId" class="form-control"></select>
+					<select name="jenjang" id="jenjangId" class="form-control">
+						<option>-Pilih-</option>
+						<option th:each="jg : ${listJenjang}" th:value="${jg.id}" th:text="${jg.name}"></option>
+					</select>
 				</div>
 				<div class="col-3">
 					<label>Tahun Masuk</label>
@@ -75,6 +86,8 @@
 			</div>
 		</div>
 	</form>
+	
+	<!-- Script data tahun auto update -->
 	<script type="text/javascript">
 		var year = new Date().getFullYear();
 		min = year-39,
@@ -99,7 +112,6 @@
 			opt.innerHTML = i;
 			select.appendChild(opt);
 		}
-		//select.value = new Date().getFullYear();
 	</script>
 	</body>
 </html>

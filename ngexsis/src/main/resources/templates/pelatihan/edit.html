@@ -8,6 +8,7 @@
 	
 	<body>
 	<form th:action="@{/pelatihan/save}" method = "post">
+	<input type="text" name="id" th:value="${data.id}" style="display:none">
 		<div class="modal-header">
 			<h3 class ="modal-title">Edit Pelatihan</h3>
 			<button type="button" class="close" data-dismiss="modal" aria-label="close">
@@ -29,21 +30,10 @@
 					<div class="col-6">
 						<label>Waktu Pelaksanaan</label>
 					
-							<select class="form-control col-md" name="trainingMonth" th:value= "${data.trainingMonth}" required>
-								<option>- Pilih Bulan -</option>
-						        <option value="January">January</option>
-						        <option value="February">February</option>
-						        <option value="March">March</option>
-						        <option value="April">April</option>
-						        <option value="May">May</option>
-						        <option value="June">June</option>
-						        <option value="July">July</option>
-						        <option value="August">August</option>
-						        <option value="September">September</option>
-						        <option value="October">October</option>
-						        <option value="November">November</option>
-						        <option value="December">December</option>
-						     </select> 	
+							<select class="form-control col-md" name="trainingMonth" required>
+								
+						 		<option th:each="i:${#numbers.sequence(1,12)}" th:value="${i}" th:text="${i}" th:selected="${i+''==data.trainingMonth}"/>
+							</select>
 						
 						
 					</div>
@@ -52,8 +42,8 @@
 						<label><br></label> 
 						
 						
-							<select id="getYear" class="form-control col-md" name ="trainingYear" th:value= "${data.trainingYear}"required>
-									
+							<select id="getYear" class="form-control col-md" name ="trainingYear" required>
+								
 							</select>
 						
 					</div>
@@ -83,9 +73,8 @@
 					<div class="col-6">
 						<label><br></label> 
 						<select  class="form-control col-md"  name="periodId" id="tambahinid" required>
-						
-								
-	
+							<option value=""> - Pilih - </option>
+							<option th:each= "ld:${listdata2}" th:value="${ld.id}" th:text="${ld.name}" th:field="${data.timePeriodId}"/>	
 						</select>
 					</div>
 
@@ -105,13 +94,17 @@
 				</div>
 			</div>
 			
-			<div class="row">
-				
-				<div class="col">
-					<button th:href="@{redirect: /pelatihan}" class="btn btn-warning" data-dismiss="modal" type="button">Batal</button>
-					<button  class="btn btn-primary" type="submit">Simpan</button>
-				</div>
-			</div>
+			<div class="col-12">
+					
+					</div>
+					
+					<div class="col-12">
+					
+						<div class="btn-group  float-right">
+							<button  class="btn btn-warning" data-dismiss="modal" type="button">Batal</button>
+							<button  class="btn btn-primary" type="submit">Simpan</button>
+						</div>
+					</div>
 		</div>
 	</div>
 	</div>
@@ -126,6 +119,7 @@
 				opt.value = "";
 				opt.innerHTML = "-Pilih Tahun-";
 				select.appendChild(opt);
+				
 				
 			for(var i=max; i>=min;i--){
 				var opt = document.createElement('option');

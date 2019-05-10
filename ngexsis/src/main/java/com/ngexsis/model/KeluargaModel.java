@@ -12,11 +12,19 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.TableGenerator;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+import org.hibernate.annotations.Where;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
 @Entity
 @Table(name = "x_keluarga")
+@Where(clause = "is_delete = false")
 public class KeluargaModel {
 	
 	@Id
@@ -26,34 +34,40 @@ public class KeluargaModel {
 	valueColumnName = "seq_value", initialValue = 0, allocationSize = 1)
 	private Long id;
 	
-	@Column(name = "created_by", nullable = false, length = 11)
+	@Column(name = "created_by", nullable = true, length = 11)
 	private long createdBy;
 	
-	@Column(name = "created_on", nullable = false)
+	@Column(name = "created_on", nullable = true)
+	@CreationTimestamp
+	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
 	private Date createdOn;
 	
 	@Column(name = "modified_by", nullable = true, length = 11)
 	private long modifiedBy;
 	
 	@Column(name = "modified_on", nullable = true)
+	@UpdateTimestamp
+	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
 	private Date modifiedOn;
 	
 	@Column(name = "deleted_by", nullable = true, length = 11)
 	private long deletedBy;
 	
 	@Column(name = "deleted_on", nullable = true)
+	@CreationTimestamp
+	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
 	private Date deletedOn;
 	
-	@Column(name = "is_delete", nullable = false)
+	@Column(name = "is_delete", nullable = true, columnDefinition = "BOOLEAN DEFAULT false")
 	private boolean isDelete;
 	
-	@Column(name = "biodata_id", nullable = false, length = 11, updatable = false, insertable = false)
+	@Column(name = "biodata_id", nullable = true, length = 11)
 	private long biodataId;
 	
-	@JsonBackReference
+	/*@JsonBackReference , updatable = false, insertable = false
 	@ManyToOne
 	@JoinColumn(name ="biodata_id", foreignKey = @ForeignKey(name ="fk_biodata"))
-	private BiodataModel biodata1;
+	private BiodataModel biodata1;*/
 	
 	@Column(name = "family_tree_type_id", nullable = true, length=11, updatable = false, insertable = false)
 	private long familyTreeTypeId;
@@ -78,6 +92,8 @@ public class KeluargaModel {
 	private String jk;
 	
 	@Column(name = "dob", nullable = true)
+	@DateTimeFormat(pattern="yyyy-MM-dd")
+	@Temporal(TemporalType.DATE)
 	private Date dob;
 	
 	@Column(name = "education_level_id", nullable = true, length=11, updatable = false, insertable = false)
@@ -166,13 +182,13 @@ public class KeluargaModel {
 		this.biodataId = biodataId;
 	}
 
-	public BiodataModel getBiodata1() {
+	/*public BiodataModel getBiodata1() {
 		return biodata1;
 	}
 
 	public void setBiodata1(BiodataModel biodata1) {
 		this.biodata1 = biodata1;
-	}
+	}*/
 
 	public long getFamilyTreeTypeId() {
 		return familyTreeTypeId;

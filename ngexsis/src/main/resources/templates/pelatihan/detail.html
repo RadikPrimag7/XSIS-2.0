@@ -10,19 +10,19 @@
 	<body>
 	
 		<div class="container">
-			<div>
-				<div>
-					<h3 class="box-title">Pelatihan  <a id="btn-add" href="#"><i class="fas fa-plus-circle"></i></a></h3>
+			<div> 
+				<div class="row">
+					<h1 class="box-title" style="color:darkblue">Pelatihan  </h1><span><a id="btn-add" class="btn btn-lg" href="#"><i class="fas fa-plus-circle"></i></a></span>
 					
 				</div>
 				<div>
 					<table class="table">
 						<thead class="blue">
 							<tr>
-								<th>Pelatihan</th>
-								<th>Penyelenggara</th>
-								<th>Waktu</th>
-								<th>Durasi</th>
+								<th>PELATIHAN</th>
+								<th>PENYELENGGARA</th>
+								<th>WAKTU</th>
+								<th>DURASI</th>
 								<th>#</th>
 							</tr>
 						</thead>
@@ -30,8 +30,8 @@
 						<tr th:each ="item : ${listdata}">
 							<td><span th:text="${item.trainingName}"></span></td>
 							<td><span th:text="${item.oganizer}"></span></td>
-							<td><span th:text="${item.trainingYear}">-</span> <span th:text="${item.trainingMonth}"></span></td>
-							<td><span th:text="${item.trainingDuration}"></span></td>
+							<td><span th:text="${item.trainingYear}">-</span> - <span th:text="${item.trainingMonth}"></span></td>
+							<td><span th:text="${item.trainingDuration}"></span> - <span th:text="${item.periodId.name}"></span></td>
 							<td >
 								<div class="dropout">
 									<button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
@@ -91,23 +91,23 @@
 			});*/
 			
 			//loadLevel Start
-			function loadLevel(){
-				$.ajax({
-					url:'/api/timeperiod/',
-					type:'get',
-					dataType:'json',
-					success : function(hasil){
-						//Method looping dari jquery untuk looping hasil
-						//karna hasil berupa array
-						$('#modal-form').find('#tambahinid').empty();
-						$('#modal-form').find('#tambahinid').append('<option value=""> -Pilih- </option>');
+// 			function loadLevel(){
+// 				$.ajax({
+// 					url:'/api/timeperiod/',
+// 					type:'get',
+// 					dataType:'json',
+// 					success : function(hasil){
+// 						//Method looping dari jquery untuk looping hasil
+// 						//karna hasil berupa array
+// 						$('#modal-form').find('#tambahinid').empty();
+// 						$('#modal-form').find('#tambahinid').append('<option value=""> -Pilih- </option>');
 
-						$.each(hasil, function(index, value){
-							$('#modal-form').find('#tambahinid').append('<option value="'+value.id+'"> '+value.name+' </option>');
-						});
-					}
-				})
-			}
+// 						$.each(hasil, function(index, value){
+// 							$('#modal-form').find('#tambahinid').append('<option value="'+value.id+'"> '+value.name+' </option>');
+// 						});
+// 					}
+// 				})
+// 			}
 			
 			$("#btn-add").click(function(){
 				$.ajax({
@@ -119,9 +119,9 @@
 						$("#modal-form").modal("show");
 					}
 				})
-				.done(function () {
-					loadLevel();
-				});
+// 				.done(function () {
+// 					loadLevel();
+// 				});
 			});
 			
 			$(".btn-delete").click(function(){
@@ -151,12 +151,23 @@
 						$("#modal-form").modal("show");
 					}
 				})
-				.done(function () {
-					loadLevel();
-				});
+// 				.done(function () {
+// 					loadLevel();
+// 				});
 				return false;
 			});
+		
+		function replace(){
+			select = document.getElementById("timePeriodId");
 			
+			if(select == 1){
+				select = "Tahun";
+			}else if(select == 2){
+				select = "Bulan";
+			}else{
+				select = "Minggu";
+			}
+		}
 			
 		</script>
 	</body>

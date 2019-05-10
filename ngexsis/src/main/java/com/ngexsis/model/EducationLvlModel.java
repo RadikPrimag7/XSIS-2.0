@@ -14,6 +14,9 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.TableGenerator;
 
+import org.hibernate.annotations.CreationTimestamp;
+import org.springframework.format.annotation.DateTimeFormat;
+
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
@@ -27,28 +30,34 @@ public class EducationLvlModel {
 	valueColumnName = "seq_value", initialValue = 0, allocationSize = 1)
 	private Long id;
 	
-	@Column(name = "created_by", nullable = false, length = 11)
+	@Column(name = "created_by", nullable = true, length = 11)
 	private long createdBy;
 	
-	@Column(name = "created_on", nullable = false)
+	@Column(name = "created_on", nullable = true)
+	@CreationTimestamp
+	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
 	private Date createdOn;
 	
 	@Column(name = "modified_by", nullable = true, length = 11)
 	private long modifiedBy;
 	
 	@Column(name = "modified_on", nullable = true)
+	@CreationTimestamp
+	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
 	private Date modifiedOn;
 	
 	@Column(name = "deleted_by", nullable = true, length = 11)
 	private long deletedBy;
 	
 	@Column(name = "deleted_on", nullable = true)
+	@CreationTimestamp
+	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
 	private Date deletedOn;
 	
-	@Column(name = "is_delete", nullable = false)
+	@Column(name = "is_delete", nullable = true, columnDefinition = "BOOLEAN DEFAULT false")
 	private boolean isDelete;
 	
-	@Column(name = "name", nullable = false, length = 50)
+	@Column(name = "name", nullable = true, length = 50)
 	private String name;
 	
 	@Column(name = "description", nullable = true, length = 100)

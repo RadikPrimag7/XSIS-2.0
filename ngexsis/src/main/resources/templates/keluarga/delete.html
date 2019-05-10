@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head>
+
+
+	
+</head>
+<body>
+	<form th:action="@{/keluarga/delete}" method="post">
+		<div class="modal-header bg-danger text-white">
+			<h3 class="modal-title">Hapus Pelatihan ?</h3>
+		</div>
+		
+		<div class="modal-body">
+			
+			<input type="hidden" name="id" th:value="${data.id}"/>
+			<input type="hidden" name="familyTree" th:value="${data.familyTreeTypeId}"/>
+			<input type="hidden" name="familyRelation" th:value="${data.familyRelationId}"/>
+			<input type="hidden" name="educationLevel" th:value="${data.educationLevelId}"/>
+			
+			<input type="hidden" name="name" th:value="${data.name}"/>
+			<input type="hidden" name="jk" th:value="${data.jk}"/>
+			<input type="hidden" name="dob" th:value="${data.dob}"/>
+			<input type="hidden" name="job" th:value="${data.job}"/>
+			
+			<input type="hidden" name="notes" th:value="${data.notes}"/>
+			
+			<input type="hidden" th:value="${data.createdBy}"/>
+			<input type="hidden" th:value="${data.createdOn}"/>
+			<input type="hidden" th:value="${data.modifiedBy}"/>
+			
+			<input type="hidden" th:value="${data.modifiedOn}"/>
+			<input type="hidden" th:value="${data.deletedBy}"/>
+			<input type="hidden" th:value="${data.deletedOn}"/>
+			<input type="hidden" th:value="${data.biodataId}"/>
+			
+			
+			<h5 class="text-center align-middle">
+				<i class="fas fa-trash-alt fa-3x" style="vertical-align: middle;"></i>
+					Anda yakin ingin menghapus anggota bernama <br> <span th:text="${data.name}" style="text"></span> ?
+			</h5>
+			
+			<div class="col">
+			<div class="btn btn-group float-right btn-sm col-2">
+				<button type="Submit"  class="btn btn-danger btn-lg "><em>Ya</em></button>
+				<button th:href="@{redirect: /keluarga}" type="button" data-dismiss="modal" class="btn btn-warning btn-lg"><em>Tidak</em></button>
+			</div>
+			</div>
+		</div>
+	
+	</form>
+</body>
+</html>

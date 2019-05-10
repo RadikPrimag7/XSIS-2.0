@@ -20,16 +20,16 @@ import org.springframework.format.annotation.DateTimeFormat;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
-@Table(name ="x_time_period")
-public class TimePeriodModel {
-	
+@Table(name = "x_vacancy_source_")
+public class VacancySauceModel {
+
 	@Id
-	@Column(name="id")
-	@GeneratedValue(strategy = GenerationType.TABLE, generator = "period_seq")
-	@TableGenerator(name = "period_seq", table = "tbl_sequence", pkColumnName = "seq_id",
+	@Column(name = "id")
+	@GeneratedValue(strategy = GenerationType.TABLE, generator = "vacant_seq")
+	@TableGenerator(name = "vacant_seq", table= "tbl_sequence", pkColumnName = "seq_id",
 	valueColumnName = "seq_value", initialValue = 0, allocationSize = 1)
 	private Long id;
-
+	
 	@Column(name = "created_by", nullable = true, length = 11)
 	private long createdBy;
 	
@@ -57,26 +57,18 @@ public class TimePeriodModel {
 	@Column(name = "is_delete", nullable = true, columnDefinition = "BOOLEAN DEFAULT false")
 	private boolean isDelete;
 	
-	@Column(name = "name", nullable = true, length = 50)
+	@Column(name="name", nullable = true, length=50)
 	private String name;
 	
-	@Column(name = "description", nullable = true, length = 100)
+	@Column( name = "description", nullable = true, length=100)
 	private String description;
 	
 	@JsonManagedReference
-	@OneToMany(mappedBy = "periodId", cascade = CascadeType.ALL)
-	private List<PelatihanModel> listPelatihan = new ArrayList<PelatihanModel>();
-	
+	@OneToMany(mappedBy = "vacancySource", cascade = CascadeType.ALL)
+	private List<SumberLokerModel> listLoker = new ArrayList<SumberLokerModel>();
+
 	public Long getId() {
 		return id;
-	}
-
-	public List<PelatihanModel> getListPelatihan() {
-		return listPelatihan;
-	}
-
-	public void setListPelatihan(List<PelatihanModel> listPelatihan) {
-		this.listPelatihan = listPelatihan;
 	}
 
 	public void setId(Long id) {
@@ -131,11 +123,11 @@ public class TimePeriodModel {
 		this.deletedOn = deletedOn;
 	}
 
-	public boolean getIsDelete() {
+	public boolean isDelete() {
 		return isDelete;
 	}
 
-	public void setIsDelete(boolean isDelete) {
+	public void setDelete(boolean isDelete) {
 		this.isDelete = isDelete;
 	}
 
@@ -154,7 +146,14 @@ public class TimePeriodModel {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	
+
+	public List<SumberLokerModel> getListLoker() {
+		return listLoker;
+	}
+
+	public void setListLoker(List<SumberLokerModel> listLoker) {
+		this.listLoker = listLoker;
+	}
 	
 	
 }

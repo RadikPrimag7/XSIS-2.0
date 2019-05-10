@@ -13,10 +13,15 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.TableGenerator;
 
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.Where;
+import org.springframework.format.annotation.DateTimeFormat;
+
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
 @Entity
 @Table(name="x_riwayat_pelatihan")
+@Where(clause = "is_delete = false")
 public class PelatihanModel {
 	
 	@Id
@@ -30,21 +35,27 @@ public class PelatihanModel {
 	private long createdBy;
 	
 	@Column(name = "created_on", nullable = true)
+	@CreationTimestamp
+	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
 	private Date createdOn;
 	
 	@Column(name = "modified_by", nullable = true, length = 11)
 	private long modifiedBy;
 	
 	@Column(name = "modified_on", nullable = true)
+	@CreationTimestamp
+	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
 	private Date modifiedOn;
 	
 	@Column(name = "deleted_by", nullable = true, length = 11)
 	private long deletedBy;
 	
 	@Column(name = "deleted_on", nullable = true)
+	@CreationTimestamp
+	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
 	private Date deletedOn;
 	
-	@Column(name = "is_delete")
+	@Column(name = "is_delete", nullable = true, columnDefinition = "BOOLEAN DEFAULT false")
 	private boolean isDelete;
 	
 	/*@Column(name = "biodata_id", nullable = true, length = 11, updatable = false, insertable = false)

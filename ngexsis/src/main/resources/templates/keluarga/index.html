@@ -30,11 +30,11 @@
 						</thead>
 					<tbody>
 						<tr th:each ="item : ${listdata}">
-							<td><span th:text="${item.familyTreeTypeId}"></span></td>
+							<td><span th:text="${item.familyTree.name}"></span></td>
 							<td><span th:text="${item.name}"></span></td>
 							<td><span th:text="${item.jk}"></span></td>
 							<td><span th:text="${item.dob}"></span></td>
-							<td><span th:text="${item.educationLevelId}"></span></td>
+							<td><span th:text="${item.educationLevel.name}"></span></td>
 							<td><span th:text="${item.job}"></span></td>
 							<td >
 								<div class="dropout">
@@ -79,7 +79,64 @@
 		<script src="../../js/jquery.serializejson.js" ></script>
 		
 		<script type="text/javascript">
-			
+		
+		
+		
+// 		function loadFamTree(){
+// 			$.ajax({
+// 				url:'/api/familytree/',
+// 				type:'get',
+// 				dataType:'json',
+// 				success : function(hasil){
+// 					//Method looping dari jquery untuk looping hasil
+// 					//karna hasil berupa array
+// 					$('#modal-form').find('#familytreeId').empty();
+// 					$('#modal-form').find('#familytreeId').append('<option value=""> -Pilih- </option>');
+
+// 					$.each(hasil, function(index, val){
+// 						$('#modal-form').find('#familytreeId').append('<option value="'+val.id+'"> '+val.name+' </option>');
+// 					});
+// 				}
+// 			})
+// 		}
+		
+		
+		
+// 		function loadFamRelasi(){
+// 			$.ajax({
+// 				url:'/api/familyrelation/',
+// 				type:'get',
+// 				dataType:'json',
+// 				success : function(hasil){
+// 					//Method looping dari jquery untuk looping hasil
+// 					//karna hasil berupa array
+// 					$('#modal-form').find('#familyrelationId').empty();
+// 					$('#modal-form').find('#familyrelationId').append('<option value=""> -Pilih- </option>');
+
+// 					$.each(hasil, function(index, value){
+// 						$('#modal-form').find('#familyrelationId').append('<option value="'+value.id+'"> '+value.name+' </option>');
+// 					});
+// 				}
+// 			})
+// 		}
+		
+// 		function loadEduLevel(selectedId){
+// 			$.ajax({
+// 				url:'/api/educationlvl/',
+// 				type:'get',
+// 				dataType:'json',
+// 				success : function(hasil){
+// 					//Method looping dari jquery untuk looping hasil
+// 					//karna hasil berupa array
+// 					$('#modal-form').find('#educationLvlId').empty();
+// 					$('#modal-form').find('#educationLvlId').append('<option value=""> -Pilih- </option>');
+
+// 					$.each(hasil, function(index, value){
+// 						$('#modal-form').find('#educationLvlId').append('<option value="'+value.id+'"> '+value.name+' </option>');
+// 					});
+// 				}
+// 			})
+// 		}
 			
 			$("#btn-add").click(function(){
 				$.ajax({
@@ -91,6 +148,12 @@
 						$("#modal-form").modal("show");
 					}
 				})
+// 				.done(function(){
+// 					loadFamTree();
+// 					loadFamRelasi();
+// 					loadEduLevel();
+// 				})
+				
 			})
 			
 			$(".btn-delete").click(function(){
@@ -119,6 +182,11 @@
 						$("#modal-form").modal("show");
 					}
 				})
+// 				.done(function(){
+// 					loadFamTree();
+// 					loadFamRelasi();
+// 					loadEduLevel();
+// 				})
 				return false;
 			})
 			

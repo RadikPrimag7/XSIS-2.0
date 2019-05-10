@@ -3,16 +3,11 @@
 <head>
 
 
-	<style>
-			h1{
-				background-color: #bc0000;
-				color: white;
-			}
-		</style>
+	
 </head>
 <body>
 	<form th:action="@{/pelatihan/delete}" method="post">
-		<div class="modal-header">
+		<div class="modal-header bg-danger text-white">
 			<h3 class="modal-title">Hapus Pelatihan ?</h3>
 		</div>
 		
@@ -20,12 +15,38 @@
 			
 			<input type="hidden" name="id" th:value="${data.id}"/>
 			<input type="hidden" name="periodId" th:value="${data.timePeriodId}"/>
+			<input type="hidden" name="trainingName" th:value="${data.trainingName}"/>
+			<input type="hidden" name="trainingMonth" th:value="${data.trainingMonth}"/>
 			
-			<h6 class="text-muted">Anda yakin ingin hapus pelatihan ini?</span></h6>
+			<input type="hidden" name="trainingYear" th:value="${data.trainingYear}"/>
+			<input type="hidden" name="city" th:value="${data.city}"/>
+			<input type="hidden" name="oganizer" th:value="${data.oganizer}"/>
+			<input type="hidden" name="trainingDuration" th:value="${data.trainingDuration}"/>
+			
+			<input type="hidden" name="country" th:value="${data.country}"/>
+			<input type="hidden" name="notes" th:value="${data.notes}"/>
+			
+			<input type="hidden" th:value="${data.createdBy}"/>
+			<input type="hidden" th:value="${data.createdOn}"/>
+			<input type="hidden" th:value="${data.modifiedBy}"/>
+			
+			<input type="hidden" th:value="${data.modifiedOn}"/>
+			<input type="hidden" th:value="${data.deletedBy}"/>
+			<input type="hidden" th:value="${data.deletedOn}"/>
 			
 			
-			<button type="Submit"  class="btn btn-danger btn-lg col-3 "><em>Ya</em></button>
-			<button th:href="@{redirect: /pelatihan}" type="Submit" data-dismiss="modal" class="btn btn-warning btn-lg col-2"><em>Tidak</em></button>
+			<h5 class="text-center align-middle">
+				<i class="fas fa-trash-alt fa-3x" style="vertical-align: middle;"></i>
+					Anda yakin ingin menghapus pelatihan<br> <span th:text="${data.trainingName}" style="text"></span> ?
+			</h5>
+			
+			<div class="col">
+			<div class="btn btn-group float-right btn-sm col-2">
+				<button type="Submit"  class="btn btn-danger btn-lg "><em>Ya</em></button>
+				<button th:href="@{redirect: /pelatihan}" type="button" data-dismiss="modal" class="btn btn-warning btn-lg"><em>Tidak</em></button>
+			</div>
+			</div>
+			
 		</div>
 	
 	</form>

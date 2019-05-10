@@ -11,12 +11,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.ngexsis.model.PelatihanModel;
+import com.ngexsis.model.TimePeriodModel;
 import com.ngexsis.repository.PelatihanRepo;
+import com.ngexsis.repository.TimePeriodRepo;
 
 @Controller
 public class PelatihanController {
 	@Autowired
 	private PelatihanRepo repo;
+	@Autowired
+	private TimePeriodRepo repo1;
 	
 	//tampil index
 	@RequestMapping(value = "/pelatihan")
@@ -24,12 +28,15 @@ public class PelatihanController {
 		//get semua data
 		List<PelatihanModel> data = repo.findAll();
 		model.addAttribute("listdata", data);
+		
 		return "pelatihan/detail";
 	}
 	
 	//ke tambah
 	@RequestMapping(value = "/tambah")
-	public String tambah() {
+	public String tambah(Model model) {
+		List<TimePeriodModel> data1 = repo1.findAll();
+		model.addAttribute("listdata1",data1);
 		return "pelatihan/tambah";
 	}
 	
@@ -45,6 +52,11 @@ public class PelatihanController {
 	public String edit(Model model, @PathVariable(name = "id") Long id) {
 		PelatihanModel item = repo.findById(id).orElse(null);
 		model.addAttribute("data", item);
+		
+		List<TimePeriodModel> data1 = repo1.findAll();
+		model.addAttribute("listdata2",data1);
+		
+		
 		return "pelatihan/edit";
 	}
 	
@@ -59,7 +71,8 @@ public class PelatihanController {
 	//ngedelete data
 	@RequestMapping(value = "/pelatihan/delete")
 	public String hapus(@ModelAttribute PelatihanModel item) {
-		repo.delete(item);
+		item.setDelete(true);
+		repo.save(item);
 		return "redirect:/pelatihan";
 	}
 	

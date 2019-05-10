@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<title>Sumber Loker</title>
+		<link rel="stylesheet" href="/css/bootstrap.min.css">
+		
+	</head>
+	
+	<body>
+	<form th:action="@{/sumberloker/save}" method = "post">
+		<div class="modal-header" style="background:darkblue"><h3 class="modal-title" style="color:white">Sumber Loker</h3>
+			
+		</div>
+		
+		<div class="modal-body">
+		<div class="container">
+			<div class="row">
+			
+			<div class="row col-12" id="tes1">
+					
+					<div class="col-6">
+						<label>Sumber</label>
+							<select class="form-control col-md" name = "vacancySource" id="vacantId" required>
+								<option value=""> - Pilih Sumber - </option>
+								<option th:each= "ld:${listdata1}" th:value="${ld.id}" th:text="${ld.name}"/>
+							</select>
+					
+					</div>
+
+					<div class="col-6">
+						<label>Tipe Pelamar</label>
+						<select class="form-control col-md" name = "candidateType"  required>
+							<option>- Pilih -</option>
+								<option value="FreshGrads">Lulusan Baru</option>
+								<option value="Experience">Experience</option>		
+						</select>
+						
+					</div>
+					
+					<div class="col-12">
+						<label>Nama Event*</label>
+						<input class="form-control col-md" type="text" name = "eventName" id="eventNameId" disabled required/>
+					</div>
+
+					<div class="col-12">
+						<label>Nama Karir Center*</label>
+						<input class="form-control col-md" type = "text" name = "careerCenterName" id="careerCenterNameId" disabled required/>
+					</div>
+
+					<div class="col-12">
+						<label>Referrer Name</label>
+					<input class="form-control col-md" type = "text" name = "referrerName" id= "referrerNameId" disabled required/>
+					</div>
+					
+					<div class="col-12">
+						<label>Referrer Mobile Number</label>
+					<input class="form-control col-md" type = "text" name = "referrerPhone" id= "referrerPhoneId" disabled required/>
+					</div>
+					
+					<div class="col-12">
+						<label>Referrer E-mail</label>
+					<input class="form-control col-md" type = "text" name = "referrerEmail" id= "referrerEmailId" disabled required/>
+					</div>
+					
+					<div class="col-6">
+						<label>Penghasilan Terakhir</label>
+					<input class="form-control col-md" type = "text" name = "lastIncome"  required/>
+					</div>
+
+					<div class="col-6">
+						<label>tgl. Lamaran Kerja(yyyy-mm-dd)</label>
+						<input class="form-control col-md" type="date" name="applyDate" required>
+						
+					</div>
+					
+					<div class="col-12">
+					
+					</div>
+					
+					<div class="col-12">
+					
+						<div class="btn-group  float-right">
+							<button  class="btn btn-warning" data-dismiss="modal" type="button">Batal</button>
+							<button  class="btn btn-dark" type="submit">Simpan</button>
+						</div>
+					</div>
+		
+		
+			
+			
+		</div>
+		
+		
+		
+		</div>
+		
+	</div>
+	</div>
+		
+		
+		
+		<!-- ////////////////////////////////////////////////////////
+		///////////////////////// -->
+		
+		
+		<!-- /////////////////////////////////////// -->
+		</form>
+				
+		<script
+  			src="https://code.jquery.com/jquery-3.3.1.js"
+  			integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+  			crossorigin="anonymous">
+		</script>
+		
+		<script type="text/javascript">
+			$("#vacantId").change(function(){
+				if($("#vacantId").val() == "1"){
+					$("#eventNameId").prop("disabled", false);
+					$("#careerCenterNameId,#referrerNameId, #referrerPhoneId, #referrerEmailId").prop("disabled", true);
+				}else if($("#vacantId").val() == "2"){
+					$("#careerCenterNameId").prop("disabled", false);
+					$("#eventNameId,#referrerNameId, #referrerPhoneId, #referrerEmailId").prop("disabled", true);
+				}else if($("#vacantId").val() == "3"){
+					$("#referrerNameId, #referrerPhoneId, #referrerEmailId").prop("disabled", false);
+					$("#eventNameId,#careerCenterNameId").prop("disabled", true);
+				}else{
+					$("#eventNameId,#careerCenterNameId,#referrerNameId, #referrerPhoneId, #referrerEmailId").prop("disabled", true);
+				}
+			});
+		</script>
+	</body>
+</html>

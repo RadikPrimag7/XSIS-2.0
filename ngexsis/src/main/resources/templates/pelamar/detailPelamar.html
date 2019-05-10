@@ -31,7 +31,7 @@
 					<a class="nav-link" href="#">
 						Profil
 					</a>
-					<a class="nav-link active" href="/pelamar/biodata">
+					<a class="nav-link active goToBiodata" th:href="@{/pelamar/biodata/{id}(id=${data.id})}">
 						Biodata
 					</a>
 					<a class="nav-link" href="#">
@@ -79,7 +79,11 @@
 			    </div>
             </div>
             <div class="col-9">
-            
+            	<div id="detailList">
+            		<div class="detailContent">
+            		
+            		</div>
+            	</div>
             </div>
 		</div>
 	<br>
@@ -94,6 +98,23 @@
     <script src="js/popper.min.js"></script>
     <script src="bootstrap-4.3.1-dist/js/bootstrap.min.js"></script>
     <script src="fontawesome-free-5.8.1-web/js/all.min.js"></script>
+    
+    <script type="text/javascript">
+    
+    $(".goToBiodata").click(function() {
+    	var a = $(this).attr("href");
+   		$.ajax({
+   			url:a,
+   			type:'get',
+   			dataType:'html',
+   			success:function(hasil){
+   				$("#detailList").find(".detailContent").html(hasil);
+   			}
+   		});
+   		return false;
+   	});
+    
+    </script>
     
     
 </body>

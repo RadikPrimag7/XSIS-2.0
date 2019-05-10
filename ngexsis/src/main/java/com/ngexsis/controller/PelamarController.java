@@ -63,7 +63,7 @@ public class PelamarController {
 	}
 	
 	
-	@RequestMapping(value="/pelamar/biodata/{id}", method=RequestMethod.GET)
+	@RequestMapping(value="/pelamar/detail/{id}", method=RequestMethod.GET)
 	public String detailPelamar(Model model, @PathVariable(name="id") Long id) {
 		
 		BiodataModel item = repoBio.findById(id).orElse(null);

@@ -25,7 +25,7 @@ public class BiodataController {
 	private AddressRepo repoAddr;
 	
 	
-	@RequestMapping(value="/pelamar/biodata", method=RequestMethod.GET)
+	@RequestMapping(value="/pelamar/biodata/{id}", method=RequestMethod.GET)
 	public String index(Model model, @PathVariable(name="id") Long id) {
 		
 		BiodataModel item = repoBio.findById(id).orElse(null);

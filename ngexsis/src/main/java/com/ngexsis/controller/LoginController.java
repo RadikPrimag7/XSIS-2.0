@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.fasterxml.jackson.annotation.JsonCreator.Mode;
 import com.ngexsis.model.UserModel;
+import com.ngexsis.repository.BiodataRepo;
+import com.ngexsis.repository.RoleRepo;
 import com.ngexsis.repository.UserRepo;
 
 @Controller
@@ -21,12 +23,17 @@ public class LoginController {
 
 	@Autowired
 	private UserRepo repo;
+	@Autowired
+	private RoleRepo rolerepo;
+	@Autowired
+	private BiodataRepo biorepo;
 	
 	@RequestMapping(value="/login/index", method=RequestMethod.POST)
 	public String index(Model model,@RequestParam String email, @RequestParam String abupwd){
 		
 		List<UserModel>data = repo.find(email, abupwd);
 		model.addAttribute("listdata",data);
+		
 		
 		//data.get(0).getEmail();
 

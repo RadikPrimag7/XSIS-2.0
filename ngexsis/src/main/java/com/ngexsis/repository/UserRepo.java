@@ -17,4 +17,6 @@ public interface UserRepo extends JpaRepository<UserModel, Long>{
 	@Query(value="SELECT * FROM x_addrbook WHERE (email = ?1 OR abuid=?1) AND abpwd = ?2", nativeQuery = true)
     public List<UserModel> find(String email, String abpwd);
 	
+	@Query(value="SELECT * FROM x_addrbook WHERE email=?1", nativeQuery = true)
+	public List<UserModel> findemail(String email);
 }

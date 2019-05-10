@@ -40,6 +40,7 @@ public class PengalamanKerjaController {
 	@RequestMapping(value="/pengalaman/save", method=RequestMethod.POST)
 	public String save(@ModelAttribute PengalamanKerjaModel item) {
 		//mengirim item agar dapat disave ke database
+		
 		repo.save(item);
 		return "redirect:/pengalaman";
 	}
@@ -49,6 +50,8 @@ public class PengalamanKerjaController {
 		PengalamanKerjaModel item = repo.findById(id).orElse(null);
 		
 		model.addAttribute("data",item);
+		
+		
 		return "pengalaman/edit";
 	}
 	
@@ -61,7 +64,8 @@ public class PengalamanKerjaController {
 	
 	@RequestMapping(value="/pengalaman/delete", method=RequestMethod.POST)
 	public String hapus(@ModelAttribute PengalamanKerjaModel item) {
-		repo.delete(item);
+		item.setDelete(true);
+		repo.save(item);
 		return "redirect:/pengalaman";
 	}
 	

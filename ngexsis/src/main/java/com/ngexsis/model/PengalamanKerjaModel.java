@@ -10,8 +10,15 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.TableGenerator;
 
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+import org.hibernate.annotations.Where;
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.web.bind.annotation.DeleteMapping;
+
 @Entity
 @Table(name="x_riwayat_pekerjaan")
+@Where(clause="is_delete is false")
 public class PengalamanKerjaModel {
 
 	@Id
@@ -21,7 +28,23 @@ public class PengalamanKerjaModel {
 	valueColumnName = "seq_value", initialValue = 0, allocationSize = 1)
 	private long id;
 	
+	@Column(name="created_on")
+	@CreationTimestamp
+	@DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")
+	private Date createdOn;
 	
+	@Column(name="modified_on")
+	@UpdateTimestamp
+	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+	private Date modifiedOn;
+	
+	@Column(name="deletedOn")
+	@UpdateTimestamp
+	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+	private Date deletedOn;
+	
+	@Column(name= "is_delete")
+	private boolean isDelete;
 	
 	@Column(name="company_name",length=100)
 	private String companyName;
@@ -70,9 +93,6 @@ public class PengalamanKerjaModel {
 	public void setId(long id) {
 		this.id = id;
 	}
-
-
-	
 
 	public String getCompanyName() {
 		return companyName;
@@ -178,6 +198,37 @@ public class PengalamanKerjaModel {
 		this.notes = notes;
 	}
 	
+	public boolean isDelete() {
+		return isDelete;
+	}
+
+	public void setDelete(boolean isDelete) {
+		this.isDelete = isDelete;
+	}
+
+	public Date getCreatedOn() {
+		return createdOn;
+	}
+
+	public void setCreatedOn(Date createdOn) {
+		this.createdOn = createdOn;
+	}
+
+	public Date getModifiedOn() {
+		return modifiedOn;
+	}
+
+	public void setModifiedOn(Date modifiedOn) {
+		this.modifiedOn = modifiedOn;
+	}
+
+	public Date getDeletedOn() {
+		return deletedOn;
+	}
+
+	public void setDeletedOn(Date deletedOn) {
+		this.deletedOn = deletedOn;
+	}
 	
 	
 }

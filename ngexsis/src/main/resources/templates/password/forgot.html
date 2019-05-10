@@ -10,15 +10,18 @@
 	<title>Select Access</title>
 </head>
 <body>
-<div class="container" style="width:400px">
+<div class="container" style="width:500px">
 	<br><br><br><br><br>
-	<div class="login-form">
+	<div class="login-form" style="border:1px solid darkblue">
 		<form action="/password/forgot" method="get">
-			<span style="display: block; text-align: left">Masukkan email terdaftar</span>
+			<div class="header" style="background:darkblue;border-radius:0px">
+				<span style="color:white">Masukkan email terdaftar</span>
+			</div>
 			<div class="form-group">
 				<div>
 					<div class="input-group">
 						<input type="text" class="form-control" name="email" placeholder="email">
+						<button type="submit" id="btn-submit" class="btn btn-primary login-btn btn-block ">Submit</button>
 					</div>
 				</div>
 			</div>
@@ -28,7 +31,18 @@
 		</form>
 	</div>
 </div>
+<script type="text/javascript">
+	
+		var url_string = window.location.href;
+	    var url = new URL(url_string);
+	    var c = url.searchParams.get("error");
+	    
+	    if(c=="1"){
+	    //pop up error
+	    alert("Email tidak terdaftar");
+		}
 
+	</script>
 
 </body>
 </html>

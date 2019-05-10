@@ -10,10 +10,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.ngexsis.model.BiodataModel;
 import com.ngexsis.model.KeahlianModel;
 import com.ngexsis.model.SkillLevelModel;
-import com.ngexsis.repository.BiodataRepo;
 import com.ngexsis.repository.KeahlianRepo;
 import com.ngexsis.repository.SkillLevelRepo;
 
@@ -24,15 +22,13 @@ public class KeahlianController {
 	private KeahlianRepo repo;
 	@Autowired
 	private SkillLevelRepo repo1;
-	@Autowired
-	private BiodataRepo repoBio;
 	
 	@RequestMapping(value = "/keahlian", method = RequestMethod.GET)
-	public String index(Model model, @PathVariable(name="id") Long id) {
-		BiodataModel data1 = repoBio.findById(id).orElse(null);
-		model.addAttribute("bio", data1);
+	public String index(Model model) {
+		
 		List<KeahlianModel> data = repo.findAll();
 		model.addAttribute("listData",data);
+		
 		return "keahlian/index";
 	}
 	

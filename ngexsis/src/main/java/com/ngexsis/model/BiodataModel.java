@@ -123,12 +123,20 @@ public class BiodataModel {
 	private Date expiredDate;
 	
 	
-	@OneToMany(mappedBy = "keahlian", cascade = CascadeType.ALL)
-	private List<KeahlianModel> keahlian = new ArrayList<KeahlianModel>();
+//	@OneToMany(mappedBy = "keahlian", cascade = CascadeType.ALL)
+//	private List<KeahlianModel> keahlian = new ArrayList<KeahlianModel>();
 
 	
 	
 	
+
+//	public List<KeahlianModel> getKeahlian() {
+//		return keahlian;
+//	}
+//
+//	public void setKeahlian(List<KeahlianModel> keahlian) {
+//		this.keahlian = keahlian;
+//	}
 
 	public Long getId() {
 		return id;

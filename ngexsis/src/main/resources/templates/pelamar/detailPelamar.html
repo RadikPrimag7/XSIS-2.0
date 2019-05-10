@@ -55,7 +55,7 @@
 					<a class="nav-link" href="#">
 						Keluarga
 					</a>
-					<a class="nav-link" href="#">
+					<a class="nav-link goToKeahlian" th:href="@{/pelamar/keahlian/{id}(id=${data.id})}">
 						Keahlian
 					</a>
 					<a class="nav-link" href="#">
@@ -113,6 +113,20 @@
    		});
    		return false;
    	});
+    
+    $(".goToKeahlian").click(function() {
+    	var a = $(this).attr("href");
+   		$.ajax({
+   			url:a,
+   			type:'get',
+   			dataType:'html',
+   			success:function(hasil){
+   				$("#detailList").find(".detailContent").html(hasil);
+   			}
+   		});
+   		return false;
+   	});
+    
     
     </script>
     

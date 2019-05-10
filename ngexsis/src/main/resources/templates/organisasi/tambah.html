@@ -61,7 +61,7 @@
 
 	<script type="text/javascript">
 		var max=new Date().getFullYear();
-			min=max-50;
+			min=max-20;
 			select = document.getElementById("getYear");
 			
 			var opt = document.createElement('option');
@@ -69,7 +69,7 @@
 			opt.innerHTML = "-Pilih Tahun-";
 			select.appendChild(opt);
 			
-		for(var i=max; i>=min;i--){
+		for(var i=min; i<=max;i++){
 			var opt = document.createElement('option');
 			opt.value = i;
 			opt.innerHTML = i;
@@ -79,7 +79,7 @@
 	
 	<script type="text/javascript">
 		var max=new Date().getFullYear();
-			min=max-50;
+			min=max-20;
 			select = document.getElementById("getYear2");
 			
 			var opt = document.createElement('option');
@@ -87,7 +87,7 @@
 			opt.innerHTML = "-Pilih Tahun-";
 			select.appendChild(opt);
 			
-		for(var i=max; i>=min;i--){
+		for(var i=min; i<=max;i++){
 			var opt = document.createElement('option');
 			opt.value = i;
 			opt.innerHTML = i;

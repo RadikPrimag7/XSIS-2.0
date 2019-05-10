@@ -81,11 +81,12 @@ public class OrganisasiController {
 	}
 	
 	//request delete data
-	@RequestMapping(value = "/organisasi/hapus")
+	@RequestMapping(value = "/organisasi/hapus", method = RequestMethod.POST)
 	public String hapus(@ModelAttribute OrganisasiModel item) {
 		
 		//mengirim item agar dapat di delete dari database
-		repo.delete(item);
+		item.setDelete(true);
+		repo.save(item);
 		
 		return "redirect:/organisasi";
 	}

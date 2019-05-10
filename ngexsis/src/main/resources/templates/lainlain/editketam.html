@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<body>
+<form action="lainlain/saveketam">
+	<!-- <input type="text" name="id" th:value="${dataTam.id}" style="display:none"> -->
+	
+	<div class="modal-header" style="background-color: blue">
+		<h4 class="modal-title" style="color:white">Edit Referensi</h4>
+		<button type="button" class="close" data-dismiss="modal" aria-label="Close" style="color: white">
+			<span aria-hidden="true">&times;</span>
+		</button>
+	</div>
+	<div class="modal-body">
+		<div class="form-group row">
+			<div class="col col-6">
+				<label class="col col-form-label" style="font-size: 80%">Kontak Darurat (Keluarga Tidak Serumah) *</label>
+				<div class="col">
+					<input type="text" name="emergencyContactName" class="form-control" required>
+				</div>
+			</div>
+			<div class="col col-3">
+				<label class="col col-form-label" style="font-size: 80%">Gaji yang Diharapkan (IDR) *</label>
+				<div class="col">
+					<input type="text" name="expectedSalary" class="form-control" required>
+				</div>
+			</div>
+			<div class="col col-3 checkbox">
+				<label></label>
+				<label class="col col-form-label" style="font-size: 80%">
+					<input type="checkbox" name="isNegotiable">
+					<label>Negotiable</label>
+				</label>
+			</div>
+		</div>
+		
+		<div class="form-group row">
+			<div class="col col-6">
+				<label class="col col-form-label" style="font-size: 80%">Nomor Telp. Darurat *</label>
+				<div class="col">
+					<input type="text" name="emergencyContactPhone" class="form-control" required>
+				</div>
+			</div>
+			<div class="col col-3">
+				<label class="col col-form-label" style="font-size: 80%">Kapan Siap Mulai Bekerja *</label>
+				<div class="col">
+					<input type="text" name="startWorking" class="form-control" required>
+				</div>
+			</div>
+			<div class="col col-3 checkbox">
+				<label></label>
+				<label class="col col-form-label" style="font-size: 80%">
+					<input type="checkbox" name="isReadyToOutoftown">
+					<label>Bersedia Ditempatkan di Luar Kota</label>
+				</label>
+			</div>
+		</div>
+		
+		<div class="form-group row col checkbox">
+			<label></label>
+			<label class="col col-form-label" style="font-size: 80%">
+				<input type="checkbox" name="isApplyOtherPlace" id="isApplyOtherPlace">
+				<label>Sedang Melamar Ditempat Lain</label>
+			</label>
+		</div>
+		<div class="form-group row">
+			<div class="col">
+				<label class="col col-form-label" style="font-size: 80%">Dimana (Tempat Melamar) ?</label>
+				<div class="col">
+					<input type="text" name="applyPlace" id="applyPlace" class="form-control" disabled>
+				</div>
+			</div>
+			<div class="col">
+				<label class="col col-form-label" style="font-size: 80%">Tahapan Seleksi Melamar</label>
+				<div class="col">
+					<input type="text" name="selectionPhase" id="selectionPhase" class="form-control" disabled>
+				</div>
+			</div>
+		</div>
+		<div class="form-group row col checkbox">
+			<label class="col col-form-label" style="font-size: 80%">
+				<input type="checkbox" name="isEverBadlySick" id="isEverBadlySick">
+				<label>Pernah Sakit Berat / Lama Sembuh</label>
+			</label>
+		</div>
+		<div class="form-group row">
+			<div class="col">
+				<label class="col col-form-label" style="font-size: 80%">Nama Penyakit</label>
+				<div class="col">
+					<input type="text" name="diseaseName" id="diseaseName" class="form-control" disabled>
+				</div>
+			</div>
+			<div class="col">
+				<label class="col col-form-label" style="font-size: 80%">Kapan (Waktu Sakit) ?</label>
+				<div class="col">
+					<input type="text" name="diseaseTime" id="diseaseTime" class="form-control" disabled>
+				</div>
+			</div>
+		</div>
+		<div class="form-group row col checkbox">
+			<label class="col col-form-label" style="font-size: 80%">
+				<input type="checkbox" name="isEverPsychotest" id="isEverPsychotest">
+				<label> Pernah Mengikuti Psikotes</label>
+			</label>
+		</div>
+		<div class="form-group row">
+			<div class="col">
+				<label class="col col-form-label" style="font-size: 80%">Keperluan Psikotes</label>
+				<div class="col">
+					<input type="text" name="psychotestNeeds" id="psychotestNeeds" class="form-control" disabled>
+				</div>
+			</div>
+			<div class="col">
+				<label class="col col-form-label" style="font-size: 80%">Kapan (Waktu Psikotes) ?</label>
+				<div class="col">
+					<input type="text" name="psychotestTime" id="psychotestTime" class="form-control" disabled>
+				</div>
+			</div>
+		</div>
+		<div class="form-group row">
+			<div class="col">
+				<label class="col col-form-label" style="font-size: 80%">Persyaratan yang Diperlukan untuk Jabatan yang Dilamar (menurut kandidat/karyawan)</label>
+				<div class="col">
+					<textarea name="requirementesRequired" style="resize: unset" class="form-control"></textarea>
+				</div>
+			</div>
+		</div>
+		<div class="form-group row">
+			<div class="col">
+			<label class="col col-form-label" style="font-size: 80%">Keterangan Lain yang Ingin Dikemukakan</label>
+				<div class="col">
+					<textarea name="otherNotes" style="resize: unset" class="form-control"></textarea>
+				</div>
+			</div>
+		</div>
+		<br><br>
+		<div class="btn-group float-right">
+			<a href="/lainlain"><button type="button" class="btn btn-warning col"><font style="color:white">Batal</font></button></a>
+			<button type="submit" class="btn btn-primary col"><font style="color:white">Simpan</font></button>
+		</div>
+		<br><br>
+	</div>
+</form>
+<script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
+<script type="text/javascript">
+    $("#isApplyOtherPlace, #isEverBadlySick, #isEverPsychotest").click(function() {
+    	//alert("tes")
+        var cb1 = $('#isApplyOtherPlace').is(':checked');
+        var cb2 = $('#isEverBadlySick').is(':checked');
+        var cb3 = $('#isEverPsychotest').is(':checked');
+        $('#applyPlace, #selectionPhase').prop('disabled', !cb1);
+        $('#diseaseName, #diseaseTime').prop('disabled', !cb2);    
+        $('#psychotestNeeds, #psychotestTime').prop('disabled', !cb3);    
+    });
+
+</script>
+
+</body>
+</html>

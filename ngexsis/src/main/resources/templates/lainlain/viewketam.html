@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<body>
+	<div class="modal-header" style="background-color: blue">
+		<h4 class="modal-title" style="color: white">Keterangan Tambahan</h4>
+		<button type="button" class="close" data-dismiss="modal" aria-label="Close" style="color: white">
+			<span aria-hidden="true">&times;</span>
+		</button>
+	</div>
+	<div class="modal-body">
+		<table class="table"> <!-- th:each="ars:${listDataTam}"> -->
+			<tr>
+				<th>Gaji Yang Diharapkan</th>
+				<td>:</td>
+				<td>Tes</td>
+				<!-- <td th:text="${ars.expectedSalary}"></td> -->
+			</tr>
+			<tr>
+				<th>Negotiable</th>
+				<td>:</td>
+				<td>Tes</td>
+				<!-- <td th:text="${ars.isNegotiable}"></td> -->
+			</tr>
+			<tr>
+				<th>Kapan Siap Mulai Bekerja</th>
+				<td>:</td>
+				<td>Tes</td>
+				<!-- <td th:text="${ars.startWorking}"></td> -->
+			</tr>
+			<tr>
+				<th>Bersedia Ditempatkan Di Luar Kota</th>
+				<td>:</td>
+				<td>Tes</td>
+				<!-- <td th:text="${ars.isReadyToOutoftown}"></td> -->
+			</tr>
+			<tr>
+				<th>Kontak Darurat (Keluarga Tidak Serumah)</th>
+				<td>:</td>
+				<td>Tes</td>
+				<!-- <td th:text="${ars.emergencyContactName}"></td> -->
+			</tr>
+			<tr>
+				<th>Nomor Telp. Darurat</th>
+				<td>:</td>
+				<td>Tes</td>
+				<!-- <td th:text="${ars.emergencyContactPhone}"></td> -->
+			</tr>
+			<tr>
+				<th>Sedang Melamar Di Tempat Lain</th>
+				<td>:</td>
+				<td>Tes</td>
+				<!-- <td th:text="${ars.isApplyOtherPlace}"></td> -->
+			</tr>
+			<tr>
+				<th>Dimana (Tempat Melamar)</th>
+				<td>:</td>
+				<td>Tes</td>
+				<!-- <td th:text="${ars.applyPlace}"></td> -->
+			</tr>
+			<tr>
+				<th>Tahapan Seleksi Melamar</th>
+				<td>:</td>
+				<td>Tes</td>
+				<!-- <td th:text="${ars.applyPhase}"></td> -->
+			</tr>
+			<tr>
+				<th>Pernah Sakit Berat/Lama Sembuh</th>
+				<td>:</td>
+				<td>Tes</td>
+				<!-- <td th:text="${ars.isEverBadlySick}"></td> -->
+			</tr>
+			<tr>
+				<th>Nama Penyakit</th>
+				<td>:</td>
+				<td>Tes</td>
+				<!-- <td th:text="${ars.diseaseName}"></td> -->
+			</tr>
+			<tr>
+				<th>Kapan (Waktu Sakit)</th>
+				<td>:</td>
+				<td>Tes</td>
+				<!-- <td th:text="${ars.diseaseTime}"></td> -->
+			</tr>
+			<tr>
+				<th>Pernah Mengikuti Psikotes</th>
+				<td>:</td>
+				<td>Tes</td>
+				<!-- <td th:text="${ars.isEverPsychotest}"></td> -->
+			</tr>
+			<tr>
+				<th>Keperluan Psikotes</th>
+				<td>:</td>
+				<td>Tes</td>
+				<!-- <td th:text="${ars.psychotestNeeds}"></td> -->
+			</tr>
+			<tr>
+				<th>Kapan (Waktu Psikotes)</th>
+				<td>:</td>
+				<td>Tes</td>
+				<!-- <td th:text="${ars.psychotestTime}"></td> -->
+			</tr>
+			<tr>
+				<th>Keterangan Lain</th>
+				<td>:</td>
+				<td>Tes</td>
+				<!-- <td th:text="${ars.otherNotes}"></td> -->
+			</tr>
+		</table>
+		<br><br>
+		<div class="btn-group float-right">
+			<a href="/lainlain"><button type="button" class="btn btn-warning col"><font style="color:white">Batal</font></button></a>
+			<button type="submit" class="btn btn-primary col"><font style="color:white">Simpan</font></button>
+		</div>
+		<br><br>
+	</div>
+</body>
+</html>

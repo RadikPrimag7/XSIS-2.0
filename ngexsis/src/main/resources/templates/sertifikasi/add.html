@@ -28,7 +28,7 @@
 				<label class="col col-form-label">Berlaku Mulai</label>
 				<div class="col form-group row">
 					<div class="col">
-						<select name="validStartMonth" class="form-control">
+						<select name="validStartMonth" id="validStartMonth" class="form-control">
 							<option value="">- Pilih Bulan -</option>
 						    <option th:each="i:${#numbers.sequence(1,12)}" th:value="${i}" th:text="${i}" />
 						</select>	
@@ -43,13 +43,13 @@
 				<label class="col col-form-label">Berlaku Sampai</label>
 				<div class="col form-group row">
 					<div class="col">
-						<select name="untilMonth" class="form-control">
+						<select name="untilMonth" id="untilMonth" class="form-control" disabled>
 							<option value="">- Pilih Bulan -</option>
 						    <option th:each="i:${#numbers.sequence(1,12)}" th:value="${i}" th:text="${i}" />
 						</select>
 					</div>
 					<div class="col">
-						<select id="untilYear" name="untilYear" class="form-control"></select>
+						<select id="untilYear" name="untilYear" class="form-control" disabled></select>
 					</div>
 				</div>
 			</div>
@@ -68,7 +68,16 @@
 	</div>
 </form>
 
+<script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
 <script type="text/javascript">
+	$("#validStartMonth, #validStartYear").change(function() {
+	    if ($("#validStartMonth, #validStartYear").val() != "" || null) {
+	        $("#untilMonth, #untilYear").prop("disabled", false);
+	    }
+	    else
+	        $("#untilMonth, #untilYear").prop("disabled", true);
+	});
+
 	//Select tahun down
 	var max1 = new Date().getFullYear();
 	min1 = max1-20,

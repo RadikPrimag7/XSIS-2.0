@@ -10,9 +10,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.ngexsis.model.JenjangModel;
+import com.ngexsis.model.EducationLvlModel;
 import com.ngexsis.model.PendidikanModel;
-import com.ngexsis.repository.JenjangRepo;
+import com.ngexsis.repository.EducationLvlRepo;
 import com.ngexsis.repository.PendidikanRepo;
 
 @Controller
@@ -22,7 +22,7 @@ public class PendidikanController {
 	private PendidikanRepo repo;
 	
 	@Autowired
-	private JenjangRepo repo1;
+	private EducationLvlRepo repo1;
 	
 	@RequestMapping("/pendidikan")
 	public String index(Model model) {
@@ -34,7 +34,7 @@ public class PendidikanController {
 	
 	@RequestMapping(value="pendidikan/add")
 	public String add(Model model) {
-		List<JenjangModel> data1 = repo1.findAll();
+		List<EducationLvlModel> data1 = repo1.findAll();
 		model.addAttribute("listJenjang",data1);
 		return "pendidikan/add";
 	}
@@ -50,7 +50,7 @@ public class PendidikanController {
 		PendidikanModel item = repo.findById(id).orElse(null);
 		model.addAttribute("data", item);
 		
-		List<JenjangModel> data1 = repo1.findAll();
+		List<EducationLvlModel> data1 = repo1.findAll();
 		model.addAttribute("jenjang",data1);
 		return "pendidikan/edit";
 	}

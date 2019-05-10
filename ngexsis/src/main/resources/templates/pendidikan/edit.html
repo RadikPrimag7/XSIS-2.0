@@ -42,7 +42,7 @@
 					<label>Jenjang Pendidikan</label>
 					<select name="jenjang" id="jenjangId" class="form-control">
 						<option>-Pilih-</option>
-						<option th:each="jg : ${jenjang}" th:value="${jg.id}" th:text="${jg.name}"></option>
+						<option th:each="jg : ${jenjang}" th:value="${jg.id}" th:text="${jg.name}" th:field="${data.jenjang}"></option>
 					</select>
 				</div>
 				<div class="col-3">

@@ -22,16 +22,17 @@
 <body>      
 	<div class="container">
 		<br>
-		<div class="row">
+		<div>
+			<input type="text" id="myInput" onkeyup="searchFunction()" placeholder="Search for names...">
+			<!-- <span>
+				<button type="submit" name="search" id="search-btn" class="btn btn-primary"><i class="fa fa-search"></i></button>
+			</span> -->
+		</div>
+		<div class="row float-right">
 		
-			<div>
-				<input type="text" id="myInput" onkeyup="searchFunction()" placeholder="Search for names..">
-				<!-- <span>
-					<button type="submit" name="search" id="search-btn" class="btn btn-primary"><i class="fa fa-search"></i></button>
-				</span> -->
-			</div>
 			
-			<div class="dropdown mini float-right">
+			
+			<div class="dropdown mini">
 					<button class="btn text_color dropdown-toggle" data-toggle="dropdown">
 						<i class="fas fa-sort-alpha-down"></i>
 					</button>
@@ -256,7 +257,10 @@
 				"dom": '<"top float-right"l>t<"bottom"p>',
 				"aLengthMenu": [10, 20, 30, 40, 50],
 				"pageLength": 10,
-				"ordering": false
+				"ordering": false,
+				oLanguage: {
+					sLengthMenu: "_MENU_",
+				}
 			});
 	    } );
 	</script>

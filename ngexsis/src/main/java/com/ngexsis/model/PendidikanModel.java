@@ -49,6 +49,8 @@ public class PendidikanModel {
 	private Long deletedBy;
 	
 	@Column(name="deleted_on", nullable=true)
+	@UpdateTimestamp
+	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
 	private Date deletedOn;
 	
 	@Column(name="is_delete", nullable=true, columnDefinition="BOOLEAN DEFAULT false")
@@ -76,7 +78,7 @@ public class PendidikanModel {
 	@JsonBackReference
 	@ManyToOne
 	@JoinColumn(name="education_level_id", foreignKey = @ForeignKey(name="fk_educationLevel"))
-	private JenjangModel jenjang;
+	private EducationLvlModel jenjang;
 	
 	@Column(name="entry_year", nullable=true, length=10)
 	private String entryYear;
@@ -206,11 +208,11 @@ public class PendidikanModel {
 		this.educationLevelId = educationLevelId;
 	}
 
-	public JenjangModel getJenjang() {
+	public EducationLvlModel getJenjang() {
 		return jenjang;
 	}
 
-	public void setJenjang(JenjangModel jenjang) {
+	public void setJenjang(EducationLvlModel jenjang) {
 		this.jenjang = jenjang;
 	}
 

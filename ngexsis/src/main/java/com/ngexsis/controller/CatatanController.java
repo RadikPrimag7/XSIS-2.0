@@ -11,15 +11,19 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.ngexsis.model.CatatanModel;
+import com.ngexsis.model.NoteTypeModel;
 import com.ngexsis.repository.CatatanRepo;
+import com.ngexsis.repository.NoteTypeRepo;
 
 @Controller
 public class CatatanController {
 	//Auto instance dari repo
 	@Autowired
 	private CatatanRepo repo;
+	@Autowired
+	private NoteTypeRepo noteRepo;
 	
-	@RequestMapping(value = "/catatan/index", method = RequestMethod.GET)
+	@RequestMapping(value = "/catatan", method = RequestMethod.GET)
 	public String index(Model model) {
 		List<CatatanModel> data = repo.findAll();
 		model.addAttribute("data", data);
@@ -28,7 +32,9 @@ public class CatatanController {
 	
 	//Add
 	@RequestMapping("catatan/add")
-	public String add() {
+	public String add(Model model) {
+		List<NoteTypeModel> data = noteRepo.findAll();
+		model.addAttribute("dataNote", data);
 		return "catatan/add";
 	}
 	
@@ -36,7 +42,7 @@ public class CatatanController {
 	@RequestMapping(value = "/catatan/save", method = RequestMethod.POST)
 	public String save(@ModelAttribute CatatanModel item) {
 		repo.save(item);
-		return "redirect:/catatan/index";
+		return "redirect:/catatan";
 	}
 	
 	//Edit
@@ -44,6 +50,9 @@ public class CatatanController {
 	public String edit(Model model, @PathVariable(name = "id") Long id) {
 		CatatanModel item = repo.findById(id).orElse(null);
 		model.addAttribute("data", item);
+		
+		List<NoteTypeModel> data = noteRepo.findAll();
+		model.addAttribute("editNote", data);
 		return "catatan/edit";
 	}
 	
@@ -57,7 +66,8 @@ public class CatatanController {
 	
 	@RequestMapping(value = "/catatan/delete")
 	public String hapus(@ModelAttribute CatatanModel item) {
-		repo.delete(item);
-		return "redirect:/catatan/index";
+		item.setDelete(true);
+		repo.save(item);
+		return "redirect:/catatan";
 	}
 }

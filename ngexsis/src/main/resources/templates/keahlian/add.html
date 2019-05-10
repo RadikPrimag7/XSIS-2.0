@@ -18,7 +18,7 @@
 			<div class="col-sm-6">
 				<label>Level Keahlian</label>
 				<select class="form-control" name="skillLevel" id="levelid" required>
-					<option>-- Pilih --</option>
+					<option>- Pilih -</option>
 					<option th:each="ls : ${listSkill}"  th:value="${ls.id}" th:text="${ls.name}"></option>
 				</select>
 			</div>

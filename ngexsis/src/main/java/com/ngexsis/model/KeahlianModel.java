@@ -54,6 +54,10 @@ public class KeahlianModel {
 	@Column(name = "biodata_id", nullable = true, length = 11)
 	private long biodataId;
 	
+	@ManyToOne
+	@JoinColumn(name = "biodata_id", foreignKey = @ForeignKey(name = "fk_biodataId"))
+	private BiodataModel keahlian;
+	
 	@Column(name = "skill_name", nullable = true, length = 100)
 	private String skillName;
 	

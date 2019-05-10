@@ -10,8 +10,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.ngexsis.model.BiodataModel;
 import com.ngexsis.model.KeahlianModel;
 import com.ngexsis.model.SkillLevelModel;
+import com.ngexsis.repository.BiodataRepo;
 import com.ngexsis.repository.KeahlianRepo;
 import com.ngexsis.repository.SkillLevelRepo;
 
@@ -22,9 +24,13 @@ public class KeahlianController {
 	private KeahlianRepo repo;
 	@Autowired
 	private SkillLevelRepo repo1;
+	@Autowired
+	private BiodataRepo repoBio;
 	
-	@RequestMapping(value = "/keahlian/index", method = RequestMethod.GET)
-	public String index(Model model) {
+	@RequestMapping(value = "/keahlian", method = RequestMethod.GET)
+	public String index(Model model, @PathVariable(name="id") Long id) {
+		BiodataModel data1 = repoBio.findById(id).orElse(null);
+		model.addAttribute("bio", data1);
 		List<KeahlianModel> data = repo.findAll();
 		model.addAttribute("listData",data);
 		return "keahlian/index";
@@ -44,7 +50,7 @@ public class KeahlianController {
 		//Simpan ke database
 		repo.save(item);
 		//Akan diteruskan ke halaman index
-		return "redirect:/keahlian/index";
+		return "redirect:/keahlian";
 	}
 	
 	//Edit dengan id spesifik
@@ -78,9 +84,10 @@ public class KeahlianController {
 	@RequestMapping(value = "/keahlian/delete", method = RequestMethod.POST)
 	public String hapus(@ModelAttribute KeahlianModel item) {
 		//Mengirim item agar dapat di delete dari database
-		repo.delete(item);
+		item.setDelete(true);
+		repo.save(item);
 		
-		return "redirect:/keahlian/index";
+		return "redirect:/keahlian";
 	}
 	
 }

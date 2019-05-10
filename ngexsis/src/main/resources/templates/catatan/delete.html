@@ -5,21 +5,24 @@
 			<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 				<span aria-hidden="true">&times;</span>
 			</button>
-			<h3 class="modal-title">Hapus Keahlian</h3>
+			<h3 class="modal-title">Hapus Catatan ?</h3>
 		</div>
 		<div class="modal-body">
 			<br>
 			<h1 class="text-muted text-center">
-			<i class="fa fa-trash-o"></i>   Anda Yakin Menghapus<br> Catatan <span th:text="${data.title}"></span>?</h1>
+			<i class="fa fa-trash-o"></i>   Anda yakin ingin menghapus catatan <br><span th:text="${data.title}"></span>?</h1>
 			<br><br>
 			
 			<input type="hidden" name="id" th:value="${data.id}">
 			<input type="hidden" name="noteType" id="typeid" th:value="${data.noteTypeId}">
+			<input type="hidden" name="biodataId" th:value="${data.biodataId}">
+			<input type="hidden" name="title" th:value="${data.title}">
+			<input type="hidden" name="notes" th:value="${data.notes}">
 			
 		</div>
 		<div class="modal-footer bg-danger">
 			<div class="btn-group">
-	            <button type="button" class="btn btn-info btn-flat btn-lg" data-dismiss="modal">No</button>
+	            <button type="button" class="btn btn-info btn-flat btn-lg" data-dismiss="modal">Tidak</button>
 	            <button type="Submit" class="btn btn-danger btn-flat btn-lg">Yes</button>
 	        </div>
 		</div>

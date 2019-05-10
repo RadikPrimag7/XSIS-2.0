@@ -94,25 +94,6 @@
 <script src="/admin/dist/js/demo.js"></script>
 
 <script type="text/javascript">
-//loadTipe Start
-function loadTipe(){
-	$.ajax({
-		url:'/api/noteType/',
-		type:'get',
-		dataType:'json',
-		success:function(hasil){
-			//Method looping dari jquery untuk looping hasil
-			//karna hasil berupa array
-			$('#modal-form').find('#typeid').empty();
-			$('#modal-form').find('#typeid').append('<option value="">-- Pilih --</option>');
-
-			$.each(hasil, function(index, item){
-				$('#modal-form').find('#typeid').append('<option value="'+item.id+'"> '+item.name+'</option>');
-			});
-		}
-	})
-}
-//loadTipe Stop
 	$("#btn-add").click(function(){
 		$.ajax({
 			url:'/catatan/add',
@@ -122,9 +103,6 @@ function loadTipe(){
 				$("#modal-form").find(".modal-content").html(hasil);
 				$("#modal-form").modal("show");
 			}
-		})
-		.done(function () {
-			loadTipe();
 		});
 	});
 	
@@ -138,10 +116,7 @@ function loadTipe(){
    				$("#modal-form").find(".modal-content").html(hasil);
    				$("#modal-form").modal("show");		
    			}
-		})
-		.done(function () {
-			loadTipe();
-   		});
+		});
 		return false;
 	});
 	

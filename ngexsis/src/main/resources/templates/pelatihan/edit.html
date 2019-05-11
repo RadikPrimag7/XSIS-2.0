@@ -42,8 +42,9 @@
 						<label><br></label> 
 						
 						
-							<select id="getYear" class="form-control col-md" name ="trainingYear" required>
-								<option id="getYear" th:field="${data.trainingYear}"></option>
+							<select id="getYear" class="form-control col-md" name ="trainingYear"  required>
+								<option value=""> - Pilih -</option>
+								<option th:each="year : ${#numbers.sequence(#dates.year(#dates.createNow()), 1969)}" th:value="${year}" th:text="${year}" th:selected="${year+''==data.trainingYear}"/>
 							</select>
 						
 					</div>
@@ -111,22 +112,23 @@
 	</form>
 		
 		<script type="text/javascript">
-			var max=new Date().getFullYear();
-				min=max-50;
-				select = document.getElementById("getYear");
+// 			var max=new Date().getFullYear();
+// 				min=max-50;
+// 				select = document.getElementById("getYear");
 				
-				var opt = document.createElement('option');
-				opt.value = "";
-				opt.innerHTML = "-Pilih Tahun-";
-				select.appendChild(opt);
+// 				var opt = document.createElement('option');
+// 				opt.value = "";
+// 				opt.innerHTML = " - Pilih - ";
+// 				select.appendChild(opt);
 				
 				
-			for(var i=max; i>=min;i--){
-				var opt = document.createElement('option');
-				opt.value = i;
-				opt.innerHTML = i;
-				select.appendChild(opt);
-			}
+// 			for(var i=max; i>=min;i--){
+// 				var opt = document.createElement('option');
+// 				opt.value = i;
+// 				opt.innerHTML = i;
+// 				select.appendChild(opt);
+// 			}
+			
 			
 			//select.value = new Date().getFullYear();
 		</script>

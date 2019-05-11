@@ -67,6 +67,22 @@ public class TimePeriodModel {
 	@OneToMany(mappedBy = "periodId", cascade = CascadeType.ALL)
 	private List<PelatihanModel> listPelatihan = new ArrayList<PelatihanModel>();
 	
+	@JsonManagedReference
+	@OneToMany(mappedBy = "timePeriod", cascade = CascadeType.ALL)
+	private List<ProjectModel> listProject = new ArrayList<ProjectModel>();
+	
+	public List<ProjectModel> getListProject() {
+		return listProject;
+	}
+
+	public void setListProject(List<ProjectModel> listProject) {
+		this.listProject = listProject;
+	}
+
+	public void setDelete(boolean isDelete) {
+		this.isDelete = isDelete;
+	}
+
 	public Long getId() {
 		return id;
 	}

@@ -63,7 +63,7 @@
 								-
 								<span th:text="${pro.startMonth}"></span>
 								;
-								<span th:text="${pro.projectDuration}"></span> <span th:text="${pro.timePeriodId}"></span>
+								<span th:text="${pro.projectDuration}"></span> <span th:text="$${pro.timePeriod.name}"></span>
 								)
 								<span>
 									<a th:href="@{/project/ubah/{id}(id=${pro.id})}" class="btn-ubah">
@@ -108,25 +108,25 @@
 	    <script type="text/javascript" src="../../fontawesome-free-5.8.1-web/js/fontawesome.min.js"></script>
 	    <script type="text/javascript">
 	    
-	    //loadTimePeriod start
-	    function loadTime(){
-	    	$.ajax({
-	    		url:'/api/timePeriod/',
-	    		type:'get',
-	    		dataType:'json',
-	    		success:function(hasil){
-	    			//method looping dari jquery untuk looping hasil
-	    			//karna hasil berupa array
-	    			$('#modal-form').find('#timeid').empty();
-	    			$('#modal-form').find('#timeid').append('<option value =""> -- Pilih -- </option>');
+// 	    //loadTimePeriod start
+// 	    function loadTime(){
+// 	    	$.ajax({
+// 	    		url:'/api/timePeriod/',
+// 	    		type:'get',
+// 	    		dataType:'json',
+// 	    		success:function(hasil){
+// 	    			//method looping dari jquery untuk looping hasil
+// 	    			//karna hasil berupa array
+// 	    			$('#modal-form').find('#timeid').empty();
+// 	    			$('#modal-form').find('#timeid').append('<option value =""> -- Pilih -- </option>');
 	    			
-	    			$.each(hasil, function(index, item){
-	    				$('#modal-form').find('#timeid').append('<option value="'+item.id+'"> '+item.name+' </option>');
-	    			});
-	    		}
-	    	})
-	    }
-	    //loadTimePeriod stop
+// 	    			$.each(hasil, function(index, item){
+// 	    				$('#modal-form').find('#timeid').append('<option value="'+item.id+'"> '+item.name+' </option>');
+// 	    			});
+// 	    		}
+// 	    	})
+// 	    }
+// 	    //loadTimePeriod stop
 	    
 	    $(".btn-tambah").click(function(){
 	    	$.ajax({
@@ -137,9 +137,6 @@
 	    			$("#modal-form").find(".modal-content").html(hasil);
 	    			$("#modal-form").modal("show");
 	    		}
-	    	})
-	    	.done(function () {
-	    		loadTime();
 	    	});
 	    });
 	    
@@ -153,10 +150,7 @@
 	    			$("#modal-form").find(".modal-content").html(hasil);
 	    			$("#modal-form").modal("show");
 	    		}
-	    	})
-	    	.done(function () {
-	    		loadTime();
-	    	});
+	    	});	    
 	    	return false;
 	    });
 	    

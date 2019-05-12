@@ -22,7 +22,8 @@
 					<label class="col-form-label">Tahun Masuk*</label>
 					
 					<select id="getYear" name ="entryYear" th:value="${data.entryYear}" class="form-control">
-						<option th:each="i:${#numbers.sequence(1999,2019)}" th:value="${i}" th:text="${i}" th:selected="${i+''==data.entryYear}"/>
+						<option th:each="year : ${#numbers.sequence(#dates.year(#dates.createNow()),1999)}" th:value="${year}" th:text="${year}" th:selected="${year+''==data.entryYear}"/>
+						<!--<option th:each="year : ${#numbers.sequence(1999,2019)}" th:value="${year}" th:text="${year}" th:selected="${year+''==data.entryYear}"/> -->
 					</select>
 					<!-- <input type="text" name="entryYear" th:value="${data.entryYear}" class="form-control" required> -->
 				</div>
@@ -35,7 +36,8 @@
 					<label class="col-form-label">Tahun Keluar*</label>
 					
 					<select id="getYear2" name ="exitYear" th:value="${data.exitYear}" class="form-control">
-						<option th:each="i:${#numbers.sequence(1999,2019)}" th:value="${i}" th:text="${i}" th:selected="${i+''==data.exitYear}"/>
+						<option th:each="year : ${#numbers.sequence(#dates.year(#dates.createNow()),1999)}" th:value="${year}" th:text="${year}" th:selected="${year+''==data.exitYear}"/>
+						<!--<option th:each="i:${#numbers.sequence(1999,2019)}" th:value="${i}" th:text="${i}" th:selected="${i+''==data.exitYear}"/> -->
 					</select>
 					<!-- <input type="text" name="exitYear" th:value="${data.exitYear}" class="form-control" required> -->
 				</div>

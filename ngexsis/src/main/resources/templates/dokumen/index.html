@@ -62,6 +62,16 @@
 	 		</div>
 	 	</div>
 	 	
+	 	<ul th:each="file : ${uploadedFiles}">
+			<li th:utext="${file}"></li>  
+		</ul>      
+       
+		<!--<h3>Failed:</h3> -->
+		
+		<ul th:each="file : ${failedFiles}">
+			<li style="color:red;" th:utext="${file}"></li>  
+		</ul>
+	 	
 	 	<!-- Mulai Modal -->
 		<div id="modal-form" class="modal fade" role="dialog">
 			<div class="modal-dialog modal-lg" role="document">

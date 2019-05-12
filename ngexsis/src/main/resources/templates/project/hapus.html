@@ -14,7 +14,18 @@
 					
 					<input type="hidden" name="id" th:value="${data.id}">
 					
-					<input type="hidden" name="timePeriod" id="timeid" th:value="${data.timePeriodId}" class="form-control">
+					<input type="hidden" name="createdOn" th:value="${data.createdOn}">
+					<input type="hidden" name="modifiedOn" th:value="${data.modifiedOn}">
+					
+					<input type="hidden" name="riwayatPekerjaanId" th:value="${data.riwayatPekerjaanId}">
+					<input type="hidden" name="startYear" th:value="${data.startYear}">
+					<input type="hidden" name="startMonth" th:value="${data.startMonth}">
+					<input type="hidden" name="projectName" th:value="${data.projectName}">
+					<input type="hidden" name="projectDuration" th:value="${data.projectDuration}">
+					<input type="hidden" name="client" th:value="${data.client}">
+					<input type="hidden" name="projectPosition" th:value="${data.projectPosition}">
+					<input type="hidden" name="description" th:value="${data.description}">
+					<input type="hidden" name="timePeriod" th:value="${data.timePeriodId}">
 					
 					<button type="button" class="btn btn-secondary offset-5" data-dismiss="modal" aria-label="Close">
 						<span aria-hidden="true"> Tidak </span>

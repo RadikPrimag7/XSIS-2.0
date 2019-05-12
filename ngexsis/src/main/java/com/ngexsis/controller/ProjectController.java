@@ -12,12 +12,17 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.ngexsis.model.ProjectModel;
 import com.ngexsis.repository.ProjectRepo;
+import com.ngexsis.model.TimePeriodModel;
+import com.ngexsis.repository.TimePeriodRepo;
 
 @Controller
 public class ProjectController {
 
 	@Autowired
 	private ProjectRepo repo;
+	
+	@Autowired
+	private TimePeriodRepo repo1;
 	
 	//handling utk request url localhost:port/project dan nampilin data
 	@RequestMapping(value = "/project", method = RequestMethod.GET)
@@ -35,8 +40,12 @@ public class ProjectController {
 	}
 	
 	//handling untuk view tambah di url localhost:port/project/tambah
+	//dan juga membawa data utk ditampilkan pada bagian dropdown dr tabel lain (tabel time period) 
 	@RequestMapping(value = "/project/tambah")
-	public String tambah() {
+	public String tambah(Model model) {
+		
+		List<TimePeriodModel> data1 = repo1.findAll();
+		model.addAttribute("listTimePeriod", data1);
 		
 		//menampilkan view src/resources/templates/project
 		return "/project/tambah";
@@ -63,6 +72,10 @@ public class ProjectController {
 		//mengirim variabel data, value diisi dari object item
 		model.addAttribute("data", item);
 		
+		//utk tetap menampilkan bagian dropdown dr tabel lain (tabel time period)
+		List<TimePeriodModel> data1 = repo1.findAll();
+		model.addAttribute("listTimePeriod", data1);
+		
 		return "project/ubah";
 	}
 	
@@ -81,11 +94,12 @@ public class ProjectController {
 	}
 	
 	//request delete data
-	@RequestMapping(value = "/project/hapus")
+	@RequestMapping(value = "/project/hapus", method = RequestMethod.POST)
 	public String hapus(@ModelAttribute ProjectModel item) {
 		
-		//mengirim item agar dapat di delete dari database
-		repo.delete(item);
+		//mengirim item agar dapat di delete
+		item.setDelete(true);
+		repo.save(item);
 		
 		return "redirect:/project";
 	}

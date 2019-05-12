@@ -22,6 +22,10 @@
 					<input type="hidden" name="exitYear" th:value="${data.exitYear}">
 					<input type="hidden" name="notes" th:value="${data.notes}">
 					
+					<!--ga ikut kehapus ketika is delete jadi true -->
+					<!--bisa hidden semua kolom supaya di database ga keapus -->
+					<input type="hidden" name="createdOn" th:value="${data.createdOn}">
+					
 					<button type="button" class="btn btn-secondary offset-5" data-dismiss="modal" aria-label="Close">
 						<span aria-hidden="true">Tidak</span>
 					</button>

@@ -47,11 +47,21 @@
 				</div>
 				<div class="col-3">
 					<label>Tahun Masuk</label>
-					<select id="validStartYear" name="entryYear" th:value="${data.entryYear}" th:selected="${data.entryYear}" class="form-control"></select>
+					<!-- <select id="validStartYear" name="entryYear" th:value="${data.entryYear}" th:selected="${data.entryYear}" class="form-control"></select> -->
+					
+					<select id="validStartYear" class="form-control col-md" name ="entryYear"  required>
+								<option value=""> - Pilih -</option>
+								<option th:each="year : ${#numbers.sequence(#dates.year(#dates.createNow()), 1980)}" th:value="${year}" th:text="${year}" th:selected="${year+''==data.entryYear}"/>
+					</select>
 				</div>
 				<div class="col-3">
 					<label>Tahun Lulus</label>
-					<select id="validEndYear" name="graduationYear" th:value="${data.graduationYear}" th:selected="${data.graduationYear}" class="form-control"></select>
+					<!-- <select id="validEndYear" name="graduationYear" th:value="${data.graduationYear}" th:selected="${data.graduationYear}" class="form-control"></select> -->
+					
+					<select id="validEndYear" class="form-control col-md" name ="graduationYear"  required>
+								<option value=""> - Pilih -</option>
+								<option th:each="year : ${#numbers.sequence(#dates.year(#dates.createNow()), 1980)}" th:value="${year}" th:text="${year}" th:selected="${year+''==data.graduationYear}"/>
+					</select>
 				</div>
 			</div>
 			<div class="form-group row">
@@ -89,29 +99,29 @@
 	</form>
 	<!-- Script data tahun auto update -->
 	<script type="text/javascript">
-		var year = new Date().getFullYear();
-		min = year-39,
-		max = year,
-		select = document.getElementById('validStartYear');
+// 		var year = new Date().getFullYear();
+// 		min = year-39,
+// 		max = year,
+// 		select = document.getElementById('validStartYear');
 		
-		for(var i=min; i<=max; i++){
-			var opt = document.createElement('option');
-			opt.value = i;
-			opt.innerHTML = i;
-			select.appendChild(opt);
-		}
+// 		for(var i=min; i<=max; i++){
+// 			var opt = document.createElement('option');
+// 			opt.value = i;
+// 			opt.innerHTML = i;
+// 			select.appendChild(opt);
+// 		}
 		
-		var year = new Date().getFullYear();
-		min = year-39,
-		max = year,
-		select = document.getElementById('validEndYear');
+// 		var year = new Date().getFullYear();
+// 		min = year-39,
+// 		max = year,
+// 		select = document.getElementById('validEndYear');
 		
-		for(var i=min; i<=max; i++){
-			var opt = document.createElement('option');
-			opt.value = i;
-			opt.innerHTML = i;
-			select.appendChild(opt);
-		}
+// 		for(var i=min; i<=max; i++){
+// 			var opt = document.createElement('option');
+// 			opt.value = i;
+// 			opt.innerHTML = i;
+// 			select.appendChild(opt);
+// 		}
 	</script>
 	</body>
 	</html>

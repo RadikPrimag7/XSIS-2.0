@@ -59,17 +59,14 @@ public class PendidikanController {
 	public String delete(Model model, @PathVariable(name="id") Long id) {
 		
 			PendidikanModel item = repo.findById(id).orElse(null);
-			
 			model.addAttribute("data", item);
-			
-		return "pendidikan/delete";
+			return "pendidikan/delete";
 	}
 	
 	@RequestMapping(value = "/pendidikan/delete", method=RequestMethod.POST)
 	public String hapus(@ModelAttribute PendidikanModel item) {
-		
-		repo.delete(item);
-		
+		item.setDelete(true);
+		repo.save(item);
 		return "redirect:/pendidikan";
 	}
 }

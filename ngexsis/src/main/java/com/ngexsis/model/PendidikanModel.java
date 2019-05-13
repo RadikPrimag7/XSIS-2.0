@@ -15,14 +15,15 @@ import javax.persistence.TableGenerator;
 
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
+import org.hibernate.annotations.Where;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
 @Entity
 @Table(name="x_riwayat_pendidikan")
+@Where(clause="is_delete=false")
 public class PendidikanModel {
-	
 	@Id
 	@GeneratedValue(strategy=GenerationType.TABLE,generator="pendidikan_seq")
 	@TableGenerator(name="pendidikan_seq", table="tbl_sequence_pendidikan", pkColumnName="seq_id", valueColumnName="seq_value", initialValue=0, allocationSize=1)
@@ -53,8 +54,8 @@ public class PendidikanModel {
 	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
 	private Date deletedOn;
 	
-	@Column(name="is_delete", nullable=true, columnDefinition="BOOLEAN DEFAULT false")
-	private Boolean isDelete;
+	@Column(name="is_delete")
+	private boolean isDelete;
 	
 	@Column(name="biodata_id", nullable=true, length=11)
 	private Long biodataId;
@@ -159,12 +160,12 @@ public class PendidikanModel {
 	public void setDeletedOn(Date deletedOn) {
 		this.deletedOn = deletedOn;
 	}
-
-	public Boolean getIsDelete() {
+	
+	public Boolean isDelete() {
 		return isDelete;
 	}
 
-	public void setIsDelete(Boolean isDelete) {
+	public void setDelete(Boolean isDelete) {
 		this.isDelete = isDelete;
 	}
 

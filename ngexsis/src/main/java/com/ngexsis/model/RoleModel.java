@@ -12,10 +12,12 @@ import javax.persistence.TableGenerator;
 
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
+import org.hibernate.annotations.Where;
 import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 @Table(name="x_role")
+@Where(clause="is_delete=false")
 public class RoleModel {
 	
 	@Id
@@ -50,10 +52,12 @@ public class RoleModel {
 	private Long deletedBy;
 	
 	@Column(name="deleted_on", nullable=true)
+	@UpdateTimestamp
+	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
 	private Date deletedOn;
 	
 	@Column(name="is_delete", nullable=true)
-	private Boolean isDelete;
+	private boolean isDelete;
 
 	public Long getId() {
 		return Id;

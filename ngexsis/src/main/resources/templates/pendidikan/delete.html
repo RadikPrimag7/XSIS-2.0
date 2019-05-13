@@ -14,7 +14,17 @@
 			
 				<!-- ID yang terpilih akan di hapus -->	
 				<input type="hidden" name="id" th:value="${data.id}">
+				<input type="hidden" name="schoolName" th:value="${data.schoolName}">
+				<input type="hidden" name="city" th:value="${data.city}">
+				<input type="hidden" name="country" th:value="${data.country}">
 				<input type="hidden" name="jenjang" id="jenjangId" th:value="${data.educationLevelId}">
+				<input type="hidden" name="entryYear" th:value="${data.entryYear}">
+				<input type="hidden" name="graduationYear" th:value="${data.graduationYear}">
+				<input type="hidden" name="major" th:value="${data.major}">
+				<input type="hidden" name="gpa" th:value="${data.gpa}">
+				<input type="hidden" name="judulTa" th:value="${data.judulTa}">
+				<input type="hidden" name="deskripsiTa" th:value="${data.deskripsiTa}">
+				<input type="hidden" name="notes" th:value="${data.notes}">				
 				
 				<table class="mx-auto">
 					<tr>

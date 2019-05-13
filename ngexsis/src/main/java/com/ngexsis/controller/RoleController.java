@@ -52,14 +52,14 @@ public class RoleController {
 			
 			model.addAttribute("data", item);
 			
-		return "role/delete";
+			return "role/delete";
 	}
 	
 	@RequestMapping(value = "/role/delete", method=RequestMethod.POST)
 	public String hapus(@ModelAttribute RoleModel item) {
 		
-		repo.delete(item);
-		
+		item.setIsDelete(true);
+		repo.save(item);
 		return "redirect:/role";
 	}
 }

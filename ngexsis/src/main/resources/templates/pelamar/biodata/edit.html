@@ -15,10 +15,9 @@
 </head>
 <body>
 
-    <div class="modal-header">
-    
-    	<h4>Ubah Biodata</h4>
-    	<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+    <div class="modal-header" style="background:darkblue;border-radius:0px">
+    	<h4 class="col" style="color:white">Ubah Biodata</h4>
+    	<button type="button" class="close" data-dismiss="modal" aria-label="Close" style="color:white">
 			<span aria-hidden="true">&times;</span>
        	</button>
     </div>
@@ -27,7 +26,7 @@
     
         <form action="/pelamar/biodata/save" method="POST" name="formBiodata" id="form-biodata">
         	
-        	<input type="hidden" name="id" th:value="${data.id}">
+        	<input type="hidden" name="biodata[id]" th:value="${data.id}">
             <div class="col-12">
             
 	            <div class="row">
@@ -56,7 +55,7 @@
 	                <div class="form-group col-3">
 	                    <label>Jenis Kelamin *</label>
 	                    <select name="biodata[gender]" class="form-control" required>
-	                    	<option value=""></option>
+	                    	<option value="">-- Pilih --</option>
 	                    	<option value="1">Pria</option>
 	                    	<option value="0">Wanita</option>
 	                    </select>
@@ -64,7 +63,7 @@
 	                <!-- Agama -->
 	                <div class="form-group col-3">
 	                    <label>Agama *</label>
-	                    <input type="text" name="biodata[religionId]" th:value="${data.religionId}" class="form-control" required>
+	                    <select name="biodata[religionId]" id="religion" th:value="${data.religionId}" class="form-control" required></select>
 	                </div>
 	                <!-- Tinggi -->
 	                <div class="form-group col-3">
@@ -94,7 +93,7 @@
 	                <!-- Jenis Identitas -->
 	                <div class="form-group col-3">
 	                    <label>Jenis Identitas *</label>
-	                    <input type="text" name="biodata[identityTypeId]" th:value="${data.identityTypeId}" class="form-control" required>
+	                    <select name="biodata[identityTypeId]:number" id="identityTypeId" th:value="${data.identityTypeId}" class="form-control" required></select>
 	                </div>
 	                <!-- Nomor Identitas -->
 	                <div class="form-group col-3">
@@ -134,12 +133,12 @@
 	                <!-- Status Pernikahan -->
 	                <div class="form-group col-3">
 	                    <label>Status Pernikahan *</label>
-	                    <input type="text" name="#" class="form-control" required>
+	                    <select name="biodata[maritalStatusId]:number" id="maritalStatus" th:value="${data.maritalStatusId}" class="form-control" required></select>
 	                </div>
 	                <!-- Tahun Pernikahan --> 
 	                <div class="form-group col-3">
 	                    <label>Tahun Pernikahan</label>
-	                    <input type="text" name="#" class="form-control">
+	                    <input type="text" name="biodata[marriageYear]" th:value="${data.marriageYear}" class="form-control">
 	                </div>
                 </div>
             </div>       
@@ -269,26 +268,25 @@
     
     <script type="text/javascript">
     
-    	$("#form-biodata").submit(function(){
-    		alert("Test");
-    		var a = $(this).serializeJSON();
-    		console.log(a);
-    		
-    		$.ajax({
-	   			url:'/pelamar/biodata/save',
-	   			type:'post',
-	   			contentType: "application/json",
-	   			dataType:'JSON',
-	   			data:JSON.stringify(a),
-	   			success:function(hasil){
-	   				$("#modal-form").find(".modal-content").html(hasil);
-	   				$("#modal-form").modal("hide");		
-	   			}
-	   		});
-    		
-    		return false;
-    	});
+    $("#form-biodata").submit(function() {
+		
+		var a = $(this).serializeJSON();
+		console.log(a);
+		
+		$.ajax({
+   			url:'/pelamar/biodata/save',
+   			type:'post',
+   			contentType: "application/json",
+   			dataType:'JSON',
+   			data:JSON.stringify(a)
+   		});
+		// $("#modal-form-xl").modal("hide");
+		// document.location.reload();
+		return false;
+	});
     
+    
+    /*
     	function validateForms() {
     		
     		var address1 = document.forms["formAddress"]["address1"].value;
@@ -318,6 +316,7 @@
     		document.forms["formBiodata"].submit();
     		document.forms["formAddress"].submit();
     	};
+    	*/
     	
     </script>
     

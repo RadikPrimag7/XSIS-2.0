@@ -40,7 +40,6 @@ public class BiodataController {
 	public String edit(Model model, @PathVariable(name="id") Long id) {
 		
 		BiodataModel item = repoBio.findById(id).orElse(null);
-		
 		model.addAttribute("data", item);
 		
 		return "/pelamar/biodata/edit";

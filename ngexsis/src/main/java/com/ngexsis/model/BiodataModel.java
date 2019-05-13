@@ -122,6 +122,9 @@ public class BiodataModel {
 	@Temporal(TemporalType.DATE)
 	private Date expiredDate;
 	
+	@Column(name="marriage_year", length=10)
+	private String marriageYear;
+	
 	
 //	@OneToMany(mappedBy = "keahlian", cascade = CascadeType.ALL)
 //	private List<KeahlianModel> keahlian = new ArrayList<KeahlianModel>();
@@ -137,6 +140,14 @@ public class BiodataModel {
 //	public void setKeahlian(List<KeahlianModel> keahlian) {
 //		this.keahlian = keahlian;
 //	}
+
+	public String getMarriageYear() {
+		return marriageYear;
+	}
+
+	public void setMarriageYear(String marriageYear) {
+		this.marriageYear = marriageYear;
+	}
 
 	public Long getId() {
 		return id;

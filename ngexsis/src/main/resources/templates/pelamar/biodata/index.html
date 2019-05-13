@@ -18,80 +18,91 @@
     <div class="container">
                 
         <div class="row">
-            <h3 class="col-2">Biodata &nbsp&nbsp
-                <a th:href="@{/pelamar/biodata/edit/{id}(id=${data.id})}" class="goToEdit"><i class="fas fa-edit"></i></a>
-            </h3>
+        	<h3 class="col">
+        		<span>Biodata &nbsp</span>
+        		<span th:href="@{/pelamar/biodata/edit/{id}(id=${data.id})}" class="goToEdit" style="cursor:pointer">
+        			<i class="fas fa-edit"></i>
+        		</span>
+        		<hr>
+        	</h3>
         </div>
         
         <div class="row">
-            <div class="col-12">
-                <label class="col-6">Nama Lengkap</label>
-                <span class="col-1">:</span>
-                <span class="col-5">
-                	<span th:text="${data.fullname}"></span>
-                </span>
-            </div>
             
-            <div class="col-12">
-                <label class="col-7">Nama Pangggilan</label>
-                <span class="col-1">:</span>
-                <span class="col-4" th:text="${data.nickName}"></span>
-            </div>
+			<label class="col-5">Nama Lengkap</label>
+			<span class="col-1">:</span>
+			<span class="col-6">
+				<span th:text="${data.fullname}"></span>
+			</span>
             
-            <div class="col-12">
-                <label class="col-7">Kontak</label>
-                <span class="col-1">:</span>
-                <span th:text="${data.email}"></span> / <span th:text="${data.phoneNumber1}"></span>
-            </div>
+            <label class="col-5">Nama Pangggilan</label>
+            <span class="col-1">:</span>
+            <span class="col-6">
+            	<span th:text="${data.nickName}"></span>
+            </span>
+            
+            <label class="col-5">Kontak</label>
+            <span class="col-1">:</span>
+            <span class="col-6">
+            	<span th:text="${data.email}"></span> / <span th:text="${data.phoneNumber1}"></span>
+            </span>
 
-            <div class="col-12">
-                <label class="col-7">Tempat, Tgl. Lahir</label>
-                <span class="col-1">:</span>
-                <span class="col-4" th:text="${data.pob}">, <span th:text="${bio.dob}"></span></span>
+            <label class="col-5">Tempat, Tgl. Lahir</label>
+            <span class="col-1">:</span>
+            <span class="col-6">
+            	<span th:text="${data.pob}"></span>, <span th:text="${data.dob}"></span>
+            </span>
                 
-            </div>
+            <label class="col-5">Jenis Kelamin, Tinggi (cm), Berat (Kg)</label>
+            <span class="col-1">:</span>
+            <span class="col-6">
+            	<span th:text="${data.gender}"></span>, <span th:text="${data.height}"></span>, <span th:text="${data.weight}"></span>
+            </span>   
+                
+            <label class="col-5">Agama</label>
+            <span class="col-1">:</span>
+            <span class="col-6">
+            	<span th:text="${data.religionId}"></span>
+            </span>
 
-            <div class="col-12">
-                <label class="col-7">Jenis Kelamin, Tinggi (cm), Berat (Kg)</label>
-                <span class="col-1">:</span>
-                <span class="col-4" th:text="${data.gender}">, <span th:text="${data.height}"></span>, <span th:text="${data.weight}"></span></span>
-            </div>
-
-            <div class="col-12">
-                <label class="col-7">Agama</label>
-                <span class="col-1">:</span>
-                <span class="col-4" th:text="${data.religionId}"></span>
-            </div>
-
-            <div class="col-12">
-                <label class="col-7">Kewarganegaraan, Suku Bangsa</label>
-                <span class="col-1">:</span>
-                <span class="col-4" th:text="${data.nationality}">, <span th:text="${data.ethnic}"></span></span>
-            </div>
-
-            <div class="col-12">
-                <label class="col-7">Kegemaran / Hobi</label>
-                <span class="col-1">:</span>
-                <span class="col-4" th:text="${data.hobby}"></span>
-            </div>
-
-            <div class="col-12">
-                <label class="col-7">Jenis & Nomor Identitas</label>
-                <span class="col-1">:</span>
-                <span class="col-4" th:text="${data.identityTypeId}"> - <span th:text="${data.identityNo}"></span></span>
-            </div>
-
-            <div class="col-12">
-                <label class="col-7">Status & Tahun Pernikahan</label>
-                <span class="col-1">:</span>
-                <span class="col-4" th:text="${data.maritalStatusId}"> - <span th:text="${data.maritalStatusId}"></span></span>
-            </div>
-		</div>           
-
+            <label class="col-5">Kewarganegaraan, Suku Bangsa</label>
+            <span class="col-1">:</span>
+            <span class="col-6">
+            	<span th:text="${data.nationality}"></span>, <span th:text="${data.ethnic}"></span>
+            </span>
+            
+            <label class="col-5">Kegemaran / Hobi</label>
+            <span class="col-1">:</span>
+            <span class="col-6">
+            	<span th:text="${data.hobby}"></span>
+            </span>
+            
+            <label class="col-5">Jenis & Nomor Identitas</label>
+            <span class="col-1">:</span>
+            <span class="col-6">
+            	<span th:text="${data.identityTypeId}"></span> - <span th:text="${data.identityNo}"></span>
+            </span>
+            
+            <label class="col-5">Status & Tahun Pernikahan</label>
+            <span class="col-1">:</span>
+            <span class="col-6">
+            	<span th:text="${data.maritalStatusId}"></span> - <span th:text="${data.marriageYear}"></span>
+            </span>    
+		</div>
     </div>
     
+    <!-- Modal Extra Large -->
+	<div id="modal-form-xl" class="modal fade" role="dialog">
+		<div class="modal-dialog modal-xl" role="document">
+			<div class="modal-content">
+				<!-- Isi Modal -->
+			</div>
+		</div>
+	</div>
+	<!-- Modal Extra Large -->
+    
     <!-- Modal Large -->
-	<div id="modal-form" class="modal fade" role="dialog">
+	<div id="modal-form-lg" class="modal fade" role="dialog">
 		<div class="modal-dialog modal-lg" role="document">
 			<div class="modal-content">
 				<!-- Isi Modal -->
@@ -99,6 +110,16 @@
 		</div>
 	</div>
 	<!-- Modal Large -->
+	
+	<!-- Modal Small -->
+	<div id="modal-form-sm" class="modal fade" role="dialog">
+		<div class="modal-dialog modal-sm" role="document">
+			<div class="modal-content">
+				<!-- Isi Modal -->
+			</div>
+		</div>
+	</div>
+	<!-- Modal Small -->
 
     <!-- JS Files -->
     <script src="js/jquery-3.4.0.min.js"></script>
@@ -108,6 +129,65 @@
     
     <script type="text/javascript">
     
+		//	loadLevel Religion
+	    function loadLevelReligion(){
+	    	$.ajax({
+	    		url:'/api/religion',
+	    		type:'get',
+	    		dataType:'json',
+	    		success:function(hasil){
+	    			//Method looping dari jquery untuk looping hasil
+	    			//karna hasil berupa array
+	    			$('#modal-form-xl').find('#religion').empty();
+	    			$('#modal-form-xl').find('#religion').append('<option value=""> -- Pilih -- </option>');
+	
+	    			$.each(hasil, function(index, item){
+	    				$('#modal-form-xl').find('#religion').append('<option value="'+ item.id +'"> '+ item.name +' </option>');
+	    			});
+	    		}
+	    	})
+	    }
+	  	
+	  	
+		//	loadLevel IdentityType
+	    function loadLevelIdentityType(){
+	    	$.ajax({
+	    		url:'/api/identityType',
+	    		type:'get',
+	    		dataType:'json',
+	    		success:function(hasil){
+	    			//Method looping dari jquery untuk looping hasil
+	    			//karna hasil berupa array
+	    			$('#modal-form-xl').find('#identityTypeId').empty();
+	    			$('#modal-form-xl').find('#identityTypeId').append('<option value=""> -- Pilih -- </option>');
+	
+	    			$.each(hasil, function(index, item){
+	    				$('#modal-form-xl').find('#identityTypeId').append('<option value="'+ item.id +'"> '+ item.name +' </option>');
+	    			});
+	    		}
+	    	})
+	    }
+		
+		
+		// loadLevel MaritalStatus
+	    function loadLevelMaritalStatus(){
+	    	$.ajax({
+	    		url:'/api/maritalStatus',
+	    		type:'get',
+	    		dataType:'json',
+	    		success:function(hasil){
+	    			//Method looping dari jquery untuk looping hasil
+	    			//karna hasil berupa array
+	    			$('#modal-form-xl').find('#maritalStatus').empty();
+	    			$('#modal-form-xl').find('#maritalStatus').append('<option value=""> -- Pilih -- </option>');
+	
+	    			$.each(hasil, function(index, item){
+	    				$('#modal-form-xl').find('#maritalStatus').append('<option value="'+ item.id +'"> '+ item.name +' </option>');
+	    			});
+	    		}
+	    	})
+	    }
+	    
 	    $(".goToEdit").click(function() {
 	    	var a = $(this).attr("href");
 	   		$.ajax({
@@ -115,11 +195,15 @@
 	   			type:'get',
 	   			dataType:'html',
 	   			success:function(hasil){
-	   				$("#modal-form").find(".modal-content").html(hasil);
-	   				$("#modal-form").modal("show");		
+	   				$("#modal-form-xl").find(".modal-content").html(hasil);
+	   				$("#modal-form-xl").modal("show");		
 	   			}
-	   		});
-	   		return false;
+	   		})
+	   		.done(function () {
+				loadLevelReligion();
+				loadLevelIdentityType();
+				loadLevelMaritalStatus();
+			});
 	   	});	
     
     </script>

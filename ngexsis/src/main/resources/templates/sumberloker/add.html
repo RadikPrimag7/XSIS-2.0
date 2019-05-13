@@ -115,11 +115,15 @@
 		<script type="text/javascript">
 			$("#vacantId").change(function(){
 				if($("#vacantId").val() == "1"){
+					$("#careerCenterNameId").prop("disabled", false);
+ 					$("#eventNameId,#referrerNameId, #referrerPhoneId, #referrerEmailId").prop("disabled", true);
+// 					$("#eventNameId").prop("disabled", false);
+// 					$("#careerCenterNameId,#referrerNameId, #referrerPhoneId, #referrerEmailId").prop("disabled", true);
+				}else if($("#vacantId").val() == "2"){
 					$("#eventNameId").prop("disabled", false);
 					$("#careerCenterNameId,#referrerNameId, #referrerPhoneId, #referrerEmailId").prop("disabled", true);
-				}else if($("#vacantId").val() == "2"){
-					$("#careerCenterNameId").prop("disabled", false);
-					$("#eventNameId,#referrerNameId, #referrerPhoneId, #referrerEmailId").prop("disabled", true);
+// 					$("#careerCenterNameId").prop("disabled", false);
+// 					$("#eventNameId,#referrerNameId, #referrerPhoneId, #referrerEmailId").prop("disabled", true);
 				}else if($("#vacantId").val() == "3"){
 					$("#referrerNameId, #referrerPhoneId, #referrerEmailId").prop("disabled", false);
 					$("#eventNameId,#careerCenterNameId").prop("disabled", true);

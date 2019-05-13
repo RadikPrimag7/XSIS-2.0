@@ -9,8 +9,8 @@
 	<body>
 	<form th:action="@{/pelatihan/save}" method = "post">
 	<input type="text" name="id" th:value="${data.id}" style="display:none">
-		<div class="modal-header">
-			<h3 class ="modal-title">Edit Pelatihan</h3>
+		<div class="modal-header" style="background:darkblue">
+			<h3 class ="modal-title" style="color:white">Edit Pelatihan</h3>
 			<button type="button" class="close" data-dismiss="modal" aria-label="close">
 				<span aria-hidden="true">&times;</span>
 			</button>
@@ -23,7 +23,7 @@
 			<div class="row col-6">
 
 					<div class="col-12">
-						<label>Nama (Kursus, Penataran, Pelatihan, Workshop)</label>
+						<label>Nama (Kursus, Penataran, Pelatihan, Workshop)*</label>
 						<input class="form-control col-md" type = "text" name = "trainingName" th:value= "${data.trainingName}" required/>
 					</div>
 
@@ -103,7 +103,7 @@
 					
 						<div class="btn-group  float-right">
 							<button  class="btn btn-warning" data-dismiss="modal" type="button">Batal</button>
-							<button  class="btn btn-primary" type="submit">Simpan</button>
+							<button  class="btn btn-dark" type="submit">Simpan</button>
 						</div>
 					</div>
 		</div>

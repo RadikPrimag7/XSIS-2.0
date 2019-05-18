@@ -283,7 +283,7 @@
     	});
     	
     
-    	/*
+    	
     	function validateForms() {
     		
     		var address1 = document.forms["formAddress"]["address1"].value;
@@ -308,7 +308,18 @@
     		}
 
     	}
-    	*/
+    	
+    	function validatePhone() {
+    		
+    		var phone1 = document.forms["formBiodata"]["biodata[phoneNumber1]"].value;
+    		var phone2 = document.forms["formBiodata"]["biodata[phoneNumber2]"].value;
+    		
+    		if (phone1 == phone2) {
+    			alert("Phone numbers cannot be same!");
+    			return false;
+    		}
+    	} 
+    	
     	
     </script>
     

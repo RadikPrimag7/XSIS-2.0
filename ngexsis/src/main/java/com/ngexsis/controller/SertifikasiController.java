@@ -54,7 +54,8 @@ public class SertifikasiController {
 	
 	@RequestMapping(value="/sertifikasi/delete", method=RequestMethod.POST)
 	public String hapus(@ModelAttribute SertifikasiModel item) {
-		repo.delete(item);
+		item.setDelete(true);
+		repo.save(item);
 		return "redirect:/sertifikasi";
 	}
 }

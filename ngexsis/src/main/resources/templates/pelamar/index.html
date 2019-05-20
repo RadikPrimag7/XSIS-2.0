@@ -178,7 +178,7 @@
 								<div class="col-2 text-center">
 									<span style="line-height:70px">
 										<span th:href="@{/pelamar/detail/{id}(id=${pel.id})}" class="goToDetail" style="cursor:pointer"><i class="fas fa-search"></i></span> &nbsp;
-										<span href="#" class="goToToken" style="cursor:pointer"><i class="fas fa-envelope"></i></span>
+										<span th:href="@{/pelamar/token/{id}(id=${pel.id})}" class="goToToken" style="cursor:pointer"><i class="fas fa-envelope"></i></span>
 									</span>
 								</div>
 							</div>
@@ -315,6 +315,20 @@
 	   			success:function(hasil){
 	   				$("#modal-form-xl").find(".modal-content").html(hasil);
 	   				$("#modal-form-xl").modal("show");		
+	   			}
+	   		});
+	   		return false;
+	   	});
+	    
+	    $(".goToToken").click(function() {
+	    	var b = $(this).attr("href");
+	   		$.ajax({
+	   			url:b,
+	   			type:'get',
+	   			dataType:'html',
+	   			success:function(hasil){
+	   				$("#modal-form-sm").find(".modal-content").html(hasil);
+	   				$("#modal-form-sm").modal("show");		
 	   			}
 	   		});
 	   		return false;

@@ -13,10 +13,16 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.TableGenerator;
 
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+import org.hibernate.annotations.Where;
+import org.springframework.format.annotation.DateTimeFormat;
+
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
 @Entity
 @Table(name = "x_sertifikasi")
+@Where(clause="is_delete=false")
 public class SertifikasiModel {
 	@Id
 	@GeneratedValue(strategy = GenerationType.TABLE, generator = "sertifikasi_seq")
@@ -30,18 +36,24 @@ public class SertifikasiModel {
 	private Long createdBy;
 	
 	@Column(name = "created_on", nullable = false)
+	@CreationTimestamp
+	@DateTimeFormat(pattern="yyy-MM-dd HH:mm:ss")
 	private Date createdOn;
 	
 	@Column(name = "modified_by", nullable = true, length = 11)
 	private Long modifiedBy;
 	
 	@Column(name = "modified_on", nullable = true)
+	@UpdateTimestamp
+	@DateTimeFormat(pattern="yyy-MM-dd HH:mm:ss")
 	private Date modifiedOn;
 	
 	@Column(name = "deleted_by", nullable = true, length = 11)
 	private Long deletedBy;
 	
 	@Column(name = "deleted_on", nullable = true)
+	@UpdateTimestamp
+	@DateTimeFormat(pattern="yyy-MM-dd HH:mm:ss")
 	private Date deletedOn;
 	
 	@Column(name = "is_delete", nullable = false)

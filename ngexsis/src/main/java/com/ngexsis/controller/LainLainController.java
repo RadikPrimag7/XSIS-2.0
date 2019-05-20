@@ -62,7 +62,8 @@ public class LainLainController {
 	
 	@RequestMapping(value="lainlain/deleteref", method=RequestMethod.POST)
 	public String hapus(@ModelAttribute ReferensiModel item) {
-		repoRef.delete(item);
+		item.setDelete(true);
+		repoRef.save(item);
 		return "redirect:/lainlain";
 	}
 

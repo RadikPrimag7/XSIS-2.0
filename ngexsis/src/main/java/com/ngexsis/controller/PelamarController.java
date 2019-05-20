@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.ngexsis.model.AddressModel;
 import com.ngexsis.model.BiodataModel;
+import com.ngexsis.model.ReferensiModel;
 import com.ngexsis.repository.AddressRepo;
 import com.ngexsis.repository.BiodataRepo;
 import com.ngexsis.viewModel.BiodataForm;
@@ -73,4 +75,19 @@ public class PelamarController {
 		return "/pelamar/detailPelamar";
 	}
 	
+	@RequestMapping(value="/pelamar/token/{id}", method=RequestMethod.GET)
+	public String token(Model model, @PathVariable(name="id") Long id) {
+		
+		BiodataModel item = repoBio.findById(id).orElse(null);
+		
+		model.addAttribute("data", item);
+		
+		return "/pelamar/token";
+	}
+	
+	@RequestMapping(value="/pelamar/savetoken", method=RequestMethod.POST)
+	public String save(@ModelAttribute BiodataModel item) {
+		repoBio.save(item);
+		return "redirect:/pelamar";
+	}
 }

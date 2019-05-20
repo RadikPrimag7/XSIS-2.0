@@ -34,7 +34,10 @@
 						</select>	
 					</div>
 					<div class="col">
-						<select id="validStartYear" name="validStartYear" class="form-control"></select>
+						<select name="validStartYear" id="validStartYear" class="form-control">
+						        <option value="">- Pilih Tahun -</option>
+						        <option th:each="i:${#numbers.sequence(#dates.year(#dates.createNow()),1970)}" th:value="${i}" th:text="${i}" />
+						</select>
 					</div>
 					
 				</div>
@@ -49,7 +52,10 @@
 						</select>
 					</div>
 					<div class="col">
-						<select id="untilYear" name="untilYear" class="form-control" disabled></select>
+						<select name="untilYear" id="untilYear" class="form-control" disabled>
+							<option value="">- Pilih Tahun -</option>
+						    <option th:each="i:${#numbers.sequence(#dates.year(#dates.createNow()),2050)}" th:value="${i}" th:text="${i}" />
+						</select>
 					</div>
 				</div>
 			</div>
@@ -78,6 +84,7 @@
 	        $("#untilMonth, #untilYear").prop("disabled", true);
 	});
 
+	/*
 	//Select tahun down
 	var max1 = new Date().getFullYear();
 	min1 = max1-20,
@@ -112,7 +119,7 @@
 		select2.appendChild(opt2);
 	}
 	//select2.value = new Date().getFullYear();
-	
+	*/
 </script>
 
 </body>

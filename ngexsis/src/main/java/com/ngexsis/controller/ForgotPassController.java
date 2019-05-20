@@ -2,6 +2,7 @@ package com.ngexsis.controller;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,21 +15,22 @@ import com.ngexsis.repository.UserRepo;
 @Controller
 public class ForgotPassController {
 
+	@Autowired
 	private UserRepo repo;
 	
-	@RequestMapping(value="/password/forgot", method=RequestMethod.POST)
+	@RequestMapping(value="/password/forgot",method=RequestMethod.POST)
 	public String forgotpass(Model model, @RequestParam String email) {
 		List<UserModel> data= repo.findemail(email);
 		model.addAttribute("listdata",data);
 		
 		if(data.isEmpty()==true) {
-			return "redirect:/password?error=1";
+			return "redirect:/password/index?error=1";
 		}
-		return "/login";
+		return "/login/index";
 		
 	}
 	
-	@RequestMapping(value="/password/forgot", method=RequestMethod.GET)
+	@RequestMapping(value="/password/index")
 	public String index() {
 		return "password/forgot";
 	}

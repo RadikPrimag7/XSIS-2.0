@@ -59,7 +59,7 @@
 
 					<div class="col-6">
 						<label>Waktu Keluar *</label> 
-						<select name="resignMonth" class="form-control">
+						<select name="resignMonth" class="form-control" disabled>
 							<option th:each="i:${#numbers.sequence(1,12)}" th:value="${i}" th:text="${i}" th:selected="${i+''==data.resignMonth}"/>
 						</select>
 					</div>
@@ -107,5 +107,52 @@
 	</div>
 </form>
 
+<script type="text/javascript">
+
+	$("#joinMonth, #joinYear").change(function() {
+	    if ($("#joinMonth, #joinYear").val() != "" || null) {
+	        $("#resignMonth, #resignYear").prop("disabled", false);
+	    }
+	    else
+	        $("#resignMonth, #resignYear").prop("disabled", true);
+	});
+
+	//Select tahun down
+	var max1 = new Date().getFullYear();
+	min1 = max1-20,
+	select1 = document.getElementById('joinYear');
+	
+	var opt1 = document.createElement('option');
+	opt1.value = "";
+	opt1.innerHTML = "- Pilih Tahun -";
+	select1.appendChild(opt1);
+	for (var i = max1; i>=min1; i--){
+		var opt1 = document.createElement('option');
+		opt1.value = i;
+		opt1.innerHTML = i;
+		select1.appendChild(opt1);
+	}
+	
+
+	$("#joinYear").change(function() {
+	    if ($("#joinYear").val() != "" || null) {
+	    	var max2 = new Date().getFullYear();
+	    	min2 = $("#joinYear").val(),
+	    	select2 = document.getElementById('resignYear');
+	     	
+	     	var opt2 = document.createElement('option');
+	     	
+	     	select2.appendChild(opt2);
+	     	for (var j = max2; j>=min2; j--){
+	     		var opt2 = document.createElement('option');
+	     		opt2.value = j;
+	     		opt2.innerHTML = j;
+	     		select2.appendChild(opt2);
+	     	}
+	    }
+	});
+	
+	
+</script>
 </body>
 </html>

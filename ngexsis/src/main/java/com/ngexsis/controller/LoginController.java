@@ -33,16 +33,11 @@ public class LoginController {
 		
 		List<UserModel>data = repo.find(email, abupwd);
 		model.addAttribute("listdata",data);
-		
-		
 		//data.get(0).getEmail();
-
 		if(data.isEmpty()==true) {
 			return "redirect:/login?error=1";
 		}
-		
 		return "login/access";
-		
 	}
 	
 	

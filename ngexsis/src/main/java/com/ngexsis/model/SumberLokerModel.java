@@ -56,14 +56,22 @@ public class SumberLokerModel{
 	@Column(name = "is_delete", nullable = true, columnDefinition = "BOOLEAN DEFAULT false")
 	private boolean isDelete;
 	
-	@Column(name = "biodata_id", nullable = true, length = 11)
+	@Column(name = "biodata_id", nullable = true, length = 11, updatable = false, insertable = false)
 	private long biodataId;
 	
-	/*@JsonBackReference , updatable = false, insertable = false
+	@JsonBackReference
 	@ManyToOne
 	@JoinColumn(name ="biodata_id", foreignKey = @ForeignKey(name ="fk_biodata"))
-	private BiodataModel biodata1;*/
+	private BiodataModel biodataSumber;
 	
+	public BiodataModel getBiodata1() {
+		return biodataSumber;
+	}
+
+	public void setBiodata1(BiodataModel biodata1) {
+		this.biodataSumber = biodata1;
+	}
+
 	@Column(name = "vacancy_source_id", nullable = true, length = 11, updatable = false, insertable = false)
 	private long vacancySourceId;
 	

@@ -19,35 +19,15 @@
 		<div class="container">
 			<div class="row">
 			
-			<div class="row col-6">
-
-					<div class="col-12">
+					<div class="form-group col-6">
 						<label>Jenis Susunan Keluarga*</label>
 						<select class="form-control col-md" name = "familyTree" id="familytreeId" required>
 							<option value=""> - Pilih - </option>
 							<option th:each= "ld:${listdataTree1}" th:value="${ld.id}" th:text="${ld.name}" th:field="${data.familyTree}"/>
 						</select>
 					</div>
-
-					<div class="col-12">
-						<label>Nama*</label>
-						<input class="form-control col-md" type = "text" name = "name" th:value= "${data.name}" required/>
-					</div>
-
-					<div class="col-12">
-						<label>Pendidikan</label>
-					<select class="form-control col-md" name = "educationLevel" id="educationLvlId" required>
-						<option value=""> - Pilih - </option>
-						<option th:each= "ld:${listdataEdu}" th:value="${ld.id}" th:text="${ld.name}" th:field="${data.educationLevel}"/>
-					</select>
-					</div>
-
-			
-			</div>
-			
-			<div class="row col-6">
-
-					<div class="col-12">
+					
+					<div class="form-group col-6">
 						<label>Hubungan Keluarga</label>
 						<select class="form-control col-md" name = "familyRelation" id="familyrelationId" required>
 							<option value=""> - Pilih - </option>
@@ -55,8 +35,12 @@
 						</select>
 					</div>
 
-		
-					<div class="col-6">
+					<div class="form-group col-6">
+						<label>Nama*</label>
+						<input class="form-control col-md" type = "text" name = "name" th:value= "${data.name}" required/>
+					</div>
+					
+					<div class="form-group col-3">
 						<label>Jenis Kelamin</label>
 							<select class="form-control col-md" name = "jk" th:select="${data.jk}" required>
 								<option>- Pilih -</option>
@@ -66,28 +50,37 @@
 							</select>
 					
 					</div>
-
-					<div class="col-6">
+					
+					<div class="form-group col-3">
 						<label>tgl. Lahir(yyyy-mm-dd)</label>
 						<input class="form-control col-md" type="date" name="dob" th:value="${data.dob}" required>
-						</select>
+						
 					</div>
 
-					<div class="col-12">
+					<div class=" form-group col-6">
+						<label>Pendidikan</label>
+					<select class="form-control col-md" name = "educationLevel" id="educationLvlId" required>
+						<option value=""> - Pilih - </option>
+						<option th:each= "ld:${listdataEdu}" th:value="${ld.id}" th:text="${ld.name}" th:field="${data.educationLevel}"/>
+					</select>
+					</div>
+
+
+					<div class="form-group col-6">
 						<label>Pekerjaan</label>
 					<input class="form-control col-md" type="text" name="job" th:value= "${data.job}"required/>
 					</div>
 
-				</div>
+				
 				<!-- kosong abis -->
 				
 			
-			<div class="row col-12">
-				<div class="col">
-					<label class = "col-form- table col-md-2">Catatan</label>
+			
+				<div class="form-group col-12">
+					<label >Catatan</label>
 					<textarea class="form-control col-md" rows = "5" name = "notes" th:text= "${data.notes}"required>tulis catatan</textarea>
 				</div>
-			</div>
+			
 			
 			<div class="col-12">
 					

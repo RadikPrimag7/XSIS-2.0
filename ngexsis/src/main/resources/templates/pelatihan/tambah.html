@@ -2,105 +2,109 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 	<head>
 		<title>Tambah Pelatihan</title>
-		<link rel="stylesheet" href="/css/bootstrap.min.css">
-		
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="bootstrap-4.3.1-dist/css/bootstrap.min.css">
+
+    <!-- Font Awesome CSS -->
+    <link rel="stylesheet" href="fontawesome-free-5.8.1-web/css/all.min.css">
+
 	</head>
 	
 	<body>
 	<form th:action="@{/pelatihan/save}" method = "post">
+	<input type="text" name="biodataId" th:value="${itemBio.id}">
 		<div class="modal-header" style="background:darkblue">
 			<h3 class ="modal-title" style="color:white">Tambah Pelatihan</h3>
-			<button type="button" class="close" data-dismiss="modal" aria-label="close">
+			<button type="button" class="close" data-dismiss="modal" style="color:white" aria-label="close">
 				<span aria-hidden="true">&times;</span>
 			</button>
 		</div>
 		
 	<div class="modal-body">
-		<div class="container">
+		<div class="col-12">
 			<div class="row">
-			
-			<div class="row col-6">
-
-					<div class="col-12">
-						<label>Nama (Kursus, Penataran, Pelatihan, Workshop)*</label>
-						<input class="form-control col-md" type = "text" name = "trainingName" required/>
-					</div>
-
-					<div class="col-6">
-						<label>Waktu Pelaksanaan</label>
-					
-							<select class="form-control col-md" name="trainingMonth">
-								<option value="">- Pilih Bulan -</option>
-								<option th:each="i:${#numbers.sequence(1,12)}" th:value="${i}" th:text="${i}"/>
-						     </select> 	
-						
-						
-					</div>
-
-					<div class="col-6">
-						<label><br></label> 
-						
-						
-							<select id="getYear" class="form-control col-md" name ="trainingYear" >
-									
-							</select>
-						
-					</div>
-
-					<div class="col-12">
-						<label >Kota</label>
-						<input class="form-control col-md" type="text" name="city" />
-					</div>
-
-			
-			</div>
-			
-			<div class="row col-6">
-
-					<div class="col-12">
-						<label>Penyelenggara*</label>
-						<label><br></label>
-						<input class="form-control col-md" type = "text" name = "oganizer" required/>
-					</div>
-
-		
-					<div class="col-6">
-						<label>Lama Durasi</label>
+			 
+			 <!-- Nama pelatihan -->
+                <div class="form-group col-6">
+                    <label>Nama (Kursus, Penataran, Pelatihan, Workshop)*</label>
+                    <input class="form-control col-md" type = "text" name = "trainingName" required>
+                </div>
+                
+                <!-- Penyelenggara -->
+                <div class="form-group col-6">
+                    <label>Penyelenggara*</label>
+                    <input class="form-control col-md" type = "text" name = "oganizer" required>
+                </div>   
+                
+                <!-- Waktu Pelaksanaan Bulan -->
+                <div class="form-group col-3">
+                    <label>Waktu Pelaksanaan</label>
+                    <select class="form-control col-md" name="trainingMonth" >
+						<option value="">- Pilih Bulan -</option>
+						<option th:each="i:${#numbers.sequence(1,12)}" th:value="${i}" th:text="${i}"/>
+					</select> 	
+                </div>
+                
+                <!-- Waktu pelaksaan Taun-->
+                <div class="form-group col-3">
+                    
+                    <label><br></label>
+                    <select id="getYear" class="form-control col-md" name ="trainingYear">
+						<option value=""> - Pilih - </option>
+						<option th:each="year : ${#numbers.sequence(#dates.year(#dates.createNow()), 1969)}" th:value="${year}" th:text="${year}"/>
+					</select>
+                </div>
+                
+                <!-- Durasi -->
+                <div class="form-group col-3">
+                    <label>Lama Durasi</label>
 						<input class="form-control col-md" type="text" name="trainingDuration" />
-					</div>
-
-					<div class="col-6">
-						<label><br></label> 
-						<select  class="form-control col-md"  name="periodId" id="tambahinid" >
-							<option value=""> - Pilih - </option>
-							<option th:each= "ld:${listdata1}" th:value="${ld.id}" th:text="${ld.name}"/>	
+                </div>
+                <!-- Pilih rentang waktu -->
+                <div class="form-group col-3">
+                    <label><br></label>
+                    <select  class="form-control col-md"  name="periodId" id="tambahinid" >
+						<option value=""> - Pilih - </option>
+						<option th:each= "ld:${listdata1}" th:value="${ld.id}" th:text="${ld.name}"/>	
 	
-						</select>
-					</div>
-
-					<div class="col-12">
-						<label>Negara</label>
-						<input class="form-control col-md" type="text" name="country" />
-					</div>
-
+					</select>
 				</div>
-				<!--  -->
 				
+				 <!-- kota pelatihan -->
+                <div class="form-group col-6">
+                    <label>Kota</label>
+                    <input class="form-control col-md" type="text" name="city">
+                </div>
+                
+                <!-- negara pelaksanaan -->
+                <div class="form-group col-6">
+                    <label>Negara</label>
+					<input class="form-control col-md" type="text" name="country" >
+                </div> 
 			
-			<div class="row col-12">
-				<div class="col">
-					<label class = "col-form- table col-md-2">Catatan</label>
+			<div class="form-group col-12">
+				
+					<label>Catatan</label>
 					<textarea class="form-control col-md" rows = "5" name = "notes">tulis catatan</textarea>
-				</div>
+				
 			</div>
+			
 			
 			<div class="col-12">
 					
 					</div>
 					
 					<div class="col-12">
-					
+						<select name="biodataPelatihan">
+								
+								<option th:each= "ld:${listBio}" th:value="${ld.id}" th:text="${ld.nickName}"/>
+						</select>
 						<div class="btn-group  float-right">
+							
 							<button  class="btn btn-warning" data-dismiss="modal" type="button">Batal</button>
 							<button  class="btn btn-dark" type="submit">Simpan</button>
 						</div>
@@ -111,21 +115,21 @@
 	</form>
 		
 		<script type="text/javascript">
-			var max=new Date().getFullYear();
-				min=max-50;
-				select = document.getElementById("getYear");
+// 			var max=new Date().getFullYear();
+// 				min=max-50;
+// 				select = document.getElementById("getYear");
 				
-				var opt = document.createElement('option');
-				opt.value = "";
-				opt.innerHTML = "-Pilih Tahun-";
-				select.appendChild(opt);
+// 				var opt = document.createElement('option');
+// 				opt.value = "";
+// 				opt.innerHTML = "-Pilih Tahun-";
+// 				select.appendChild(opt);
 				
-			for(var i=max; i>=min;i--){
-				var opt = document.createElement('option');
-				opt.value = i;
-				opt.innerHTML = i;
-				select.appendChild(opt);
-			}
+// 			for(var i=max; i>=min;i--){
+// 				var opt = document.createElement('option');
+// 				opt.value = i;
+// 				opt.innerHTML = i;
+// 				select.appendChild(opt);
+// 			}
 			
 			//select.value = new Date().getFullYear();
 		</script>

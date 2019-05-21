@@ -66,10 +66,6 @@ public class EducationLvlModel {
 	@JsonManagedReference
 	@OneToMany(mappedBy = "educationLevel", cascade = CascadeType.ALL)
 	private List<KeluargaModel> listKeluarga = new ArrayList<KeluargaModel>();
-	
-	@JsonManagedReference
-	@OneToMany(mappedBy = "jenjang", cascade = CascadeType.ALL)
-	private List<PendidikanModel> listjenjang = new ArrayList<PendidikanModel>();
 
 	public Long getId() {
 		return id;

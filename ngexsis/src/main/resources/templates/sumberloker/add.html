@@ -7,7 +7,7 @@
 	</head>
 	
 	<body>
-	<form th:action="@{/sumberloker/save}" method = "post">
+	<form th:action="@{/sumberloker/save}" method = "post" id="tes1">
 		<div class="modal-header" style="background:darkblue"><h3 class="modal-title" style="color:white">Sumber Loker</h3>
 			
 		</div>
@@ -30,12 +30,13 @@
 					<div class="col-6">
 						<label>Tipe Pelamar</label>
 						<select class="form-control col-md" name = "candidateType"  required>
-							<option>- Pilih -</option>
+							<option value="">- Pilih -</option>
 								<option value="FreshGrads">Lulusan Baru</option>
 								<option value="Experience">Experience</option>		
 						</select>
 						
 					</div>
+					
 					
 					<div class="col-12">
 						<label>Nama Event*</label>
@@ -116,21 +117,43 @@
 			$("#vacantId").change(function(){
 				if($("#vacantId").val() == "1"){
 					$("#careerCenterNameId").prop("disabled", false);
- 					$("#eventNameId,#referrerNameId, #referrerPhoneId, #referrerEmailId").prop("disabled", true);
-// 					$("#eventNameId").prop("disabled", false);
-// 					$("#careerCenterNameId,#referrerNameId, #referrerPhoneId, #referrerEmailId").prop("disabled", true);
+					$("#eventNameId,#referrerNameId, #referrerPhoneId, #referrerEmailId").prop("disabled", true);
+// 					document.getElementById('eventNameId').value='';
+// 					document.getElementById('referrerNameId').value='';
+// 					document.getElementById('referrerPhoneId').value='';
+// 					document.getElementById('referrerEmailId').value='';
+					document.getElementById('tes1').value='';
+					
+					
 				}else if($("#vacantId").val() == "2"){
 					$("#eventNameId").prop("disabled", false);
 					$("#careerCenterNameId,#referrerNameId, #referrerPhoneId, #referrerEmailId").prop("disabled", true);
-// 					$("#careerCenterNameId").prop("disabled", false);
-// 					$("#eventNameId,#referrerNameId, #referrerPhoneId, #referrerEmailId").prop("disabled", true);
+// 					document.getElementById('careerCenterNameId').value='';
+// 					document.getElementById('referrerNameId').value='';
+// 					document.getElementById('referrerPhoneId').value='';
+// 					document.getElementById('referrerEmailId').value='';
+					document.getElementById('tes1').value='';
+					
 				}else if($("#vacantId").val() == "3"){
 					$("#referrerNameId, #referrerPhoneId, #referrerEmailId").prop("disabled", false);
 					$("#eventNameId,#careerCenterNameId").prop("disabled", true);
+// 					document.getElementById('eventNameId').value='';
+// 					document.getElementById('careerCenterNameId').value='';
+					document.getElementById('tes1').value='';
+					
 				}else{
 					$("#eventNameId,#careerCenterNameId,#referrerNameId, #referrerPhoneId, #referrerEmailId").prop("disabled", true);
+// 					document.getElementById('eventNameId').value='';
+// 					document.getElementById('careerCenterNameId').value='';
+// 					document.getElementById('referrerNameId').value='';
+// 					document.getElementById('referrerPhoneId').value='';
+// 					document.getElementById('referrerEmailId').value='';
+					document.getElementById('tes1').value='';
 				}
 			});
+			
+			
+
 		</script>
 	</body>
 </html>

@@ -10,8 +10,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.ngexsis.model.BiodataModel;
 import com.ngexsis.model.PelatihanModel;
 import com.ngexsis.model.TimePeriodModel;
+import com.ngexsis.repository.BiodataRepo;
 import com.ngexsis.repository.PelatihanRepo;
 import com.ngexsis.repository.TimePeriodRepo;
 
@@ -21,11 +23,17 @@ public class PelatihanController {
 	private PelatihanRepo repo;
 	@Autowired
 	private TimePeriodRepo repo1;
+	@Autowired
+	private BiodataRepo repoBio;
 	
 	//tampil index
-	@RequestMapping(value = "/pelatihan")
-	public String detail(Model model) {
+	@RequestMapping(value = "pelamar/pelatihan/{id}")
+	public String detail(Model model, @PathVariable (name="id") Long id) {
 		//get semua data
+		
+		BiodataModel item = repoBio.findById(id).orElse(null);
+		model.addAttribute("itemBio", item);
+		
 		List<PelatihanModel> data = repo.findAll();
 		model.addAttribute("listdata", data);
 		
@@ -33,10 +41,16 @@ public class PelatihanController {
 	}
 	
 	//ke tambah
-	@RequestMapping(value = "/tambah")
-	public String tambah(Model model) {
+	@RequestMapping(value = "/tambah/{id}")
+	public String tambah(Model model, @PathVariable(name = "id") Long id) {
 		List<TimePeriodModel> data1 = repo1.findAll();
 		model.addAttribute("listdata1",data1);
+		
+		BiodataModel item = repoBio.findById(id).orElse(null);
+		model.addAttribute("itemBio", item);
+		
+		List<BiodataModel> dataBio = repoBio.findAll();
+		model.addAttribute("listBio", dataBio);
 		return "pelatihan/tambah";
 	}
 	
@@ -56,6 +70,8 @@ public class PelatihanController {
 		List<TimePeriodModel> data1 = repo1.findAll();
 		model.addAttribute("listdata2",data1);
 		
+		List<BiodataModel> dataBio = repoBio.findAll();
+		model.addAttribute("listBio1", dataBio);
 		
 		return "pelatihan/edit";
 	}

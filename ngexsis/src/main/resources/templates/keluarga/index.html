@@ -17,8 +17,8 @@
 				</div>
 				<div>
 					<table class="table">
-						<thead class="blue">
-							<tr style="color:darkblue">
+						<thead class="blue" style="color:darkblue">
+							<tr>
 								<th>HUBUNGAN</th>
 								<th>NAMA</th>
 								<th>JK</th>
@@ -30,7 +30,7 @@
 						</thead>
 					<tbody>
 						<tr th:each ="item : ${listdata}">
-							<td><span th:text="${item.familyTree.name}"></span></td>
+							<td><span th:text="${item.familyRelation.name}"></span></td>
 							<td><span th:text="${item.name}"></span></td>
 							<td><span th:text="${item.jk}"></span></td>
 							<td><span th:text="${item.dob}"></span></td>

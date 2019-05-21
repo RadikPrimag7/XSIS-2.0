@@ -18,75 +18,79 @@
 		<div class="container">
 			<div class="row">
 			
-			<div class="row col-6">
+			
 
-					<div class="col-12">
+					<div class="form-group col-6">
 						<label>Jenis Susunan Keluarga*</label>
 						<select class="form-control col-md" name = "familyTree" id="familytreeId" required>
 							<option value=""> - Pilih - </option>
 							<option th:each="jenis:${listdataTree}" th:value="${jenis.id}" th:text="${jenis.name}"/>
 						</select>
 					</div>
-
-					<div class="col-12">
-						<label>Nama</label>
-						<input class="form-control col-md" type = "text" name = "name" required/>
-					</div>
-
-					<div class="col-12">
-						<label>Pendidikan</label>
-					<select class="form-control col-md" name = "educationLevel" id="educationLvlId" required>
-						<option value=""> - Pilih - </option>
-						<option th:each="pen:${listdataEdu}" th:value="${pen.id}" th:text="${pen.name}"/>
-					</select>
-					</div>
-
-			
-			</div>
-			
-			<div class="row col-6">
-
-					<div class="col-12">
-						<label>Hubungan Keluarga</label>
+					
+					<div class="form-group col-6">
+						<label>Hubungan Keluarga*</label>
 						<select class="form-control col-md" name = "familyRelation" id="familyrelationId" required>
 							<option value=""> - Pilih - </option>
 							<option th:each="relasi:${listdataRelasi}" th:value="${relasi.id}" th:text="${relasi.name}"/>
 						</select>
 					</div>
 
-		
-					<div class="col-6">
+					<div class="form-group col-6">
+						<label>Nama*</label>
+						<input class="form-control col-md" type = "text" name = "name" required/>
+					</div>
+					
+					<div class="form-group col-3">
 						<label>Jenis Kelamin</label>
-							<select class="form-control col-md" name = "jk"  required>
+							<select class="form-control col-md" name = "jk" >
 								<option>- Pilih -</option>
-								<option value="pria">pria</option>
-								<option value="Cewek">Wanita</option>
+								<option value="L">pria</option>
+								<option value="P">Wanita</option>
 								
 							</select>
 					
 					</div>
 
-					<div class="col-6">
+					<div class="form-group col-3 ">
 						<label>tgl. Lahir(yyyy-mm-dd)</label>
-						<input class="form-control col-md" type="date" name="dob" required>
+						<input class="form-control col-md" type="date" name="dob" >
 						
 					</div>
 
-					<div class="col-12">
-						<label>Pekerjaan</label>
-					<input class="form-control col-md" type="text" name="job"  required/>
+					<div class="form-group col-6">
+						<label>Pendidikan</label>
+					<select class="form-control col-md" name = "educationLevel" id="educationLvlId" >
+						<option value=""> - Pilih - </option>
+						<option th:each="pen:${listdataEdu}" th:value="${pen.id}" th:text="${pen.name}"/>
+					</select>
 					</div>
 
-				</div>
+			
+			
+			
+			
+
+					
+
+		
+					
+
+					<div class="col-6">
+						<label>Pekerjaan</label>
+					<input class="form-control col-md" type="text" name="job"  />
+					</div>
+
+				
 				<!-- kosong abis -->
 				
 			
-			<div class="row col-12">
-				<div class="col">
-					<label class = "col-form- table col-md">Catatan</label>
-					<textarea class="form-control col-md" rows = "5" name = "notes" required>tulis catatan</textarea>
+			
+				<div class="form-group col-12">
+					<label >Catatan</label>
+					<textarea class="form-control col-md" rows = "5" name = "notes" >tulis catatan</textarea>
 				</div>
-			</div>
+			
 			
 			<div class="col-12">
 					
@@ -113,7 +117,15 @@
 		</form>
 		
 		<script type="text/javascript">
-		
+// 			$("#familytreeId").change(function(){
+// 				if($("#familytreeId").val()=="1"){
+// 					$("#familyrelationId").val("#id")=="1","2","3";
+// 				}
+				
+// 			})
+			if($("#familyrelationId").val()=="Ayah"){
+				$("#familyrelationId")<2;
+			}
 		</script>
 	</body>
 </html>

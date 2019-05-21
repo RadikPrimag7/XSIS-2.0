@@ -61,13 +61,13 @@ public class KeluargaModel {
 	@Column(name = "is_delete", nullable = true, columnDefinition = "BOOLEAN DEFAULT false")
 	private boolean isDelete;
 	
-	@Column(name = "biodata_id", nullable = true, length = 11)
+	@Column(name = "biodata_id", nullable = true, length = 11, updatable = false, insertable = false)
 	private long biodataId;
 	
-	/*@JsonBackReference , updatable = false, insertable = false
+	@JsonBackReference
 	@ManyToOne
 	@JoinColumn(name ="biodata_id", foreignKey = @ForeignKey(name ="fk_biodata"))
-	private BiodataModel biodata1;*/
+	private BiodataModel biodataKeluarga;
 	
 	@Column(name = "family_tree_type_id", nullable = true, length=11, updatable = false, insertable = false)
 	private long familyTreeTypeId;
@@ -182,13 +182,13 @@ public class KeluargaModel {
 		this.biodataId = biodataId;
 	}
 
-	/*public BiodataModel getBiodata1() {
-		return biodata1;
+	public BiodataModel getBiodata1() {
+		return biodataKeluarga;
 	}
 
 	public void setBiodata1(BiodataModel biodata1) {
-		this.biodata1 = biodata1;
-	}*/
+		this.biodataKeluarga = biodata1;
+	}
 
 	public long getFamilyTreeTypeId() {
 		return familyTreeTypeId;

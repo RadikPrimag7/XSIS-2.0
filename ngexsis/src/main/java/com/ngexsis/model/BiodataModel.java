@@ -22,6 +22,7 @@ import javax.persistence.TemporalType;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 @Table(name="x_biodata")
@@ -125,6 +126,18 @@ public class BiodataModel {
 	@Column(name="marriage_year", length=10)
 	private String marriageYear;
 	
+	@JsonManagedReference
+	@OneToMany (mappedBy = "biodataPelatihan", cascade = CascadeType.ALL)
+	private List<PelatihanModel> listPelatihan = new ArrayList<PelatihanModel>();
+	
+	@JsonManagedReference
+	@OneToMany (mappedBy = "biodataKeluarga", cascade = CascadeType.ALL)
+	private List<KeluargaModel> listKeluarga = new ArrayList<KeluargaModel>();
+	
+	@JsonManagedReference
+	@OneToMany (mappedBy = "biodataSumber", cascade = CascadeType.ALL)
+	private List<SumberLokerModel> listLoker = new ArrayList<SumberLokerModel>();
+	
 	
 //	@OneToMany(mappedBy = "keahlian", cascade = CascadeType.ALL)
 //	private List<KeahlianModel> keahlian = new ArrayList<KeahlianModel>();
@@ -140,6 +153,30 @@ public class BiodataModel {
 //	public void setKeahlian(List<KeahlianModel> keahlian) {
 //		this.keahlian = keahlian;
 //	}
+
+	public List<PelatihanModel> getListPelatihan() {
+		return listPelatihan;
+	}
+
+	public void setListPelatihan(List<PelatihanModel> listPelatihan) {
+		this.listPelatihan = listPelatihan;
+	}
+
+	public List<KeluargaModel> getListKeluarga() {
+		return listKeluarga;
+	}
+
+	public void setListKeluarga(List<KeluargaModel> listKeluarga) {
+		this.listKeluarga = listKeluarga;
+	}
+
+	public List<SumberLokerModel> getListLoker() {
+		return listLoker;
+	}
+
+	public void setListLoker(List<SumberLokerModel> listLoker) {
+		this.listLoker = listLoker;
+	}
 
 	public String getMarriageYear() {
 		return marriageYear;

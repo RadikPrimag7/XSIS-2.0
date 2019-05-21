@@ -11,7 +11,7 @@
 	<input type="text" name="id" th:value="${data.id}" style="display:none">
 		<div class="modal-header" style="background:darkblue">
 			<h3 class ="modal-title" style="color:white">Edit Pelatihan</h3>
-			<button type="button" class="close" data-dismiss="modal" aria-label="close">
+			<button type="button" class="close" data-dismiss="modal" style="color:white" aria-label="close">
 				<span aria-hidden="true">&times;</span>
 			</button>
 		</div>
@@ -20,87 +20,82 @@
 		<div class="container">
 			<div class="row">
 			
-			<div class="row col-6">
-
-					<div class="col-12">
-						<label>Nama (Kursus, Penataran, Pelatihan, Workshop)*</label>
-						<input class="form-control col-md" type = "text" name = "trainingName" th:value= "${data.trainingName}" required/>
-					</div>
-
-					<div class="col-6">
-						<label>Waktu Pelaksanaan</label>
-					
-							<select class="form-control col-md" name="trainingMonth" required>
-								
-						 		<option th:each="i:${#numbers.sequence(1,12)}" th:value="${i}" th:text="${i}" th:selected="${i+''==data.trainingMonth}"/>
-							</select>
-						
-						
-					</div>
-
-					<div class="col-6">
-						<label><br></label> 
-						
-						
-							<select id="getYear" class="form-control col-md" name ="trainingYear"  required>
-								<option value=""> - Pilih -</option>
-								<option th:each="year : ${#numbers.sequence(#dates.year(#dates.createNow()), 1969)}" th:value="${year}" th:text="${year}" th:selected="${year+''==data.trainingYear}"/>
-							</select>
-						
-					</div>
-
-					<div class="col-12">
-						<label >Kota</label>
-						<input class="form-control col-md" type="text" name="city" th:value= "${data.city}" required/>
-					</div>
-
-			
-			</div>
-			
-			<div class="row col-6">
-
-					<div class="col-12">
-						<label>Penyelenggara</label>
-						<label><br></label>
-						<input class="form-control col-md" type = "text" name = "oganizer" th:value= "${data.oganizer}"  required/>
-					</div>
-
-		
-					<div class="col-6">
-						<label>Lama Durasi</label>
-						<input class="form-control col-md" type="text" name="trainingDuration" th:value= "${data.trainingDuration}" required/>
-					</div>
-
-					<div class="col-6">
-						<label><br></label> 
-						<select  class="form-control col-md"  name="periodId" id="tambahinid" required>
-							<option value=""> - Pilih - </option>
-							<option th:each= "ld:${listdata2}" th:value="${ld.id}" th:text="${ld.name}" th:field="${data.timePeriodId}"/>	
-						</select>
-					</div>
-
-					<div class="col-12">
-						<label>Negara</label>
-						<input class="form-control col-md" type="text" name="country" th:value= "${data.country}" required/>
-					</div>
-
+			<!-- Nama pelatihan -->
+                <div class="form-group col-6">
+                    <label>Nama (Kursus, Penataran, Pelatihan, Workshop)*</label>
+                    <input class="form-control col-md" type = "text" name = "trainingName" th:value= "${data.trainingName}"required>
+                </div>
+                
+                <!-- Penyelenggara -->
+                <div class="form-group col-6">
+                    <label>Penyelenggara*</label>
+                    <input class="form-control col-md" type = "text" name = "oganizer" th:value= "${data.oganizer}" required>
+                </div>   
+                
+                <!-- Waktu Pelaksanaan Bulan -->
+                <div class="form-group col-3">
+                    <label>Waktu Pelaksanaan</label>
+                    <select class="form-control col-md" name="trainingMonth" >
+						<option value="">- Pilih Bulan -</option>
+						<option th:each="i:${#numbers.sequence(1,12)}" th:value="${i}" th:text="${i}" th:selected="${i+''==data.trainingMonth}"/>
+					</select> 	
+                </div>
+                
+                <!-- Waktu pelaksaan Taun-->
+                <div class="form-group col-3">
+                    
+                    <label><br></label>
+                    <select id="getYear" class="form-control col-md" name ="trainingYear">
+						<option value=""> - Pilih - </option>
+						<option th:each="year : ${#numbers.sequence(#dates.year(#dates.createNow()), 1969)}" th:value="${year}" th:text="${year}" th:selected="${year+''==data.trainingYear}"/>
+					</select>
+                </div>
+                
+                <!-- Durasi -->
+                <div class="form-group col-3">
+                    <label>Lama Durasi</label>
+						<input class="form-control col-md" type="text" name="trainingDuration" th:value= "${data.trainingDuration}">
+                </div>
+                <!-- Pilih rentang waktu -->
+                <div class="form-group col-3">
+                    <label><br></label>
+                    <select  class="form-control col-md"  name="periodId" id="tambahinid" >
+						<option value=""> - Pilih - </option>
+						<option th:each= "ld:${listdata2}" th:value="${ld.id}" th:text="${ld.name}" th:field="${data.timePeriodId}"/>	
+	
+					</select>
 				</div>
-				<!--  -->
 				
+				 <!-- kota pelatihan -->
+                <div class="form-group col-6">
+                    <label>Kota</label>
+                    <input class="form-control col-md" type="text" name="city" th:value= "${data.city}">
+                </div>
+                
+                <!-- negara pelaksanaan -->
+                <div class="form-group col-6">
+                    <label>Negara</label>
+					<input class="form-control col-md" type="text" name="country" th:value= "${data.country}">
+                </div> 
 			
-			<div class="row col-12">
-				<div class="col">
-					<label class = "col-form- table col-md-2">Catatan</label>
-					<textarea class="form-control col-md" rows = "5" name = "notes" th:text= "${data.notes}"required>tulis catatan</textarea>
-				</div>
+			<div class="form-group col-12">
+				
+					<label>Catatan</label>
+					<textarea class="form-control col-md" rows = "5" name = "notes" th:text= "${data.notes}"></textarea>
+				
 			</div>
+			
+			
 			
 			<div class="col-12">
 					
 					</div>
 					
 					<div class="col-12">
-					
+					<select name="biodataPelatihan">
+								
+								<option th:each= "ld:${listBio1}" th:value="${ld.id}" th:text="${ld.nickName}" th:field="${data.timePeriodId}"/>
+						</select>
 						<div class="btn-group  float-right">
 							<button  class="btn btn-warning" data-dismiss="modal" type="button">Batal</button>
 							<button  class="btn btn-dark" type="submit">Simpan</button>

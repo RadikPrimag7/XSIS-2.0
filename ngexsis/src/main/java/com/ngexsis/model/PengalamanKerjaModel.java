@@ -60,7 +60,7 @@ public class PengalamanKerjaModel {
 	@Column(name= "is_delete")
 	private boolean isDelete;
 	
-	@Column(name="biodata_id")
+	@Column(name="biodata_id", nullable = true, length = 11, updatable = false, insertable = false)
 	private long biodataId;
 	
 	@JsonBackReference

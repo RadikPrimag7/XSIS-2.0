@@ -33,6 +33,7 @@ public class PengalamanKerjaController {
 	public String index(Model model, @PathVariable(name="id")Long id) {
 		List<PengalamanKerjaModel> data = repo.findAll();
 		model.addAttribute("listData",data);
+		
 		BiodataModel item=biorepo.findById(id).orElse(null);
 		model.addAttribute("itemBio",item);
 		return "pengalaman/index";

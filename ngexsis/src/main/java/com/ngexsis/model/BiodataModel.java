@@ -138,6 +138,16 @@ public class BiodataModel {
 	@OneToMany (mappedBy = "biodataSumber", cascade = CascadeType.ALL)
 	private List<SumberLokerModel> listLoker = new ArrayList<SumberLokerModel>();
 	
+	@JsonManagedReference
+	@OneToMany(mappedBy = "biodataPengalaman", cascade = CascadeType.ALL)
+	private List<PengalamanKerjaModel> listPengalaman = new ArrayList<PengalamanKerjaModel>();
+	
+	@JsonManagedReference
+	@OneToMany(mappedBy = "biodataSertifikasi", cascade = CascadeType.ALL)
+	private List<SertifikasiModel> listSertifikasi = new ArrayList<SertifikasiModel>();
+	
+	
+	
 	
 //	@OneToMany(mappedBy = "keahlian", cascade = CascadeType.ALL)
 //	private List<KeahlianModel> keahlian = new ArrayList<KeahlianModel>();

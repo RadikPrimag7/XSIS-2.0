@@ -32,7 +32,7 @@
 					<a class="nav-link active goToBiodata" th:href="@{/pelamar/biodata/{id}(id=${data.id})}">
 						Biodata
 					</a>
-					<a class="nav-link" href="#">
+					<a class="nav-link goToPengalamanKerja" th:href="@{/pelamar/pengalaman/{id}(id=${data.id})}">
 						Pengalaman Kerja
 					</a>
 					<a class="nav-link" href="#">
@@ -41,10 +41,10 @@
 					<a class="nav-link goToPelatihan" th:href="@{/pelamar/pelatihan/{id}(id=${data.id})}">
 						Pelatihan
 					</a>
-					<a class="nav-link" href="#">
+					<a class="nav-link goToSertifikasi" th:href="@{/pelamar/sertifikasi/{id}(id=${data.id})}">
 						Sertifikasi
 					</a>
-					<a class="nav-link" href="#">
+					<a class="nav-link goToSumbeloker" th:href="@{/pelamar/sumberloker/add/{id}(id=${data.id})}">
 						Sumber Lowongan Kerja
 					</a>
 					<a class="nav-link" href="#">
@@ -56,7 +56,7 @@
 					<a class="nav-link goToKeahlian" th:href="@{/pelamar/keahlian/{id}(id=${data.id})}">
 						Keahlian
 					</a>
-					<a class="nav-link" href="#">
+					<a class="nav-link goToLain" th:href="@{/pelamar/lainlain/{id}(id=${data.id})}">
 						Lain-lain
 					</a>
 					<a class="nav-link" href="#">
@@ -112,6 +112,32 @@
    		return false;
    	});
     
+    $(".goToPengalamanKerja").click(function() {
+    	var a = $(this).attr("href");
+   		$.ajax({
+   			url:a,
+   			type:'get',
+   			dataType:'html',
+   			success:function(hasil){
+   				$("#detailList").find(".detailContent").html(hasil);
+   			}
+   		});
+   		return false;
+   	});
+    
+    $(".goToSumbeloker").click(function() {
+    	var a = $(this).attr("href");
+   		$.ajax({
+   			url:a,
+   			type:'get',
+   			dataType:'html',
+   			success:function(hasil){
+   				$("#detailList").find(".detailContent").html(hasil);
+   			}
+   		});
+   		return false;
+   	});
+    
     $(".goToKeahlian").click(function() {
     	var a = $(this).attr("href");
    		$.ajax({
@@ -126,6 +152,32 @@
    	});
     
     $(".goToPelatihan").click(function() {
+    	var a = $(this).attr("href");
+   		$.ajax({
+   			url:a,
+   			type:'get',
+   			dataType:'html',
+   			success:function(hasil){
+   				$("#detailList").find(".detailContent").html(hasil);
+   			}
+   		});
+   		return false;
+   	});
+    
+    $(".goToSertifikasi").click(function() {
+    	var a = $(this).attr("href");
+   		$.ajax({
+   			url:a,
+   			type:'get',
+   			dataType:'html',
+   			success:function(hasil){
+   				$("#detailList").find(".detailContent").html(hasil);
+   			}
+   		});
+   		return false;
+   	});
+    
+    $(".goToLain").click(function() {
     	var a = $(this).attr("href");
    		$.ajax({
    			url:a,

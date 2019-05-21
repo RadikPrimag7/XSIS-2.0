@@ -16,7 +16,8 @@
 	
 	<body>
 	<form th:action="@{/pelatihan/save}" method = "post">
-	<input type="text" name="biodataId" th:value="${itemBio.id}">
+	<input type="hidden" name="biodataPelatihan" th:value="${itemBio.id}">
+	<input type="hidden" name="createdBy" th:value="${itemBio.id}">
 		<div class="modal-header" style="background:darkblue">
 			<h3 class ="modal-title" style="color:white">Tambah Pelatihan</h3>
 			<button type="button" class="close" data-dismiss="modal" style="color:white" aria-label="close">
@@ -99,10 +100,10 @@
 					</div>
 					
 					<div class="col-12">
-						<select name="biodataPelatihan">
+<!-- 						<select name="biodataPelatihan"> -->
 								
-								<option th:each= "ld:${listBio}" th:value="${ld.id}" th:text="${ld.nickName}"/>
-						</select>
+<!-- 								<option th:each= "ld:${listBio}" th:value="${ld.id}" th:text="${ld.nickName}"/> -->
+<!-- 						</select> -->
 						<div class="btn-group  float-right">
 							
 							<button  class="btn btn-warning" data-dismiss="modal" type="button">Batal</button>

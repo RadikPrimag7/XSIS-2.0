@@ -27,7 +27,7 @@ public class PelatihanController {
 	private BiodataRepo repoBio;
 	
 	//tampil index
-	@RequestMapping(value = "pelamar/pelatihan/{id}")
+	@RequestMapping(value = "/pelamar/pelatihan/{id}")
 	public String detail(Model model, @PathVariable (name="id") Long id) {
 		//get semua data
 		
@@ -58,7 +58,7 @@ public class PelatihanController {
 	@RequestMapping(value ="/pelatihan/save", method = RequestMethod.POST)
 	public String save(@ModelAttribute PelatihanModel item) {
 		repo.save(item);
-		return "redirect:/pelatihan";
+		return "redirect:/pelamar";
 	}
 	
 	//melakukan edit data

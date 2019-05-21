@@ -59,15 +59,15 @@ public class SertifikasiModel {
 	@Column(name = "is_delete", nullable = false)
 	private boolean isDelete;
 	
-	/*
-	@Column(name = "biodata_id", nullable = false, length = 11)
+	
+	@Column(name = "biodata_id", nullable = false, length = 11, updatable = false, insertable = false)
 	private Long biodataId;
 	
 	@JsonBackReference
 	@ManyToOne
 	@JoinColumn(name = "biodata_id", foreignKey = @ForeignKey(name = "fk_biodata_sertifikasi"))
-	private BiodataModel biodata;
-	*/
+	private BiodataModel biodataSertifikasi;
+	
 	
 	@Column(name = "certificate_name", nullable = true, length = 200)
 	private String certificateName;
@@ -89,6 +89,22 @@ public class SertifikasiModel {
 	
 	@Column(name = "notes", nullable = true, length = 1000)
 	private String notes;
+
+	public Long getBiodataId() {
+		return biodataId;
+	}
+
+	public void setBiodataId(Long biodataId) {
+		this.biodataId = biodataId;
+	}
+
+	public BiodataModel getBiodataSertifikasi() {
+		return biodataSertifikasi;
+	}
+
+	public void setBiodataSertifikasi(BiodataModel biodataSertifikasi) {
+		this.biodataSertifikasi = biodataSertifikasi;
+	}
 
 	public Long getId() {
 		return id;

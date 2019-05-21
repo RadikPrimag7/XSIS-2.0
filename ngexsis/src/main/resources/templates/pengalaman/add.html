@@ -119,7 +119,7 @@
 	opt1.value = "";
 	opt1.innerHTML = "- Pilih Tahun -";
 	select1.appendChild(opt1);
-	for (var i = max1; i>=min1; i--){
+	for (var i = min1; i<=max1; i++){
 		var opt1 = document.createElement('option');
 		opt1.value = i;
 		opt1.innerHTML = i;
@@ -127,24 +127,20 @@
 	}
 	//select1.value = new Date().getFullYear();
 	
-	$("#joinMonth, #joinYear").change(function() {
-	    if ($("#joinMonth, #joinYear").val() != "" || null) {
-	    	var max2 = new Date().getFullYear();
-	    	min2 = $("#resignYear"),
-	    	select2 = document.getElementById('resignYear');
-	    	
-	    	var opt2 = document.createElement('option');
-	    	opt2.value = "";
-	    	opt2.innerHTML = "- Pilih Tahun -";
-	    	select2.appendChild(opt2);
-	    	for (var j = max2; j>=min2; j--){
-	    		var opt2 = document.createElement('option');
-	    		opt2.value = j;
-	    		opt2.innerHTML = j;
-	    		select2.appendChild(opt2);
-	    	}
-	    }
-	});
+	var min2 = new Date().getFullYear();
+	max2 = min2-20,
+	select2 = document.getElementById('resignYear');
+	
+	var opt2 = document.createElement('option');
+	opt2.value = "";
+	opt2.innerHTML = "- Pilih Tahun -";
+	select2.appendChild(opt2);
+	for (var j = min2; j>=max2; j--){
+		var opt2 = document.createElement('option');
+		opt2.value = j;
+		opt2.innerHTML = j;
+		select2.appendChild(opt2);
+	}
 	
 	//Select tahun up
 	

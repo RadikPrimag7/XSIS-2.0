@@ -28,7 +28,7 @@ public class LoginController {
 	@Autowired
 	private BiodataRepo biorepo;
 	
-	@RequestMapping(value="/login/index", method=RequestMethod.POST)
+	@RequestMapping(value="/login/access", method=RequestMethod.POST)
 	public String index(Model model,@RequestParam String email, @RequestParam String abupwd){
 		
 		List<UserModel>data = repo.find(email, abupwd);

@@ -14,7 +14,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.ngexsis.model.BiodataModel;
 import com.ngexsis.model.PengalamanKerjaModel;
+import com.ngexsis.repository.BiodataRepo;
 import com.ngexsis.repository.PengalamanKerjaRepo;
 
 @Controller
@@ -24,15 +26,27 @@ public class PengalamanKerjaController {
 	@Autowired
 	private PengalamanKerjaRepo repo;	
 	
-	@RequestMapping(value="/pengalaman")
-	public String index(Model model) {
+	@Autowired
+	private BiodataRepo biorepo;
+	
+	@RequestMapping(value="pelamar/pengalaman/{id}")
+	public String index(Model model, @PathVariable(name="id")Long id) {
 		List<PengalamanKerjaModel> data = repo.findAll();
 		model.addAttribute("listData",data);
+		BiodataModel item=biorepo.findById(id).orElse(null);
+		model.addAttribute("itemBio",item);
 		return "pengalaman/index";
 	}
 	
-	@RequestMapping(value="/pengalaman/add")
-	public String add() {
+	@RequestMapping(value="/pengalaman/add/{id}")
+	public String add(Model model, @PathVariable(name="id") Long id) {
+		
+		BiodataModel item = biorepo.findById(id).orElse(null);
+		model.addAttribute("itemBio", item);
+		
+		List<BiodataModel> dataBio = biorepo.findAll();
+		model.addAttribute("listBio", dataBio);
+		
 		return "pengalaman/add";
 	}
 	
@@ -50,6 +64,9 @@ public class PengalamanKerjaController {
 		PengalamanKerjaModel item = repo.findById(id).orElse(null);
 		
 		model.addAttribute("data",item);
+		
+		List<BiodataModel> dataBio = biorepo.findAll();
+		model.addAttribute("listBio1", dataBio);
 		
 		
 		return "pengalaman/edit";

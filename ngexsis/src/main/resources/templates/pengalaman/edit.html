@@ -59,7 +59,7 @@
 
 					<div class="col-6">
 						<label>Waktu Keluar *</label> 
-						<select name="resignMonth" class="form-control" disabled>
+						<select name="resignMonth" class="form-control">
 							<option th:each="i:${#numbers.sequence(1,12)}" th:value="${i}" th:text="${i}" th:selected="${i+''==data.resignMonth}"/>
 						</select>
 					</div>

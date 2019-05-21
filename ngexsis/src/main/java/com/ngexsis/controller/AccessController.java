@@ -13,10 +13,13 @@ import com.ngexsis.model.BiodataModel;
 import com.ngexsis.model.UserModel;
 import com.ngexsis.repository.BiodataRepo;
 import com.ngexsis.repository.RoleRepo;
+import com.ngexsis.repository.UserRepo;
 
 @Controller
 public class AccessController {
 
+	@Autowired
+	private UserRepo repo;
 	
 	@Autowired
 	private BiodataRepo biorepo;

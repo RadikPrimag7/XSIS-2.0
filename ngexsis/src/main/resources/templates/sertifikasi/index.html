@@ -3,6 +3,7 @@
 <head>
 	<meta charset="ISO-8859-1">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
 	<title>Sertifikasi Index</title>
 	
 	<!-- Bootstrap CSS -->
@@ -14,11 +15,11 @@
 </head>
 <body>
 	<div class="container">
-		<h3>Sertifikasi <a href="#" id="btn-add"><i class="fas fa-plus-circle"></i></a></h3>
+		<h3 style="color: darkblue">Sertifikasi <a th:href="@{/sertifikasi/add/{id}(id=${itemBio.id})}" id="btn-add" class="btn-add1"><i class="fas fa-plus-circle"></i></a></h3>
 		
 		<div>
 			<table class="table table-striped">
-				<thead>
+				<thead style="color: darkblue">
 					<tr>
 						<th>NAMA SERTIFIKASI</th>
 						<th>PENERBIT</th>
@@ -74,9 +75,10 @@
     <script type="text/javascript" src="../../fontawesome-free-5.8.1-web/js/fontawesome.min.js"></script>
     
     <script type="text/javascript">
-    	$("#btn-add").click(function(){
+    	$(".btn-add1").click(function(){
+    		var a1 = $(this).attr("href");
     		$.ajax({
-    			url:'/sertifikasi/add',
+    			url:a1,
     			type:'get',
     			datType:'html',
     			success:function(hasil){
@@ -84,6 +86,7 @@
     				$("#modal-form-lg").modal("show");
     			}
     		});
+    		return false;
     	});
     	
     	$(".btn-edit").click(function(){

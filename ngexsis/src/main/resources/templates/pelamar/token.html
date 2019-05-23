@@ -16,7 +16,7 @@
 				<tbody>
 					<td align="center">
 						<label class="col col-form-label">Atur Kadaluarsa Token</label>
-						<input type="date" name="biodata[expiredDate]" id="expiredDate" class="expiredDate" th:attr="min=${#dates.format(#dates.createNow(), 'yyyy-MM-dd')}"/>
+						<input type="date" name="expiredToken" id="expiredToken" class="expiredToken" th:attr="min=${#dates.format(#dates.createNow(), 'yyyy-MM-dd')}"/>
 					</td>
 				</tbody>
 			</table>
@@ -28,28 +28,30 @@
 			</div>
 			<br>
     		
-    		<input type="hidden" name="biodata[id]" th:value="${data.id}">
-    		<!-- 
-    		<input type="hidden" name="biodata[fullname]" th:value="${data.fullname}">
-    		<input type="hidden" name="biodata[nickName]" th:value="${data.nickName}">
-    		<input type="hidden" name="biodata[pob]" th:value="${data.pob}">
-    		<input type="hidden" name="biodata[dob]" th:value="${data.dob}">
-    		<input type="hidden" name="biodata[gender]" th:value="${data.gender}">
-    		<input type="hidden" name="biodata[religionId]" th:value="${data.religionId}">
-    		<input type="hidden" name="biodata[height]" th:value="${data.height}">
-    		<input type="hidden" name="biodata[weight]" th:value="${data.weight}">
-    		<input type="hidden" name="biodata[nationality]" th:value="${data.nationality}">
-    		<input type="hidden" name="biodata[ethnic]" th:value="${data.ethnic}">
-    		<input type="hidden" name="biodata[hobby]" th:value="${data.hobby}">
-    		<input type="hidden" name="biodata[identityTypeId]" th:value="${data.identityTypeId}">
-    		<input type="hidden" name="biodata[identityNo]" th:value="${data.identityNo}">
-    		<input type="hidden" name="biodata[email]" th:value="${data.email}">
-    		<input type="hidden" name="biodata[phoneNumber1]" th:value="${data.phoneNumber1}">
-    		<input type="hidden" name="biodata[phoneNumber2]" th:value="${data.phoneNumber2}">
-    		<input type="hidden" name="biodata[parentPhoneNumber]" th:value="${data.parentPhoneNumber}">
-    		<input type="hidden" name="biodata[childSequence]" th:value="${data.childSequence}">
-    		<input type="hidden" name="biodata[howManyBrothers]" th:value="${data.howManyBrothers}">
-    		 -->
+    		<input type="hidden" name="id" th:value="${data.id}">
+    		<input type="hidden" name="fullname" th:value="${data.fullname}">
+    		<input type="hidden" name="nickName" th:value="${data.nickName}">
+    		<input type="hidden" name="pob" th:value="${data.pob}">
+    		<input type="hidden" name="dob" th:value="${data.dob}">
+    		<input type="hidden" name="gender" th:value="${data.gender}">
+    		<input type="hidden" name="religionId" th:value="${data.religionId}">
+    		<input type="hidden" name="height" th:value="${data.height}">
+    		<input type="hidden" name="weight" th:value="${data.weight}">
+    		<input type="hidden" name="nationality" th:value="${data.nationality}">
+    		<input type="hidden" name="ethnic" th:value="${data.ethnic}">
+    		<input type="hidden" name="hobby" th:value="${data.hobby}">
+    		<input type="hidden" name="identityTypeId" th:value="${data.identityTypeId}">
+    		<input type="hidden" name="identityNo" th:value="${data.identityNo}">
+    		<input type="hidden" name="email" th:value="${data.email}">
+    		<input type="hidden" name="phoneNumber1" th:value="${data.phoneNumber1}">
+    		<input type="hidden" name="phoneNumber2" th:value="${data.phoneNumber2}">
+    		<input type="hidden" name="parentPhoneNumber" th:value="${data.parentPhoneNumber}">
+    		<input type="hidden" name="childSequence" th:value="${data.childSequence}">
+    		<input type="hidden" name="howManyBrothers" th:value="${data.howManyBrothers}">
+    		<input type="hidden" name="maritalStatusId" th:value="${data.maritalStatusId}">
+    		<input type="hidden" name="addrbookId" th:value="${data.addrbookId}">
+    		<input type="hidden" name="token" th:value="${data.token}">
+    		<input type="hidden" name="marriageYear" th:value="${data.marriageYear}">
     		
     		
     	</form>

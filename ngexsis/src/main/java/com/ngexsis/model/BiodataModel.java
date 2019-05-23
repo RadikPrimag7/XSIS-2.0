@@ -121,7 +121,7 @@ public class BiodataModel {
 	@Column(name="expired_token")
 	@DateTimeFormat(pattern="yyyy-MM-dd")
 	@Temporal(TemporalType.DATE)
-	private Date expiredDate;
+	private Date expiredToken;
 	
 	@Column(name="marriage_year", length=10)
 	private String marriageYear;
@@ -380,13 +380,31 @@ public class BiodataModel {
 		this.token = token;
 	}
 
-	public Date getExpiredDate() {
-		return expiredDate;
+	public Date getExpiredToken() {
+		return expiredToken;
 	}
 
-	public void setExpiredDate(Date expiredDate) {
-		this.expiredDate = expiredDate;
+	public void setExpiredToken(Date expiredToken) {
+		this.expiredToken = expiredToken;
 	}
+
+	public List<PengalamanKerjaModel> getListPengalaman() {
+		return listPengalaman;
+	}
+
+	public void setListPengalaman(List<PengalamanKerjaModel> listPengalaman) {
+		this.listPengalaman = listPengalaman;
+	}
+
+	public List<SertifikasiModel> getListSertifikasi() {
+		return listSertifikasi;
+	}
+
+	public void setListSertifikasi(List<SertifikasiModel> listSertifikasi) {
+		this.listSertifikasi = listSertifikasi;
+	}
+
+
 //
 //	public ReligionModel getReligion() {
 //		return religion;

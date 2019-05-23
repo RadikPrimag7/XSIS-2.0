@@ -86,7 +86,7 @@ public class PelamarController {
 	}
 	
 	@RequestMapping(value="/pelamar/savetoken", method=RequestMethod.POST)
-	public String save(@ModelAttribute BiodataModel item) {
+	public String saveToken(@ModelAttribute BiodataModel item) {
 		repoBio.save(item);
 		return "redirect:/pelamar";
 	}

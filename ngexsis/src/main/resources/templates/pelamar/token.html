@@ -4,7 +4,7 @@
     <title>Kirim token</title>
 </head>
 <body>
-	<div class="modal-header" style="background-color: blue">
+	<div class="modal-header" style="background-color: darkblue">
     	<h4 class="modal-title" style="color:white">Kirim Token</h4>
     	<button type="button" class="close" data-dismiss="modal" aria-label="Close" style="color: white">
 			<span aria-hidden="true">&times;</span>
@@ -16,7 +16,7 @@
 				<tbody>
 					<td align="center">
 						<label class="col col-form-label">Atur Kadaluarsa Token</label>
-						<input type="date" name="expiredToken" id="expiredToken" class="expiredToken" th:attr="min=${#dates.format(#dates.createNow(), 'yyyy-MM-dd')}"/>
+						<input type="date" name="expiredToken" id="expiredToken" class="form-control" th:attr="min=${#dates.format(#dates.createNow(), 'yyyy-MM-dd')}"/>
 					</td>
 				</tbody>
 			</table>

@@ -48,7 +48,7 @@ public class SumberLokerController {
 		model.addAttribute("listdata1", data1);
 		
 		BiodataModel item = repoBio.findById(id).orElse(null);
-		model.addAttribute("listBio1", item);
+		model.addAttribute("listBio", item);
 		
 		List<BiodataModel> dataBio = repoBio.findAll();
 		model.addAttribute("listDataBio", dataBio);

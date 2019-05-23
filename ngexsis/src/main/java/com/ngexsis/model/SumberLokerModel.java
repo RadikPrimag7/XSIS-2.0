@@ -64,13 +64,7 @@ public class SumberLokerModel{
 	@JoinColumn(name ="biodata_id", foreignKey = @ForeignKey(name ="fk_biodata"))
 	private BiodataModel biodataSumber;
 	
-	public BiodataModel getBiodata1() {
-		return biodataSumber;
-	}
-
-	public void setBiodata1(BiodataModel biodata1) {
-		this.biodataSumber = biodata1;
-	}
+	
 
 	@Column(name = "vacancy_source_id", nullable = true, length = 11, updatable = false, insertable = false)
 	private long vacancySourceId;
@@ -110,6 +104,15 @@ public class SumberLokerModel{
 	private boolean isProcess;
 	
 	
+	
+	
+	public BiodataModel getBiodataSumber() {
+		return biodataSumber;
+	}
+
+	public void setBiodataSumber(BiodataModel biodataSumber) {
+		this.biodataSumber = biodataSumber;
+	}
 
 	public VacancySauceModel getVacancySource() {
 		return vacancySource;

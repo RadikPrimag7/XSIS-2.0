@@ -16,8 +16,12 @@
 	
 	<body>
 	<form th:action="@{/pelatihan/save}" method = "post">
+	
+	<!-- untuk menginput biodataId-->
 	<input type="hidden" name="biodataPelatihan" th:value="${itemBio.id}">
 	<input type="hidden" name="createdBy" th:value="${itemBio.id}">
+<!-- 	////////////////////////////////////////////////// -->
+
 		<div class="modal-header" style="background:darkblue">
 			<h3 class ="modal-title" style="color:white">Tambah Pelatihan</h3>
 			<button type="button" class="close" data-dismiss="modal" style="color:white" aria-label="close">

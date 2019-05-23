@@ -61,6 +61,14 @@ public class KeluargaModel {
 	@Column(name = "is_delete", nullable = true, columnDefinition = "BOOLEAN DEFAULT false")
 	private boolean isDelete;
 	
+	public BiodataModel getBiodataKeluarga() {
+		return biodataKeluarga;
+	}
+
+	public void setBiodataKeluarga(BiodataModel biodataKeluarga) {
+		this.biodataKeluarga = biodataKeluarga;
+	}
+
 	@Column(name = "biodata_id", nullable = true, length = 11, updatable = false, insertable = false)
 	private long biodataId;
 	

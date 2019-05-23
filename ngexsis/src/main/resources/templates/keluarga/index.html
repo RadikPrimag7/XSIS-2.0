@@ -1,8 +1,15 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 	<head>
-		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
-		<link rel="stylesheet" href="/css/bootstrap.min.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="bootstrap-4.3.1-dist/css/bootstrap.min.css">
+
+    <!-- Font Awesome CSS -->
+    <link rel="stylesheet" href="fontawesome-free-5.8.1-web/css/all.min.css">
 		
 		
 	</head>
@@ -12,7 +19,7 @@
 		<div class="container">
 			<div>
 				<div class="row">
-					<h1 class="box-title" style="color:darkblue">Keluarga  </a></h1><span><a id="btn-add" class="btn btn-lg" href="#"><i class="fas fa-plus-circle"></i></a></span>
+					<h1 class="box-title" style="color:darkblue">Keluarga  </a></h1><span><a id="btn-add" class="btn btn-lg btn-add1" th:href="@{/add/{id}(id=${itemBio.id})}"><i class="fas fa-plus-circle"></i></a></span>
 					
 				</div>
 				<div>
@@ -138,9 +145,28 @@
 // 			})
 // 		}
 			
-			$("#btn-add").click(function(){
+// 			$("#btn-add").click(function(){
+// 				$.ajax({
+// 					url:'/add',
+// 					type:'get',
+// 					dataType:'html',
+// 					success:function(hasil){
+// 						$("#modal-form").find(".modal-content").html(hasil);
+// 						$("#modal-form").modal("show");
+// 					}
+// 				})
+// // 				.done(function(){
+// // 					loadFamTree();
+// // 					loadFamRelasi();
+// // 					loadEduLevel();
+// // 				})
+				
+// 			})
+
+			$(".btn-add1").click(function(){
+				var a = $(this).attr("href");
 				$.ajax({
-					url:'/add',
+					url:a,
 					type:'get',
 					dataType:'html',
 					success:function(hasil){
@@ -148,13 +174,11 @@
 						$("#modal-form").modal("show");
 					}
 				})
-// 				.done(function(){
-// 					loadFamTree();
-// 					loadFamRelasi();
-// 					loadEduLevel();
-// 				})
-				
-			})
+// 				.done(function () {
+// 					loadLevel();
+// 				});
+				return false;
+			});
 			
 			$(".btn-delete").click(function(){
 				var a = $(this).attr("href");

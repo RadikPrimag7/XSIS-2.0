@@ -16,13 +16,17 @@
 	
 	<body>
 	<form th:action="@{/pelatihan/save}" method = "post">
+	<input type="text" name="modifiedBy" th:value="${data.biodataId}" style="display:none">
+	<input type="text" name="biodataPelatihan" th:value="${data.biodataId}" style="display:none">
 	<input type="text" name="id" th:value="${data.id}" style="display:none">
-	<input type="hidden" name="modifiedBy" th:value="${itemBio.id}">
+
+	
 		<div class="modal-header" style="background:darkblue">
 			<h3 class ="modal-title" style="color:white">Edit Pelatihan</h3>
 			<button type="button" class="close" data-dismiss="modal" style="color:white" aria-label="close">
 				<span aria-hidden="true">&times;</span>
 			</button>
+	
 		</div>
 		
 	<div class="modal-body">
@@ -101,10 +105,10 @@
 					</div>
 					
 					<div class="col-12">
-					<select name="biodataPelatihan">
+<!-- 					<select name="biodataPelatihan"> -->
 								
-								<option th:each= "ld:${listBio1}" th:value="${ld.id}" th:text="${ld.nickName}" th:field="${data.timePeriodId}"/>
-						</select>
+<!-- 								<option th:each= "ld:${listBio1}" th:value="${ld.id}" th:text="${ld.nickName}" th:field="${data.timePeriodId}"/> -->
+<!-- 						</select> -->
 						<div class="btn-group  float-right">
 							<button  class="btn btn-warning" data-dismiss="modal" type="button">Batal</button>
 							<button  class="btn btn-dark" type="submit">Simpan</button>

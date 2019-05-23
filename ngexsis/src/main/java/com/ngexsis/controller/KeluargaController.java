@@ -10,10 +10,12 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.ngexsis.model.BiodataModel;
 import com.ngexsis.model.EducationLvlModel;
 import com.ngexsis.model.FamilyRelationModel;
 import com.ngexsis.model.FamilyTreeModel;
 import com.ngexsis.model.KeluargaModel;
+import com.ngexsis.repository.BiodataRepo;
 import com.ngexsis.repository.EducationLvlRepo;
 import com.ngexsis.repository.FamilyRelationRepo;
 import com.ngexsis.repository.FamilyTreeRepo;
@@ -34,16 +36,25 @@ public class KeluargaController {
 	@Autowired
 	private EducationLvlRepo repoEdu;
 	
-	@RequestMapping (value = "/keluarga")
-	public String index(Model model) {
+	@Autowired
+	private BiodataRepo repoBio;
+	
+	@RequestMapping (value = "pelamar/keluarga/{id}")
+	public String index(Model model, @PathVariable(name="id") Long id) {
+		
+		BiodataModel item = repoBio.findById(id).orElse(null);
+		model.addAttribute("itemBio", item);
+		
 		List<KeluargaModel> data = repo.findAll();
 		model.addAttribute("listdata",data);
+		
+		
 		return "keluarga/index";
 		
 	}
 	
-	@RequestMapping(value = "/add")
-	public String add(Model model) {
+	@RequestMapping(value = "/add/{id}")
+	public String add(Model model, @PathVariable(name="id") Long id) {
 		List<FamilyTreeModel> data = repoTree.findAll();
 		model.addAttribute("listdataTree",data);
 		
@@ -52,13 +63,23 @@ public class KeluargaController {
 		
 		List<EducationLvlModel> data2 = repoEdu.findAll();
 		model.addAttribute("listdataEdu",data2);
+		
+		BiodataModel item = repoBio.findById(id).orElse(null);
+		model.addAttribute("itemBio", item);
+		
+		List<BiodataModel> dataBio = repoBio.findAll();
+		model.addAttribute("listBio", dataBio);
+		
+		
 		return "keluarga/add";
+		
+
 	}
 	
 	@RequestMapping(value = "/keluarga/save", method = RequestMethod.POST)
 	public String save(@ModelAttribute KeluargaModel item) {
 		repo.save(item);
-		return "redirect:/keluarga";
+		return "redirect:/pelamar";
 	}
 	
 	@RequestMapping(value = "/keluarga/edit/{id}", method = RequestMethod.GET)

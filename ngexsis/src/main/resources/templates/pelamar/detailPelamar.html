@@ -50,7 +50,7 @@
 					<a class="nav-link" href="#">
 						Organisasi
 					</a>
-					<a class="nav-link" href="#">
+					<a class="nav-link goToKeluarga" th:href="@{/pelamar/keluarga/{id}(id=${data.id})}">
 						Keluarga
 					</a>
 					<a class="nav-link goToKeahlian" th:href="@{/pelamar/keahlian/{id}(id=${data.id})}">
@@ -152,6 +152,19 @@
    	});
     
     $(".goToPelatihan").click(function() {
+    	var a = $(this).attr("href");
+   		$.ajax({
+   			url:a,
+   			type:'get',
+   			dataType:'html',
+   			success:function(hasil){
+   				$("#detailList").find(".detailContent").html(hasil);
+   			}
+   		});
+   		return false;
+   	});
+    
+    $(".goToKeluarga").click(function() {
     	var a = $(this).attr("href");
    		$.ajax({
    			url:a,

@@ -37,6 +37,8 @@ public class PelatihanController {
 		List<PelatihanModel> data = repo.findAll();
 		model.addAttribute("listdata", data);
 		
+		
+		
 		return "pelatihan/detail";
 	}
 	
@@ -66,6 +68,12 @@ public class PelatihanController {
 	public String edit(Model model, @PathVariable(name = "id") Long id) {
 		PelatihanModel item = repo.findById(id).orElse(null);
 		model.addAttribute("data", item);
+		
+//		PelatihanModel item2 = repo.findById(id2).orElse(null);
+//		model.addAttribute("data2", item2);
+		
+//		BiodataModel itemBio = repoBio.findById(id).orElse(null);
+//		model.addAttribute("itemBio", itemBio);
 		
 		List<TimePeriodModel> data1 = repo1.findAll();
 		model.addAttribute("listdata2",data1);

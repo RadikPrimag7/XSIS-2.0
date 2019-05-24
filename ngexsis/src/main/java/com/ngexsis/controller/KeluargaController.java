@@ -45,7 +45,7 @@ public class KeluargaController {
 		BiodataModel item = repoBio.findById(id).orElse(null);
 		model.addAttribute("itemBio", item);
 		
-		List<KeluargaModel> data = repo.findAll();
+		List<KeluargaModel> data = item.getListKeluarga();
 		model.addAttribute("listdata",data);
 		
 		

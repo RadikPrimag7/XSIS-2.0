@@ -34,7 +34,7 @@ public class PelatihanController {
 		BiodataModel item = repoBio.findById(id).orElse(null);
 		model.addAttribute("itemBio", item);
 		
-		List<PelatihanModel> data = repo.findAll();
+		List<PelatihanModel> data = item.getListPelatihan();
 		model.addAttribute("listdata", data);
 		
 		

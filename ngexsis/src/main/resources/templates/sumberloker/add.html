@@ -86,11 +86,11 @@
 					<div class="col-12">
 					
 					</div>
-					
+					<label><br></label>
 					<div class="col-12">
 					
 						<div class="btn-group  float-right">
-						<input type="text" name="biodataSumber" th:value="${listBio.id}"/>
+						<input type="hidden" name="biodataSumber" th:value="${listBio.id}"/>
 							<button  class="btn btn-warning" data-dismiss="modal" type="button">Batal</button>
 							<button  class="btn btn-dark" type="submit">Simpan</button>
 						</div>
@@ -128,7 +128,7 @@
 				if($("#vacantId").val() == "1"){
 					$("#careerCenterNameId").prop("disabled", false);
 					$("#eventNameId,#referrerNameId, #referrerPhoneId, #referrerEmailId").prop("disabled", true);
-					document.getElementById('eventNameId').value='';
+					
 					document.getElementById('referrerNameId').value='';
 					document.getElementById('referrerPhoneId').value='';
 					document.getElementById('referrerEmailId').value='';

@@ -9,6 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.TableGenerator;
+import javax.persistence.UniqueConstraint;
 
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
@@ -16,7 +17,10 @@ import org.hibernate.annotations.Where;
 import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
-@Table(name="x_role")
+@Table(name="x_role",
+		uniqueConstraints = {
+		@UniqueConstraint(name="x_role_uk", columnNames= "code")
+		})
 @Where(clause="is_delete=false")
 public class RoleModel {
 	

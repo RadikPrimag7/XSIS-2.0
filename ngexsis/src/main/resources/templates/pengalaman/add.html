@@ -1,6 +1,8 @@
 <html>
 <body>
 <form action="/pengalaman/save" method="post">
+	<input type="hidden" name="biodataPengalaman" th:value="${itemBio.id}">
+	<input type="hidden" name="createdBy" th:value="${itemBio.id}">
 	<div class="modal-header">
 		<h3 class="modal-title">Tambah Pengalaman Kerja</h3>
 		<button type="button" class="close" data-dismiss="modal"

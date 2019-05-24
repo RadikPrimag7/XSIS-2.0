@@ -12,11 +12,22 @@
 <head>
 </head>
 <body>
-
+		<!-- /login?error=true -->
+      <div th:if="${#request.getParameter('error') == 'true'}"
+            style="color:red;margin:10px 0px;">
+         Login Failed!!!<br />
+         Reason :
+         <span th:if="${#session!= null and #session.getAttribute('SPRING_SECURITY_LAST_EXCEPTION') != null}"
+            th:utext="${#session.getAttribute('SPRING_SECURITY_LAST_EXCEPTION').message}">
+                Static summary
+         </span>
+            
+      </div>
 <div class="container" style="width:400px">
+		
 	<br><br><br><br><br>
 	<div class="login-form">
-		<form action="/login/access" method="post">
+		<form th:action="@{/j_spring_security_check}" method="post">
 			<h1 style="display: block; text-align: center">XSIS 2.0</h1>
 			<div class="form-group">
 				<div class="input-group">
@@ -25,7 +36,7 @@
 			</div>
 			<div class="form-group">
 				<div class="input-group">
-					<input type="password" class="form-control" name="abupwd" placeholder="password">
+					<input type="password" class="form-control" name="password" placeholder="password">
 				</div>
 			</div>
 			<div class="form-group">

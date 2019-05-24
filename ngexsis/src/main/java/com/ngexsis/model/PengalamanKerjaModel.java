@@ -284,6 +284,14 @@ public class PengalamanKerjaModel {
 	public void setBiodataId(long biodataId) {
 		this.biodataId = biodataId;
 	}
+
+	public BiodataModel getBiodataPengalaman() {
+		return biodataPengalaman;
+	}
+
+	public void setBiodataPengalaman(BiodataModel biodataPengalaman) {
+		this.biodataPengalaman = biodataPengalaman;
+	}
 	
 	
 }

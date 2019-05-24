@@ -31,11 +31,12 @@ public class PengalamanKerjaController {
 	
 	@RequestMapping(value="pelamar/pengalaman/{id}")
 	public String index(Model model, @PathVariable(name="id")Long id) {
-		List<PengalamanKerjaModel> data = repo.findAll();
-		model.addAttribute("listData",data);
 		
 		BiodataModel item=biorepo.findById(id).orElse(null);
 		model.addAttribute("itemBio",item);
+		
+		List<PengalamanKerjaModel> data = item.getListPengalaman();
+		model.addAttribute("listData",data);
 		return "pengalaman/index";
 	}
 	
@@ -57,7 +58,7 @@ public class PengalamanKerjaController {
 		//mengirim item agar dapat disave ke database
 		
 		repo.save(item);
-		return "redirect:/pengalaman";
+		return "redirect:/pelamar";
 	}
 	
 	@RequestMapping(value="/pengalaman/edit/{id}")
@@ -84,7 +85,7 @@ public class PengalamanKerjaController {
 	public String hapus(@ModelAttribute PengalamanKerjaModel item) {
 		item.setDelete(true);
 		repo.save(item);
-		return "redirect:/pengalaman";
+		return "redirect:/pelamar";
 	}
 	
 }

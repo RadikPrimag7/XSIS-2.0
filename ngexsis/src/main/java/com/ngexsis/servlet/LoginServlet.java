@@ -28,8 +28,8 @@ public class LoginServlet extends HttpServlet{
 	throws ServletException, IOException{
 		
 		List<UserModel>data = repo.find(email, abpwd);
-		String user = request.getParameter("user");
-		String pwd = request.getParameter("pwd");
+		String user = request.getParameter("email");
+		String pwd = request.getParameter("password");
 		
 		if(data.isEmpty()==true) {
 			 request.getRequestDispatcher("login.html").include(request, response);  

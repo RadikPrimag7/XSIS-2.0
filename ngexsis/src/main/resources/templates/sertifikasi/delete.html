@@ -23,6 +23,7 @@
 				</table>
 				
 				
+				<input type="hidden" name="biodataSertifikasi" th:value="${data.biodataId}">
 				<input type="hidden" name="id" th:value="${data.id}">
 				<input type="hidden" name="certificateName" th:value="${data.certificateName}">
 				<input type="hidden" name="publisher" th:value="${data.publisher}">
@@ -35,8 +36,8 @@
 				
 				<br>
 				<div class="btn-group float-right">
-					<a href="/sertifikasi"><button type="button" class="btn btn-warning col"><font style="color:white">Tidak</font></button></a>
-					<button type="submit" class="btn btn-danger col"><font style="color:white">Ya</font></button>
+					<button  class="btn btn-warning" data-dismiss="modal" type="button"><font style="color:white">Batal</font></button>
+			<button  class="btn btn-dark" type="submit">Simpan</button>
 				</div>
 				<br><br>
 			</div>

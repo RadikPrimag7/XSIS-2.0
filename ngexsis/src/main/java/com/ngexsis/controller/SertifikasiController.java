@@ -28,7 +28,7 @@ public class SertifikasiController {
 		BiodataModel item = repoBio.findById(id).orElse(null);
 		model.addAttribute("itemBio", item);
 		
-		List<SertifikasiModel> data = repo.findAll();
+		List<SertifikasiModel> data = item.getListSertifikasi();
 		model.addAttribute("listData", data);
 		
 		return "/sertifikasi/index";
@@ -65,6 +65,6 @@ public class SertifikasiController {
 	public String hapus(@ModelAttribute SertifikasiModel item) {
 		item.setDelete(true);
 		repo.save(item);
-		return "redirect:/sertifikasi";
+		return "redirect:/pelamar";
 	}
 }

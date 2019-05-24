@@ -23,6 +23,7 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 @Entity
 @Table(name = "x_sertifikasi")
 @Where(clause="is_delete=false")
+
 public class SertifikasiModel {
 	@Id
 	@GeneratedValue(strategy = GenerationType.TABLE, generator = "sertifikasi_seq")

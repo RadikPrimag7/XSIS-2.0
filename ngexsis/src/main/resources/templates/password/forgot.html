@@ -11,22 +11,28 @@
 </head>
 <body>
 <div class="container" style="width:500px">
-	<br><br><br><br><br>
-	<div class="login-form" style="border:1px solid darkblue">
+	<br><br><br><br><br><br><br>
+	<div class="login-form" style="border:2px solid darkblue">
 		<form action="/password/forgot" method="post">
-			<div class="header" style="background:darkblue;border-radius:0px">
-				<span style="color:white">Masukkan email terdaftar</span>
+			<div class="card-header col" style="background:darkblue;border-radius:0px">
+				<span class="card-title" style="color:white">Masukkan email terdaftar</span>
 			</div>
+			<div class="card-body">
 			<div class="form-group">
 				<div>
 					<div class="input-group">
-						<input type="text" class="form-control" name="email" id="email" placeholder="email">
-						<button type="submit" id="btn-submit" class="btn btn-primary login-btn btn-block ">Submit</button>
+						<div class="col">
+							<input type="text" class="form-control" name="email" id="email" placeholder="email">
+						</div>
+						<div>
+							<button type="submit" id="btn-submit" class="btn btn-primary login-btn btn-block ">Submit</button>
+						</div>
 					</div>
 				</div>
 			</div>
 			<div class="form-group">
 				<label style="display: block; text-align: center">2020 - Xsis Mitra Utama</label>
+			</div>
 			</div>
 		</form>
 	</div>

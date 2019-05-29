@@ -3,6 +3,10 @@ package com.ngexsis.controller;
 import java.security.Principal;
 import java.util.List;
 import java.util.regex.*;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -58,13 +62,16 @@ public class LoginController {
     }
 	
 	@RequestMapping(value = "/access", method = RequestMethod.GET)
-    public String adminPage(Model model, Principal principal) {
+    public String adminPage(Model model, Principal principal, HttpServletRequest request) {
 		String userName = principal.getName();
 		
         User loginedUser = (User) ((Authentication) principal).getPrincipal();
  
         String userInfo = WebUtils.toString(loginedUser);
         model.addAttribute("userInfo", userInfo);
+        
+        HttpSession session = request.getSession();
+        session.setAttribute("userInfo", userInfo);
          
         return "login/access";
     }

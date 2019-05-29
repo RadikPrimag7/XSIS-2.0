@@ -60,7 +60,7 @@
 					<div class="col-6">
 						<label>Waktu Keluar *</label> 
 						<select name="resignMonth" id="resignMonth" class="form-control" disabled>
-							<option value="">-pilih Bulan -</option>
+							<option value="">-Pilih Bulan -</option>
 							<option th:each="i:${#numbers.sequence(1,12)}" th:value="${i}" th:text="${i}"/>
 						</select>
 					</div>
@@ -105,14 +105,6 @@
 </form>
 <script type="text/javascript">
 
-	$("#joinMonth, #joinYear").change(function() {
-	    if ($("#joinMonth, #joinYear").val() != "" || null) {
-	        $("#resignMonth, #resignYear").prop("disabled", false);
-	    }
-	    else
-	        $("#resignMonth, #resignYear").prop("disabled", true);
-	});
-	//Select tahun down
 	var max1 = new Date().getFullYear();
 	min1 = max1-20,
 	select1 = document.getElementById('joinYear');
@@ -127,26 +119,40 @@
 		opt1.innerHTML = i;
 		select1.appendChild(opt1);
 	}
-	//select1.value = new Date().getFullYear();
+	var max2 = new Date().getFullYear();
+	min2 = $("#joinYear").val();
+	select = document.getElementById("resignYear");
 	
-	var min2 = new Date().getFullYear();
-	max2 = min2-20,
-	select2 = document.getElementById('resignYear');
+	var opt = document.createElement('option');
+	opt.value = "";
+	opt.innerHTML = "-Pilih Tahun-";
+	select.appendChild(opt);
 	
-	var opt2 = document.createElement('option');
-	opt2.value = "";
-	opt2.innerHTML = "- Pilih Tahun -";
-	select2.appendChild(opt2);
-	for (var j = min2; j>=max2; j--){
-		var opt2 = document.createElement('option');
-		opt2.value = j;
-		opt2.innerHTML = j;
-		select2.appendChild(opt2);
-	}
+	$("#joinYear").change(function() {
+	    if ($("#joinYear").val() != "" || null) {
+
+	    	var max2 = new Date().getFullYear();
+	    	min2 = $("#joinYear").val();
+	    	select = document.getElementById("resignYear");
+	    	
+	    	for(var i=min2; i<=max2; i++){
+	    		var opt = document.createElement('option');
+	    		opt.value = i;
+	    		opt.innerHTML = i;
+	    		select.appendChild(opt);
+	    	}
+			
+			
+	    }
+	});
+	$("#joinMonth, #joinYear").change(function() {
+	    if ($("#joinMonth, #joinYear").val() != "" || null) {
+	        $("#resignMonth, #resignYear").prop("disabled", false);
+	    }
+	    else
+	        $("#resignMonth, #resignYear").prop("disabled", true);
+	});
 	
-	//Select tahun up
-	
-	//select2.value = new Date().getFullYear();
 	
 </script>
 </body>

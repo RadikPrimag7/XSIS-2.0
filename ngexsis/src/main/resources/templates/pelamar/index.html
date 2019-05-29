@@ -227,6 +227,8 @@
     <script src="bootstrap-4.3.1-dist/js/bootstrap.min.js"></script>
     <script src="fontawesome-free-5.8.1-web/js/all.min.js"></script>
     
+    
+    
     <script type="text/javascript">
     
 	  	//	loadLevel Religion
@@ -290,6 +292,7 @@
 	  	
     
 	    $(".goToAdd").click(function() {
+	    	
 	   		$.ajax({
 	   			url:'/pelamar/add',
 	   			type:'get',
@@ -304,10 +307,12 @@
 				loadLevelIdentityType();
 				loadLevelMaritalStatus();
 			});
+	   		
 	   	});
 	    
 	    $(".goToDetail").click(function() {
 	    	var a = $(this).attr("href");
+	    	
 	   		$.ajax({
 	   			url:a,
 	   			type:'get',
@@ -317,11 +322,14 @@
 	   				$("#modal-form-xl").modal("show");		
 	   			}
 	   		});
+	   		
+			
 	   		return false;
 	   	});
 	    
 	    $(".goToToken").click(function() {
 	    	var b = $(this).attr("href");
+	    	
 	   		$.ajax({
 	   			url:b,
 	   			type:'get',

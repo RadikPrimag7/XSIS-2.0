@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <body>
-<form action="lainlain/saveketam">
-	<!-- <input type="text" name="id" th:value="${dataTam.id}" style="display:none"> -->
+<form th:action="@{lainlain/saveketam}" method="post">
+	<input type="hidden" name="biodataKetam" th:value="${itemBio.id}">
+	
 	
 	<div class="modal-header" style="background-color: blue">
 		<h4 class="modal-title" style="color:white">Edit Referensi</h4>
@@ -15,13 +16,13 @@
 			<div class="col col-6">
 				<label class="col col-form-label" style="font-size: 80%">Kontak Darurat (Keluarga Tidak Serumah) *</label>
 				<div class="col">
-					<input type="text" name="emergencyContactName" class="form-control" required>
+					<input type="text" th:value="${dataTam.emergencyContactName}" name="emergencyContactName" class="form-control" required>
 				</div>
 			</div>
 			<div class="col col-3">
 				<label class="col col-form-label" style="font-size: 80%">Gaji yang Diharapkan (IDR) *</label>
 				<div class="col">
-					<input type="text" name="expectedSalary" class="form-control" required>
+					<input type="text" th:value="${dataTam.expectedSalary}" name="expectedSalary" class="form-control" required>
 				</div>
 			</div>
 			<div class="col col-3 checkbox">
@@ -37,7 +38,7 @@
 			<div class="col col-6">
 				<label class="col col-form-label" style="font-size: 80%">Nomor Telp. Darurat *</label>
 				<div class="col">
-					<input type="text" name="emergencyContactPhone" class="form-control" required>
+					<input type="text" th:value="${dataTam.emergencyContactPhone}" name="emergencyContactPhone" class="form-control" required>
 				</div>
 			</div>
 			<div class="col col-3">
@@ -134,13 +135,13 @@
 		</div>
 		<br><br>
 		<div class="btn-group float-right">
-			<a href="/lainlain"><button type="button" class="btn btn-warning col"><font style="color:white">Batal</font></button></a>
-			<button type="submit" class="btn btn-primary col"><font style="color:white">Simpan</font></button>
+			<button  class="btn btn-warning" data-dismiss="modal" type="button"><font style="color:white">Batal</font></button>
+			<button  class="btn btn-dark" type="submit">Simpan</button>
 		</div>
 		<br><br>
 	</div>
 </form>
-<script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
+
 <script type="text/javascript">
     $("#isApplyOtherPlace, #isEverBadlySick, #isEverPsychotest").click(function() {
     	//alert("tes")

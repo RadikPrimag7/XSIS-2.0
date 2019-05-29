@@ -2,6 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <body>
 <form action="/lainlain/saveref" method="post">
+	<input type="text" name="biodataReferensi" th:value="${dataRef.biodataId}" style="display:none">
 	<input type="text" name="id" th:value="${dataRef.id}" style="display:none">
 	
 	<div class="modal-header" style="background-color: blue">
@@ -41,8 +42,8 @@
 		</div>
 		<br><br>
 		<div class="btn-group float-right">
-			<a href="/lainlain"><button type="button" class="btn btn-warning col"><font style="color:white">Batal</font></button></a>
-			<button type="submit" class="btn btn-primary col"><font style="color:white">Simpan</font></button>
+			<button  class="btn btn-warning" data-dismiss="modal" type="button"><font style="color:white">Batal</font></button>
+			<button  class="btn btn-dark" type="submit">Simpan</button>
 		</div>
 		<br><br>
 	</div>

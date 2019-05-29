@@ -4,18 +4,25 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.ForeignKey;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.TableGenerator;
 
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
+import org.hibernate.annotations.Where;
 import org.springframework.format.annotation.DateTimeFormat;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 @Entity
 @Table(name="x_keterangan_tambahan")
+@Where(clause="is_delete=false")
 public class KeteranganTambahanModel {
 	@Id
 	@GeneratedValue(strategy=GenerationType.TABLE, generator="keterangan_tambahan_seq")
@@ -52,15 +59,14 @@ public class KeteranganTambahanModel {
 	@Column(name = "is_delete", nullable = false)
 	private boolean isDelete;
 	
-	/*
-	@Column(name = "biodata_id", nullable = false, length = 11)
+	@Column(name = "biodata_id", nullable = false, length = 11, updatable = false, insertable = false)
 	private Long biodataId;
 	
 	@JsonBackReference
-	@ManyToOne
-	@JoinColumn(name = "biodata_id", foreignKey = @ForeignKey(name = "fk_biodata_sertifikasi"))
-	private BiodataModel biodata;
-	*/
+	@OneToOne
+	@JoinColumn(name = "biodata_id", foreignKey = @ForeignKey(name = "fk_biodata_ketam"))
+	private BiodataModel biodataKetam;
+	
 	
 	@Column(name="emergency_contact_name", nullable=true, length=100)
 	private String emergencyContactName;
@@ -72,16 +78,16 @@ public class KeteranganTambahanModel {
 	private String expectedSalary;
 	
 	@Column(name="is_negotiable", nullable=true)
-	private boolean isNegotiable;
+	private Boolean isNegotiable;
 	
 	@Column(name="start_working", nullable=true, length=10)
 	private String startWorking;
 	
 	@Column(name="is_ready_to_outoftown", nullable=true)
-	private boolean isReadyToOutoftown;
+	private Boolean isReadyToOutoftown;
 	
 	@Column(name="is_apply_other_place", nullable=true)
-	private boolean isApplyOtherPlace;
+	private Boolean isApplyOtherPlace;
 	
 	@Column(name="apply_place", nullable=true, length=100)
 	private String applyPlace;
@@ -90,7 +96,7 @@ public class KeteranganTambahanModel {
 	private String selectionPhase;
 	
 	@Column(name="is_ever_badly_sick", nullable=true)
-	private boolean isEverBadlySick;
+	private Boolean isEverBadlySick;
 	
 	@Column(name="disease_name", nullable=true, length=100)
 	private String diseaseName;
@@ -99,7 +105,7 @@ public class KeteranganTambahanModel {
 	private String diseaseTime;
 	
 	@Column(name="is_ever_psychotest", nullable=true)
-	private boolean isEverPsychotest;
+	private Boolean isEverPsychotest;
 	
 	@Column(name="psychotest_needs", nullable=true, length=100)
 	private String psychotestNeeds;
@@ -112,6 +118,22 @@ public class KeteranganTambahanModel {
 	
 	@Column(name="other_notes", nullable=true, length=1000)
 	private String otherNotes;
+
+	public Long getBiodataId() {
+		return biodataId;
+	}
+
+	public void setBiodataId(Long biodataId) {
+		this.biodataId = biodataId;
+	}
+
+	public BiodataModel getBiodataKetam() {
+		return biodataKetam;
+	}
+
+	public void setBiodataKetam(BiodataModel biodataKetam) {
+		this.biodataKetam = biodataKetam;
+	}
 
 	public Long getId() {
 		return id;
@@ -201,13 +223,13 @@ public class KeteranganTambahanModel {
 		this.expectedSalary = expectedSalary;
 	}
 
-	public boolean isNegotiable() {
-		return isNegotiable;
-	}
-
-	public void setNegotiable(boolean isNegotiable) {
-		this.isNegotiable = isNegotiable;
-	}
+//	public Boolean isNegotiable() {
+//		return isNegotiable;
+//	}
+//
+//	public void setNegotiable(Boolean isNegotiable) {
+//		this.isNegotiable = isNegotiable;
+//	}
 
 	public String getStartWorking() {
 		return startWorking;
@@ -217,21 +239,21 @@ public class KeteranganTambahanModel {
 		this.startWorking = startWorking;
 	}
 
-	public boolean isReadyToOutoftown() {
-		return isReadyToOutoftown;
-	}
+//	public boolean isReadyToOutoftown() {
+//		return isReadyToOutoftown;
+//	}
+//
+//	public void setReadyToOutoftown(boolean isReadyToOutoftown) {
+//		this.isReadyToOutoftown = isReadyToOutoftown;
+//	}
 
-	public void setReadyToOutoftown(boolean isReadyToOutoftown) {
-		this.isReadyToOutoftown = isReadyToOutoftown;
-	}
-
-	public boolean isApplyOtherPlace() {
-		return isApplyOtherPlace;
-	}
-
-	public void setApplyOtherPlace(boolean isApplyOtherPlace) {
-		this.isApplyOtherPlace = isApplyOtherPlace;
-	}
+//	public boolean isApplyOtherPlace() {
+//		return isApplyOtherPlace;
+//	}
+//
+//	public void setApplyOtherPlace(boolean isApplyOtherPlace) {
+//		this.isApplyOtherPlace = isApplyOtherPlace;
+//	}
 
 	public String getApplyPlace() {
 		return applyPlace;
@@ -249,13 +271,13 @@ public class KeteranganTambahanModel {
 		this.selectionPhase = selectionPhase;
 	}
 
-	public boolean isEverBadlySick() {
-		return isEverBadlySick;
-	}
-
-	public void setEverBadlySick(boolean isEverBadlySick) {
-		this.isEverBadlySick = isEverBadlySick;
-	}
+//	public boolean isEverBadlySick() {
+//		return isEverBadlySick;
+//	}
+//
+//	public void setEverBadlySick(boolean isEverBadlySick) {
+//		this.isEverBadlySick = isEverBadlySick;
+//	}
 
 	public String getDiseaseName() {
 		return diseaseName;
@@ -273,13 +295,13 @@ public class KeteranganTambahanModel {
 		this.diseaseTime = diseaseTime;
 	}
 
-	public boolean isEverPsychotest() {
-		return isEverPsychotest;
-	}
-
-	public void setEverPsychotest(boolean isEverPsychotest) {
-		this.isEverPsychotest = isEverPsychotest;
-	}
+//	public boolean isEverPsychotest() {
+//		return isEverPsychotest;
+//	}
+//
+//	public void setEverPsychotest(boolean isEverPsychotest) {
+//		this.isEverPsychotest = isEverPsychotest;
+//	}
 
 	public String getPsychotestNeeds() {
 		return psychotestNeeds;
@@ -311,6 +333,46 @@ public class KeteranganTambahanModel {
 
 	public void setOtherNotes(String otherNotes) {
 		this.otherNotes = otherNotes;
+	}
+
+	public Boolean getIsNegotiable() {
+		return isNegotiable;
+	}
+
+	public void setIsNegotiable(Boolean isNegotiable) {
+		this.isNegotiable = isNegotiable;
+	}
+
+	public Boolean getIsReadyToOutoftown() {
+		return isReadyToOutoftown;
+	}
+
+	public void setIsReadyToOutoftown(Boolean isReadyToOutoftown) {
+		this.isReadyToOutoftown = isReadyToOutoftown;
+	}
+
+	public Boolean getIsApplyOtherPlace() {
+		return isApplyOtherPlace;
+	}
+
+	public void setIsApplyOtherPlace(Boolean isApplyOtherPlace) {
+		this.isApplyOtherPlace = isApplyOtherPlace;
+	}
+
+	public Boolean getIsEverBadlySick() {
+		return isEverBadlySick;
+	}
+
+	public void setIsEverBadlySick(Boolean isEverBadlySick) {
+		this.isEverBadlySick = isEverBadlySick;
+	}
+
+	public Boolean getIsEverPsychotest() {
+		return isEverPsychotest;
+	}
+
+	public void setIsEverPsychotest(Boolean isEverPsychotest) {
+		this.isEverPsychotest = isEverPsychotest;
 	}
 	
 }

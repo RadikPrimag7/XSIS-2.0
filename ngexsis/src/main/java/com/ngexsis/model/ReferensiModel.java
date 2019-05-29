@@ -4,9 +4,12 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.ForeignKey;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.TableGenerator;
 
@@ -14,6 +17,8 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 import org.hibernate.annotations.Where;
 import org.springframework.format.annotation.DateTimeFormat;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 @Entity
 @Table(name = "x_pe_referensi")
@@ -54,16 +59,32 @@ public class ReferensiModel {
 	@Column(name="is_delete", nullable=false)
 	private boolean isDelete;
 	
-	/*
-	@Column(name = "biodata_id", nullable = false, length = 11)
+	
+	@Column(name = "biodata_id", nullable = false, length = 11, updatable = false, insertable = false)
 	private Long biodataId;
 	
 	@JsonBackReference
 	@ManyToOne
-	@JoinColumn(name = "biodata_id", foreignKey = @ForeignKey(name = "fk_biodata_sertifikasi"))
-	private BiodataModel biodata;
-	*/
+	@JoinColumn(name = "biodata_id", foreignKey = @ForeignKey(name = "fk_biodata_referensi"))
+	private BiodataModel biodataReferensi;
 	
+	
+	public Long getBiodataId() {
+		return biodataId;
+	}
+
+	public void setBiodataId(Long biodataId) {
+		this.biodataId = biodataId;
+	}
+
+	public BiodataModel getBiodataReferensi() {
+		return biodataReferensi;
+	}
+
+	public void setBiodataReferensi(BiodataModel biodataReferensi) {
+		this.biodataReferensi = biodataReferensi;
+	}
+
 	@Column(name="name", nullable=true, length=100)
 	private String name;
 	

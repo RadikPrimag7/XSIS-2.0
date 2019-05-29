@@ -7,6 +7,7 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.ForeignKey;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -14,6 +15,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.TableGenerator;
 import javax.persistence.Temporal;
@@ -146,6 +148,13 @@ public class BiodataModel {
 	@OneToMany(mappedBy = "biodataSertifikasi", cascade = CascadeType.ALL)
 	private List<SertifikasiModel> listSertifikasi = new ArrayList<SertifikasiModel>();
 	
+	@JsonManagedReference
+	@OneToMany(mappedBy = "biodataReferensi", cascade = CascadeType.ALL)
+	private List<ReferensiModel> listReferensi = new ArrayList<ReferensiModel>();
+	
+	@JsonManagedReference
+	@OneToOne(mappedBy = "biodataKetam", fetch = FetchType.EAGER)
+	private KeteranganTambahanModel listKetam;
 	
 	
 	
@@ -163,6 +172,24 @@ public class BiodataModel {
 //	public void setKeahlian(List<KeahlianModel> keahlian) {
 //		this.keahlian = keahlian;
 //	}
+
+	public List<ReferensiModel> getListReferensi() {
+		return listReferensi;
+	}
+
+	public void setListReferensi(List<ReferensiModel> listReferensi) {
+		this.listReferensi = listReferensi;
+	}
+
+	
+
+	public KeteranganTambahanModel getListKetam() {
+		return listKetam;
+	}
+
+	public void setListKetam(KeteranganTambahanModel listKetam) {
+		this.listKetam = listKetam;
+	}
 
 	public List<PelatihanModel> getListPelatihan() {
 		return listPelatihan;

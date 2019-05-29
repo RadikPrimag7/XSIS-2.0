@@ -23,6 +23,7 @@
 				</table>
 				
 				
+				<input type="hidden" name="biodataReferensi" th:value="${dataRef.biodataId}">
 				<input type="hidden" name="id" th:value="${dataRef.id}">
 				<input type="hidden" name="name" th:value="${dataRef.name}">
 				<input type="hidden" name="addressPhone" th:value="${dataRef.addressPhone}">
@@ -32,8 +33,8 @@
 				
 				<br>
 				<div class="btn-group float-right">
-					<a href="/lainlain"><button type="button" class="btn btn-warning col"><font style="color:white">Tidak</font></button></a>
-					<button type="submit" class="btn btn-danger col"><font style="color:white">Ya</font></button>
+					<button  class="btn btn-warning" data-dismiss="modal" type="button"><font style="color:white">Batal</font></button>
+					<button  class="btn btn-dark" type="submit">Simpan</button>
 				</div>
 				<br><br>
 			</div>

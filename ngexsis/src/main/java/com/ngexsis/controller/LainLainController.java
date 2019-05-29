@@ -11,7 +11,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.ngexsis.model.BiodataModel;
+import com.ngexsis.model.KeteranganTambahanModel;
 import com.ngexsis.model.ReferensiModel;
+import com.ngexsis.repository.BiodataRepo;
 import com.ngexsis.repository.KeteranganTambahanRepo;
 import com.ngexsis.repository.ReferensiRepo;
 
@@ -19,31 +22,41 @@ import com.ngexsis.repository.ReferensiRepo;
 @Controller
 public class LainLainController {
 	@Autowired
+	private BiodataRepo repoBio;
+	
+	@Autowired
 	private ReferensiRepo repoRef;
 	
 	@Autowired
 	private KeteranganTambahanRepo repoTam;
 	
-	@RequestMapping("/lainlain")
-	public String index(Model model) {
-		List<ReferensiModel> data = repoRef.findAll();
+	@RequestMapping("/pelamar/lainlain/{id}")
+	public String index(Model model, @PathVariable(name="id") Long id) {
+		BiodataModel item = repoBio.findById(id).orElse(null);
+		model.addAttribute("itemBio", item);
 		
-		model.addAttribute("listDataRef", data);
+		List<ReferensiModel> dataRef = item.getListReferensi();
+		model.addAttribute("listDataRef", dataRef);
+		
+		KeteranganTambahanModel dataTam = item.getListKetam();
+		model.addAttribute("listDataTam", dataTam);
 		
 		return "/lainlain/index";
 	}
 	
 	// Controller Referensi
 	
-	@RequestMapping(value="lainlain/addref")
-	public String add() {
+	@RequestMapping(value="lainlain/addref/{id}")
+	public String add(Model model, @PathVariable(name="id") Long id) {
+		BiodataModel itemRef = repoBio.findById(id).orElse(null);
+		model.addAttribute("itemBio", itemRef);
 		return "lainlain/addref";
 	}
 	
 	@RequestMapping(value="lainlain/saveref", method=RequestMethod.POST)
-	public String save(@ModelAttribute ReferensiModel itemRef) {
-		repoRef.save(itemRef);
-		return "redirect:/lainlain";
+	public String save(@ModelAttribute ReferensiModel item) {
+		repoRef.save(item);
+		return "redirect:/pelamar";
 	}
 	
 	@RequestMapping(value="lainlain/editref/{id}")
@@ -64,18 +77,34 @@ public class LainLainController {
 	public String hapus(@ModelAttribute ReferensiModel item) {
 		item.setDelete(true);
 		repoRef.save(item);
-		return "redirect:/lainlain";
+		return "redirect:/pelamar";
 	}
 
 	// Controller Keterangan Tambahan
-	@RequestMapping(value="lainlain/viewketam")
-	public String view() {
+	@RequestMapping(value="lainlain/viewketam/{id}")
+	public String view(Model model, @PathVariable (name="id") Long id) {
+		BiodataModel item = repoBio.findById(id).orElse(null);
+		model.addAttribute("itemBio", item);
+		
+		KeteranganTambahanModel dataTam = item.getListKetam();
+		model.addAttribute("dataTam", dataTam);
 		return "lainlain/viewketam";
 	}
 	
-	@RequestMapping(value="lainlain/editketam")
-	public String tambah() {
+	@RequestMapping(value="lainlain/editketam/{id}")
+	public String tambah(Model model, @PathVariable (name="id") Long id) {
+		BiodataModel item = repoBio.findById(id).orElse(null);
+		model.addAttribute("itemBio", item);
+		
+		KeteranganTambahanModel dataTam = item.getListKetam();
+		model.addAttribute("dataTam", dataTam);
 		return "lainlain/editketam";
+	}
+	
+	@RequestMapping(value="lainlain/saveketam", method=RequestMethod.POST)
+	public String simpan(@ModelAttribute KeteranganTambahanModel item) {
+		repoTam.save(item);
+		return "redirect:/pelamar";
 	}
 	
 	/*

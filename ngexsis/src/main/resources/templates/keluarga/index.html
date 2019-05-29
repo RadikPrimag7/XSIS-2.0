@@ -73,7 +73,7 @@
 			</div>
 				
 				<div id="modal-form" class="modal fade" role="dialog">
-					<div class="modal-dialog modal-lg" role="document">
+					<div class="modal-dialog modal-lg modal-dialog-centered" role="document">
 						<div class="modal-content">
 			
 						</div>
@@ -166,6 +166,9 @@
 
 			$(".btn-add1").click(function(){
 				var a = $(this).attr("href");
+				$('#modal-form').modal({
+					backdrop: 'static'
+				});
 				$.ajax({
 					url:a,
 					type:'get',
@@ -173,16 +176,21 @@
 					success:function(hasil){
 						$("#modal-form").find(".modal-content").html(hasil);
 						$("#modal-form").modal("show");
+						
 					}
 				})
 // 				.done(function () {
 // 					loadLevel();
 // 				});
+				
 				return false;
 			});
 			
 			$(".btn-delete").click(function(){
 				var a = $(this).attr("href");
+				$('#modal-form').modal({
+					backdrop: 'static'
+				});
 				$.ajax({
 					url:a,
 					type:'get',
@@ -197,6 +205,9 @@
 			
 			$(".btn-edit").click(function(){
 				var a = $(this).attr("href");
+				$('#modal-form').modal({
+					backdrop: 'static'
+				});
 				$.ajax({
 					url:a,
 					type:'get',

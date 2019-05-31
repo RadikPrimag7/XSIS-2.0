@@ -55,8 +55,9 @@ public class LoginController {
     }
     
     @RequestMapping(value = "/logoutSuccessful", method = RequestMethod.GET)
-    public String logoutSuccessfulPage(Model	 model) {
+    public String logoutSuccessfulPage(Model model, HttpServletRequest request) {
         model.addAttribute("title", "Logout");
+        request.getSession().invalidate();
         return "login/logoutSuccessfulPage";
         
     }
@@ -73,6 +74,7 @@ public class LoginController {
         HttpSession session = request.getSession();
         session.setAttribute("userInfo", userInfo);
          
+        System.out.println(session);
         return "login/access";
     }
 	

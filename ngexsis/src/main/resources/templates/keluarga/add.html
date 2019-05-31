@@ -23,7 +23,7 @@
 	<input type="hidden" name="createdBy" th:value="${itemBio.id}">
 <!-- 	////////////////////////////////////////////////// -->
 		<div class="modal-header" style="background:darkblue"><h3 class="modal-title" style="color:white">Tambah Keluarga</h3>
-			<button type="button" id="btntutup1" style="color:white" class="close" aria-label="close">
+			<button type="button" id="btn1" style="color:white" class="close" aria-label="close">
 				<span aria-hidden="true">&times;</span>
 			</button>
 		</div>
@@ -98,7 +98,7 @@
 					<div class="col-12">
 					
 						<div class="btn-group  float-right">
-							<button  class="btn btn-warning" data-dismiss="modal" type="button">Batal</button>
+							<button  class="btn btn-warning" id="btn2" type="button">Batal</button>
 							<button  class="btn btn-dark" type="submit">Simpan</button>
 						</div>
 					</div>
@@ -131,8 +131,19 @@
 		    $('#familyrelationId').selectpicker('refresh');
 		});
 		
-		$("#btntutup1").click(function(){
-			$("#tutup1").modal("hide");
+		$('#btn1').on('click',function(){
+			
+			$("#modal-form").modal('hide');
+		})
+		
+		$('#btn2').on('click',function(){
+			
+			$("#modal-form").modal('hide');
+		})
+		
+		$('#btn3').on('click',function(){
+			
+			$("#modal-form").modal('hide');
 		})
 
 // 		$("#familytreeId").on('change',function(){

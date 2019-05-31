@@ -46,11 +46,18 @@
 			<div class="col">
 			<div class="btn btn-group float-right btn-sm col-2">
 				<button type="Submit"  class="btn btn-danger btn-lg "><em>Ya</em></button>
-				<button th:href="@{redirect: /keluarga}" type="button" data-dismiss="modal" class="btn btn-warning btn-lg"><em>Tidak</em></button>
+				<button type="button" id="btn1" class="btn btn-warning btn-lg"><em>Tidak</em></button>
 			</div>
 			</div>
 		</div>
 	
 	</form>
+		<script type="text/javascript">
+		$('#btn1').on('click',function(){
+			
+			$("#modal-form").modal('hide');
+		})
+		
+		</script>
 </body>
 </html>

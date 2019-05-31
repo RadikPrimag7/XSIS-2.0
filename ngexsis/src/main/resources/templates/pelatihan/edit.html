@@ -23,7 +23,7 @@
 	
 		<div class="modal-header" style="background:darkblue">
 			<h3 class ="modal-title" style="color:white">Edit Pelatihan</h3>
-			<button type="button" class="close" data-dismiss="modal" style="color:white" aria-label="close">
+			<button type="button" class="close" id="btn1" style="color:white" aria-label="close">
 				<span aria-hidden="true">&times;</span>
 			</button>
 	
@@ -110,8 +110,8 @@
 <!-- 								<option th:each= "ld:${listBio1}" th:value="${ld.id}" th:text="${ld.nickName}" th:field="${data.timePeriodId}"/> -->
 <!-- 						</select> -->
 						<div class="btn-group  float-right">
-							<button  class="btn btn-warning" data-dismiss="modal" type="button">Batal</button>
-							<button  class="btn btn-dark" type="submit">Simpan</button>
+							<button  class="btn btn-warning" id="btn2" type="button">Batal</button>
+							<button  class="btn btn-dark" id="btn3" type="submit">Simpan</button>
 						</div>
 					</div>
 		</div>
@@ -120,6 +120,20 @@
 	</form>
 		
 		<script type="text/javascript">
+		$('#btn1').on('click',function(){
+			
+			$("#modal-form").modal('hide');
+		})
+		
+		$('#btn2').on('click',function(){
+			
+			$("#modal-form").modal('hide');
+		})
+		
+		$('#btn3').on('click',function(){
+			
+			$("#modal-form").modal('hide');
+		})
 // 			var max=new Date().getFullYear();
 // 				min=max-50;
 // 				select = document.getElementById("getYear");

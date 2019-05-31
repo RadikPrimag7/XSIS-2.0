@@ -20,7 +20,7 @@
 	<input type="text" name="biodataKeluarga" th:value="${data.biodataId}" style="display:none">
 	<input type="text" name="id" th:value="${data.id}" style="display:none">
 		<div class="modal-header" style="background:darkblue"><h3 class="modal-title" style="color:white">Tambah Keluarga</h3>
-			<button type="button" class="close" data-dismiss="modal" style="color:white" aria-label="close">
+			<button type="button" class="close" id="btn1" style="color:white" aria-label="close">
 				<span aria-hidden="true">&times;</span>
 			</button>
 		</div>
@@ -99,7 +99,7 @@
 					<div class="col-12">
 					
 						<div class="btn-group  float-right">
-							<button  class="btn btn-warning" data-dismiss="modal" type="button">Batal</button>
+							<button  class="btn btn-warning" id="btn2" type="button">Batal</button>
 							<button  class="btn btn-dark" type="submit">Simpan</button>
 						</div>
 					</div>
@@ -138,6 +138,21 @@
 		    $('#familyrelationId').html(options);
 		    $('#familyrelationId').selectpicker('refresh');
 		});
+		
+		$('#btn1').on('click',function(){
+			
+			$("#modal-form").modal('hide');
+		})
+		
+		$('#btn2').on('click',function(){
+			
+			$("#modal-form").modal('hide');
+		})
+		
+		$('#btn3').on('click',function(){
+			
+			$("#modal-form").modal('hide');
+		})
 
 // 		$("#familytreeId").on('change',function(){
 			

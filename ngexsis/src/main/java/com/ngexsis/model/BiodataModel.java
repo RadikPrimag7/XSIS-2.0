@@ -21,6 +21,8 @@ import javax.persistence.TableGenerator;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
@@ -36,6 +38,33 @@ public class BiodataModel {
 	@TableGenerator(name="biodata_seq", table="tbl_sequence", pkColumnName="seq_id", valueColumnName="seq_value",
 	initialValue=0, allocationSize=1)
 	private Long id;
+	
+	@Column(name = "created_by", nullable = true, length = 11)
+	private Long createdBy;
+	
+	@Column(name = "created_on", nullable = true)
+	@CreationTimestamp
+	@DateTimeFormat(pattern="yyy-MM-dd HH:mm:ss")
+	private Date createdOn;
+	
+	@Column(name = "modified_by", nullable = true, length = 11)
+	private Long modifiedBy;
+	
+	@Column(name = "modified_on", nullable = true)
+	@UpdateTimestamp
+	@DateTimeFormat(pattern="yyy-MM-dd HH:mm:ss")
+	private Date modifiedOn;
+	
+	@Column(name = "deleted_by", nullable = true, length = 11)
+	private Long deletedBy;
+	
+	@Column(name = "deleted_on", nullable = true)
+	@UpdateTimestamp
+	@DateTimeFormat(pattern="yyy-MM-dd HH:mm:ss")
+	private Date deletedOn;
+	
+	@Column(name = "is_delete", nullable = false, columnDefinition = "BOOLEAN DEFAULT false")
+	private boolean isDelete;
 	
 	@Column(name="fullname", length=255, nullable=false)
 	private String fullname;
@@ -229,6 +258,62 @@ public class BiodataModel {
 
 	public void setId(Long id) {
 		this.id = id;
+	}
+
+	public Long getCreatedBy() {
+		return createdBy;
+	}
+
+	public void setCreatedBy(Long createdBy) {
+		this.createdBy = createdBy;
+	}
+
+	public Date getCreatedOn() {
+		return createdOn;
+	}
+
+	public void setCreatedOn(Date createdOn) {
+		this.createdOn = createdOn;
+	}
+
+	public Long getModifiedBy() {
+		return modifiedBy;
+	}
+
+	public void setModifiedBy(Long modifiedBy) {
+		this.modifiedBy = modifiedBy;
+	}
+
+	public Date getModifiedOn() {
+		return modifiedOn;
+	}
+
+	public void setModifiedOn(Date modifiedOn) {
+		this.modifiedOn = modifiedOn;
+	}
+
+	public Long getDeletedBy() {
+		return deletedBy;
+	}
+
+	public void setDeletedBy(Long deletedBy) {
+		this.deletedBy = deletedBy;
+	}
+
+	public Date getDeletedOn() {
+		return deletedOn;
+	}
+
+	public void setDeletedOn(Date deletedOn) {
+		this.deletedOn = deletedOn;
+	}
+
+	public boolean isDelete() {
+		return isDelete;
+	}
+
+	public void setDelete(boolean isDelete) {
+		this.isDelete = isDelete;
 	}
 
 	public String getFullname() {

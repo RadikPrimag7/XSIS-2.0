@@ -57,7 +57,7 @@ public class SertifikasiModel {
 	@DateTimeFormat(pattern="yyy-MM-dd HH:mm:ss")
 	private Date deletedOn;
 	
-	@Column(name = "is_delete", nullable = false)
+	@Column(name = "is_delete", nullable = false, columnDefinition = "BOOLEAN DEFAULT false")
 	private boolean isDelete;
 	
 	

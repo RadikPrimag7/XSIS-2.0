@@ -56,7 +56,7 @@ public class KeteranganTambahanModel {
 	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
 	private Date deletedOn;
 	
-	@Column(name = "is_delete", nullable = false)
+	@Column(name = "is_delete", nullable = false, columnDefinition = "BOOLEAN DEFAULT false")
 	private boolean isDelete;
 	
 	@Column(name = "biodata_id", nullable = false, length = 11, updatable = false, insertable = false)
@@ -77,16 +77,16 @@ public class KeteranganTambahanModel {
 	@Column(name="expected_salary", nullable=true, length=20)
 	private String expectedSalary;
 	
-	@Column(name="is_negotiable", nullable=true)
+	@Column(name="is_negotiable", nullable=true, columnDefinition = "BOOLEAN DEFAULT false")
 	private Boolean isNegotiable;
 	
 	@Column(name="start_working", nullable=true, length=10)
 	private String startWorking;
 	
-	@Column(name="is_ready_to_outoftown", nullable=true)
+	@Column(name="is_ready_to_outoftown", nullable=true, columnDefinition = "BOOLEAN DEFAULT false")
 	private Boolean isReadyToOutoftown;
 	
-	@Column(name="is_apply_other_place", nullable=true)
+	@Column(name="is_apply_other_place", nullable=true, columnDefinition = "BOOLEAN DEFAULT false")
 	private Boolean isApplyOtherPlace;
 	
 	@Column(name="apply_place", nullable=true, length=100)
@@ -95,7 +95,7 @@ public class KeteranganTambahanModel {
 	@Column(name="selection_phace", nullable=true, length=100)
 	private String selectionPhase;
 	
-	@Column(name="is_ever_badly_sick", nullable=true)
+	@Column(name="is_ever_badly_sick", nullable=true, columnDefinition = "BOOLEAN DEFAULT false")
 	private Boolean isEverBadlySick;
 	
 	@Column(name="disease_name", nullable=true, length=100)
@@ -104,7 +104,7 @@ public class KeteranganTambahanModel {
 	@Column(name="disease_time", nullable=true, length=100)
 	private String diseaseTime;
 	
-	@Column(name="is_ever_psychotest", nullable=true)
+	@Column(name="is_ever_psychotest", nullable=true, columnDefinition = "BOOLEAN DEFAULT false")
 	private Boolean isEverPsychotest;
 	
 	@Column(name="psychotest_needs", nullable=true, length=100)

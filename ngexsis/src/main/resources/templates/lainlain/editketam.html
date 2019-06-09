@@ -1,8 +1,21 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<title>Tambah Sertifikasi</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="bootstrap-4.3.1-dist/css/bootstrap.min.css">
+	
+	<!-- Font Awesome CSS -->
+	<link rel="stylesheet" href="fontawesome-free-5.8.1-web/css/all.min.css">
+</head>
 <body>
 <form th:action="@{lainlain/saveketam}" method="post">
 	<input type="hidden" name="biodataKetam" th:value="${itemBio.id}">
+	<input type="hidden" name="id" th:value="${dataTam.id}">
 	
 	
 	<div class="modal-header" style="background-color: blue">
@@ -44,7 +57,7 @@
 			<div class="col col-3">
 				<label class="col col-form-label" style="font-size: 80%">Kapan Siap Mulai Bekerja *</label>
 				<div class="col">
-					<input type="text" name="startWorking" class="form-control" required>
+					<input type="text" th:value="${dataTam.startWorking}" name="startWorking" class="form-control" required>
 				</div>
 			</div>
 			<div class="col col-3 checkbox">
@@ -67,13 +80,13 @@
 			<div class="col">
 				<label class="col col-form-label" style="font-size: 80%">Dimana (Tempat Melamar) ?</label>
 				<div class="col">
-					<input type="text" name="applyPlace" id="applyPlace" class="form-control" disabled>
+					<input type="text" th:value="${dataTam.applyPlace}" name="applyPlace" id="applyPlace" class="form-control" disabled>
 				</div>
 			</div>
 			<div class="col">
 				<label class="col col-form-label" style="font-size: 80%">Tahapan Seleksi Melamar</label>
 				<div class="col">
-					<input type="text" name="selectionPhase" id="selectionPhase" class="form-control" disabled>
+					<input type="text" th:value="${dataTam.selectionPhase}" name="selectionPhase" id="selectionPhase" class="form-control" disabled>
 				</div>
 			</div>
 		</div>
@@ -87,13 +100,13 @@
 			<div class="col">
 				<label class="col col-form-label" style="font-size: 80%">Nama Penyakit</label>
 				<div class="col">
-					<input type="text" name="diseaseName" id="diseaseName" class="form-control" disabled>
+					<input type="text" th:value="${dataTam.diseaseName}" name="diseaseName" id="diseaseName" class="form-control" disabled>
 				</div>
 			</div>
 			<div class="col">
 				<label class="col col-form-label" style="font-size: 80%">Kapan (Waktu Sakit) ?</label>
 				<div class="col">
-					<input type="text" name="diseaseTime" id="diseaseTime" class="form-control" disabled>
+					<input type="text" th:value="${dataTam.diseaseTime}" name="diseaseTime" id="diseaseTime" class="form-control" disabled>
 				</div>
 			</div>
 		</div>
@@ -107,13 +120,13 @@
 			<div class="col">
 				<label class="col col-form-label" style="font-size: 80%">Keperluan Psikotes</label>
 				<div class="col">
-					<input type="text" name="psychotestNeeds" id="psychotestNeeds" class="form-control" disabled>
+					<input type="text" th:value="${dataTam.psychotestNeeds}" name="psychotestNeeds" id="psychotestNeeds" class="form-control" disabled>
 				</div>
 			</div>
 			<div class="col">
 				<label class="col col-form-label" style="font-size: 80%">Kapan (Waktu Psikotes) ?</label>
 				<div class="col">
-					<input type="text" name="psychotestTime" id="psychotestTime" class="form-control" disabled>
+					<input type="text" th:text="${dataTam.psychotestTime}" name="psychotestTime" id="psychotestTime" class="form-control" disabled>
 				</div>
 			</div>
 		</div>
@@ -121,7 +134,7 @@
 			<div class="col">
 				<label class="col col-form-label" style="font-size: 80%">Persyaratan yang Diperlukan untuk Jabatan yang Dilamar (menurut kandidat/karyawan)</label>
 				<div class="col">
-					<textarea name="requirementesRequired" style="resize: unset" class="form-control"></textarea>
+					<textarea th:text="${dataTam.requirementesRequired}" name="requirementesRequired" style="resize: unset" class="form-control"></textarea>
 				</div>
 			</div>
 		</div>
@@ -129,7 +142,7 @@
 			<div class="col">
 			<label class="col col-form-label" style="font-size: 80%">Keterangan Lain yang Ingin Dikemukakan</label>
 				<div class="col">
-					<textarea name="otherNotes" style="resize: unset" class="form-control"></textarea>
+					<textarea th:text="${dataTam.otherNotes}" name="otherNotes" style="resize: unset" class="form-control"></textarea>
 				</div>
 			</div>
 		</div>
@@ -141,7 +154,7 @@
 		<br><br>
 	</div>
 </form>
-
+<script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
 <script type="text/javascript">
     $("#isApplyOtherPlace, #isEverBadlySick, #isEverPsychotest").click(function() {
     	//alert("tes")

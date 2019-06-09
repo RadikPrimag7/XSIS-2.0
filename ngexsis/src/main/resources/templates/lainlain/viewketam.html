@@ -1,8 +1,20 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<title>Tambah Sertifikasi</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="bootstrap-4.3.1-dist/css/bootstrap.min.css">
+	
+	<!-- Font Awesome CSS -->
+	<link rel="stylesheet" href="fontawesome-free-5.8.1-web/css/all.min.css">
+</head>
 <body>
 <form th:action="@{lainlain/saveketam}" method="post">
-	
+	<input type="text" name="biodataKetam" th:value="${itemBio.id}" style="display:none">
 	
 	
 	<div class="modal-header" style="background-color: darkblue">
@@ -12,86 +24,86 @@
 		</button>
 	</div>
 	<div class="modal-body">
-		<table class="table">
+		<table class="table" th:each="ars:${dataTam}">
 			<tr>
 				<th>Gaji Yang Diharapkan</th>
 				<td>:</td>
-				<td th:text="${dataTam.expectedSalary}">-</td>
+				<td th:text="${ars.expectedSalary}">-</td>
 			</tr>
 			<tr>
 				<th>Negotiable</th>
 				<td>:</td>
-				<td th:text="${dataTam.isNegotiable}">-</td>
+				<td th:text="${ars.isNegotiable}">-</td>
 			</tr>
 			<tr>
 				<th>Kapan Siap Mulai Bekerja</th>
 				<td>:</td>
-				<td th:text="${dataTam.startWorking}">-</td>
+				<td th:text="${ars.startWorking}">-</td>
 			</tr>
 			<tr>
 				<th>Bersedia Ditempatkan Di Luar Kota</th>
 				<td>:</td>
-				<td th:text="${dataTam.isReadyToOutoftown}">-</td>
+				<td th:text="${ars.isReadyToOutoftown}">-</td>
 			</tr>
 			<tr>
 				<th>Kontak Darurat (Keluarga Tidak Serumah)</th>
 				<td>:</td>
-				<td th:text="${dataTam.emergencyContactName}">-</td>
+				<td th:text="${ars.emergencyContactName}">-</td>
 			</tr>
 			<tr>
 				<th>Nomor Telp. Darurat</th>
 				<td>:</td>
-				<td th:text="${dataTam.emergencyContactPhone}">-</td>
+				<td th:text="${ars.emergencyContactPhone}">-</td>
 			</tr>
 			<tr>
 				<th>Sedang Melamar Di Tempat Lain</th>
 				<td>:</td>
-				<td th:text="${dataTam.isApplyOtherPlace}">-</td>
+				<td th:text="${ars.isApplyOtherPlace}">-</td>
 			</tr>
 			<tr>
 				<th>Dimana (Tempat Melamar)</th>
 				<td>:</td>
-				<td th:text="${dataTam.applyPlace}">-</td>
+				<td th:text="${ars.applyPlace}">-</td>
 			</tr>
 			<tr>
 				<th>Tahapan Seleksi Melamar</th>
 				<td>:</td>
-				<td th:text="${dataTam.selectionPhase}">-</td>
+				<td th:text="${ars.selectionPhase}">-</td>
 			</tr>
 			<tr>
 				<th>Pernah Sakit Berat/Lama Sembuh</th>
 				<td>:</td>
-				<td th:text="${dataTam.isEverBadlySick}">-</td>
+				<td th:text="${ars.isEverBadlySick}">-</td>
 			</tr>
 			<tr>
 				<th>Nama Penyakit</th>
 				<td>:</td>
-				<td th:text="${dataTam.diseaseName}">-</td>
+				<td th:text="${ars.diseaseName}">-</td>
 			</tr>
 			<tr>
 				<th>Kapan (Waktu Sakit)</th>
 				<td>:</td>
-				<td th:text="${dataTam.diseaseTime}">-</td>
+				<td th:text="${ars.diseaseTime}">-</td>
 			</tr>
 			<tr>
 				<th>Pernah Mengikuti Psikotes</th>
 				<td>:</td>
-				<td th:text="${dataTam.isEverPsychotest}">-</td>
+				<td th:text="${ars.isEverPsychotest}">-</td>
 			</tr>
 			<tr>
 				<th>Keperluan Psikotes</th>
 				<td>:</td>
-				<td th:text="${dataTam.psychotestNeeds}">-</td>
+				<td th:text="${ars.psychotestNeeds}">-</td>
 			</tr>
 			<tr>
 				<th>Kapan (Waktu Psikotes)</th>
 				<td>:</td>
-				<td th:text="${dataTam.psychotestTime}">-</td>
+				<td th:text="${ars.psychotestTime}">-</td>
 			</tr>
 			<tr>
 				<th>Keterangan Lain</th>
 				<td>:</td>
-				<td th:text="${dataTam.otherNotes}">-</td>
+				<td th:text="${ars.otherNotes}">-</td>
 			</tr>
 		</table>
 		<br><br>

@@ -48,7 +48,7 @@ public class LoginController {
 //		return "login/index";
 //	}
 	
-	@RequestMapping(value = "/", method = RequestMethod.GET)
+	@RequestMapping(value = "/login", method = RequestMethod.GET)
     public String loginPage(Model model) {
  
         return "login/index";
@@ -74,7 +74,7 @@ public class LoginController {
         HttpSession session = request.getSession();
         session.setAttribute("userInfo", userInfo);
          
-        System.out.println(session);
+        System.out.println(userInfo);
         return "login/access";
     }
 	

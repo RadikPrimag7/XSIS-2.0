@@ -1,12 +1,18 @@
 package com.ngexsis.controller;
 
+import java.security.Principal;
 import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -18,6 +24,7 @@ import com.ngexsis.model.BiodataModel;
 import com.ngexsis.model.PengalamanKerjaModel;
 import com.ngexsis.repository.BiodataRepo;
 import com.ngexsis.repository.PengalamanKerjaRepo;
+import com.ngexsis.utils.WebUtils;
 
 @Controller
 public class PengalamanKerjaController {
@@ -30,13 +37,25 @@ public class PengalamanKerjaController {
 	private BiodataRepo biorepo;
 	
 	@RequestMapping(value="pelamar/pengalaman/{id}")
-	public String index(Model model, @PathVariable(name="id")Long id) {
+	public String index(Model model, @PathVariable(name="id")Long id,Principal principal, HttpServletRequest request) {
 		
 		BiodataModel item=biorepo.findById(id).orElse(null);
 		model.addAttribute("itemBio",item);
 		
+		String userName = principal.getName();
+		
+        User loginedUser = (User) ((Authentication) principal).getPrincipal();
+ 
+        String userInfo = WebUtils.toString(loginedUser);
+        model.addAttribute("userInfo", userInfo);
+		
 		List<PengalamanKerjaModel> data = item.getListPengalaman();
 		model.addAttribute("listData",data);
+		
+		
+		HttpSession session = request.getSession();
+		session.setAttribute("userInfo", userInfo);
+		System.out.println(session);
 		return "pengalaman/index";
 	}
 	

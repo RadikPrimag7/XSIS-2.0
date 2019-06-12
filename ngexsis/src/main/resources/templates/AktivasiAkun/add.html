@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	
+	</head>
+	
+	<body>
+		<form action="@{/onlineTes/save}" method="post" id="tutup">
+		
+		<!-- untuk menginput biodataId-->
+		<input type="hidden" name="biodataTesOnline" th:value="${itemBio.id}">
+		<input type="hidden" name="createdBy" th:value="${itemBio.id}">
+		</form>
+	</body>
+</html>

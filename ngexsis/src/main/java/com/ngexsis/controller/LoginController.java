@@ -74,7 +74,7 @@ public class LoginController {
         HttpSession session = request.getSession();
         session.setAttribute("userInfo", userInfo);
          
-        System.out.println(session);
+        System.out.println(userInfo);
         return "login/access";
     }
 	

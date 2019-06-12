@@ -185,6 +185,10 @@ public class BiodataModel {
 	@OneToOne(mappedBy = "biodataKetam", fetch = FetchType.EAGER)
 	private KeteranganTambahanModel listKetam;
 	
+	@JsonManagedReference
+	@OneToMany(mappedBy = "biodataTesOnline", cascade = CascadeType.ALL)
+	private List<OnlineTesModel> listOnlineTes = new ArrayList<OnlineTesModel>();
+	
 	
 	
 //	@OneToMany(mappedBy = "keahlian", cascade = CascadeType.ALL)
@@ -201,6 +205,14 @@ public class BiodataModel {
 //	public void setKeahlian(List<KeahlianModel> keahlian) {
 //		this.keahlian = keahlian;
 //	}
+
+	public List<OnlineTesModel> getListOnlineTes() {
+		return listOnlineTes;
+	}
+
+	public void setListOnlineTes(List<OnlineTesModel> listOnlineTes) {
+		this.listOnlineTes = listOnlineTes;
+	}
 
 	public List<ReferensiModel> getListReferensi() {
 		return listReferensi;

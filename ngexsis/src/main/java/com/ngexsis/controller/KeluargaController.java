@@ -111,7 +111,7 @@ public class KeluargaController {
 	public String hapus(@ModelAttribute KeluargaModel item) {
 		item.setDelete(true);
 		repo.save(item);
-		return "redirect:/keluarga";
+		return "redirect:/pelamar";
 	}
 	
 }

@@ -1,26 +1,14 @@
-<!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
-	<title>Tambah Sertifikasi</title>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<meta http-equiv="X-UA-Compatible" content="ie=edge">
-	
-	<!-- Bootstrap CSS -->
-	<link rel="stylesheet" href="bootstrap-4.3.1-dist/css/bootstrap.min.css">
-	
-	<!-- Font Awesome CSS -->
-	<link rel="stylesheet" href="fontawesome-free-5.8.1-web/css/all.min.css">
-</head>
+
 <body>
 <form th:action="@{lainlain/saveketam}" method="post">
-	<input type="hidden" name="biodataKetam" th:value="${itemBio.id}">
-	<input type="hidden" name="id" th:value="${dataTam.id}">
+	<input type="text" name="biodataKetam" th:value="${itemBio.id}" style="display: none">
+	<input type="text" name="id" th:value="${dataTam.id}" style="display: none">
 	
 	
 	<div class="modal-header" style="background-color: blue">
 		<h4 class="modal-title" style="color:white">Edit Referensi</h4>
-		<button type="button" class="close" data-dismiss="modal" aria-label="Close" style="color: white">
+		<button type="button" id="btn-close" class="close" aria-label="close" style="color: white">
 			<span aria-hidden="true">&times;</span>
 		</button>
 	</div>
@@ -148,14 +136,15 @@
 		</div>
 		<br><br>
 		<div class="btn-group float-right">
-			<button  class="btn btn-warning" data-dismiss="modal" type="button"><font style="color:white">Batal</font></button>
+			<button  class="btn btn-warning" id="btn-cancel" type="button"><font style="color:white">Batal</font></button>
 			<button  class="btn btn-dark" type="submit">Simpan</button>
 		</div>
 		<br><br>
 	</div>
 </form>
-<script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
+
 <script type="text/javascript">
+	/*
     $("#isApplyOtherPlace, #isEverBadlySick, #isEverPsychotest").click(function() {
     	//alert("tes")
         var cb1 = $('#isApplyOtherPlace').is(':checked');
@@ -165,7 +154,15 @@
         $('#diseaseName, #diseaseTime').prop('disabled', !cb2);    
         $('#psychotestNeeds, #psychotestTime').prop('disabled', !cb3);    
     });
+	*/
 
+    $('#btn-close').on('click',function(){
+		$("#modal-form-xl").modal('hide');
+	})
+	
+	$('#btn-cancel').on('click',function(){
+		$("#modal-form-xl").modal('hide');
+	})
 </script>
 
 </body>

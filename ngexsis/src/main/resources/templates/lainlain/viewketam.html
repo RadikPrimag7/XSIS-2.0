@@ -19,7 +19,7 @@
 	
 	<div class="modal-header" style="background-color: darkblue">
 		<h4 class="modal-title" style="color: white">Keterangan Tambahan</h4>
-		<button type="button" class="close" data-dismiss="modal" aria-label="Close" style="color: white">
+		<button type="button" id="btn-close" class="close" aria-label="close" style="color: white">
 			<span aria-hidden="true">&times;</span>
 		</button>
 	</div>
@@ -108,11 +108,20 @@
 		</table>
 		<br><br>
 		<div class="btn-group float-right">
-			<button  class="btn btn-warning" data-dismiss="modal" type="button"><font style="color:white">Batal</font></button>
+			<button  class="btn btn-warning" id="btn-cancel" type="button"><font style="color:white">Batal</font></button>
 			<button  class="btn btn-dark" type="submit">Simpan</button>
 		</div>
 		<br><br>
 	</div>
 </form>
+<script type="text/javascript">
+	$('#btn-close').on('click',function(){
+		$("#modal-form-lg").modal('hide');
+	})
+	
+	$('#btn-cancel').on('click',function(){
+		$("#modal-form-lg").modal('hide');
+	})
+</script>
 </body>
 </html>

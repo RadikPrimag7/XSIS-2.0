@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-	<meta charset="ISO-8859-1">
-	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
 	<title>Referensi Index</title>
 	
 	<!-- Bootstrap CSS -->
@@ -93,21 +93,21 @@
 		</div>
 		
 		<div id="modal-form" class="modal fade" role="dialog">
-			<div class="modal-dialog" role="document">
+			<div class="modal-dialog modal-dialog-centered" role="document">
 				<div class="modal-content">
 					
 				</div>
 			</div>
 		</div>
 		<div id="modal-form-lg" class="modal fade" role="dialog">
-			<div class="modal-dialog modal-lg" role="document">
+			<div class="modal-dialog modal-dialog-centered modal-lg" role="document">
 				<div class="modal-content">
 					
 				</div>
 			</div>
 		</div>
 		<div id="modal-form-xl" class="modal fade" role="dialog">
-			<div class="modal-dialog modal-xl" role="document">
+			<div class="modal-dialog modal-dialog-centered modal-xl" role="document">
 				<div class="modal-content">
 					
 				</div>
@@ -116,14 +116,17 @@
 	</div>
 	<!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then other JS -->
-    <script type="text/javascript" src="../../js/jquery-3.4.0.min.js"></script>
-    <script type="text/javascript" src="../../js/popper.min.js"></script>
-    <script type="text/javascript" src="../../bootstrap-4.3.1-dist/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="../../fontawesome-free-5.8.1-web/js/fontawesome.min.js"></script>
+    <script type="text/javascript" src="/js/jquery-3.4.0.min.js"></script>
+    <script type="text/javascript" src="/js/popper.min.js"></script>
+    <script type="text/javascript" src="/bootstrap-4.3.1-dist/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/fontawesome-free-5.8.1-web/js/fontawesome.min.js"></script>
     
     <script type="text/javascript">
     	$(".btn-add1").click(function(){
     		var a = $(this).attr("href");
+    		$('#modal-form-lg').modal({
+				backdrop: 'static'
+			});
     		$.ajax({
     			url:a,
     			type:'get',
@@ -138,6 +141,9 @@
     	
     	$(".btn-edit").click(function(){
     		var a = $(this).attr("href");
+    		$('#modal-form-lg').modal({
+				backdrop: 'static'
+			});
     		$.ajax({
     			url:a,
     			type:'get',
@@ -152,6 +158,9 @@
     	
     	$(".btn-delete").click(function(){
     		var b = $(this).attr("href");
+    		$('#modal-form').modal({
+				backdrop: 'static'
+			});
     		$.ajax({
     			url:b,
     			type:'get',
@@ -166,6 +175,9 @@
     	
     	$(".viewketam").click(function(){
     		var b = $(this).attr("href");
+    		$('#modal-form-lg').modal({
+				backdrop: 'static'
+			});
     		$.ajax({
     			url: b,
     			type:'get',
@@ -180,6 +192,9 @@
     	
     	$(".editketam").click(function(){
     		var b = $(this).attr("href");
+    		$('#modal-form-xl').modal({
+				backdrop: 'static'
+			});
     		$.ajax({
     			url: b,
     			type:'get',

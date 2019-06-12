@@ -6,9 +6,9 @@
 <body>
 	<div class="modal-header" style="background-color: darkblue">
     	<h4 class="modal-title" style="color:white">Kirim Token</h4>
-    	<button type="button" class="close" data-dismiss="modal" aria-label="Close" style="color: white">
+    	<a href="/pelamar"><button type="button" id="btn-close" class="close" aria-label="close" style="color: white">
 			<span aria-hidden="true">&times;</span>
-		</button>
+		</button></a>
     </div>
     <div class="modal-body">
     	<form action="/pelamar/savetoken" method="post">
@@ -52,7 +52,6 @@
     		<input type="hidden" name="addrbookId" th:value="${data.addrbookId}">
     		<input type="hidden" name="token" th:value="${data.token}">
     		<input type="hidden" name="marriageYear" th:value="${data.marriageYear}">
-    		
     		
     	</form>
     </div>

@@ -329,7 +329,9 @@
 	    
 	    $(".goToToken").click(function() {
 	    	var b = $(this).attr("href");
-	    	
+	    	$('#modal-form-sm').modal({
+				backdrop: 'static'
+			});
 	   		$.ajax({
 	   			url:b,
 	   			type:'get',

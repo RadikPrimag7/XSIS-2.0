@@ -36,11 +36,16 @@
 				
 				<br>
 				<div class="btn-group float-right">
-					<button  class="btn btn-warning" data-dismiss="modal" type="button"><font style="color:white">Batal</font></button>
+					<button  class="btn btn-warning" id="btn-cancel" type="button"><font style="color:white">Batal</font></button>
 					<button  class="btn btn-dark" type="submit">Simpan</button>
 				</div>
 				<br><br>
 			</div>
 		</form>
+		<script type="text/javascript">
+		$('#btn-cancel').on('click',function(){
+			$("#modal-form").modal('hide');
+		})
+		</script>
 	</body>
 </html>
